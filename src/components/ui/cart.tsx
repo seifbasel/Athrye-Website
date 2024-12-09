@@ -24,7 +24,7 @@ const CartItem: React.FC<CartItemProps> = ({
   return (
     <motion.div 
       layout
-      className="flex items-center gap-4 p-4 bg-card dark:bg-background-dark rounded-lg"
+      className="flex items-center gap-4 p-4 bg-background dark:bg-background-dark rounded-xl overflow-hidden shadow-md hover:shadow-xl shadow-background-dark dark:shadow-background transition-shadow duration-500"
     >
       <div className="relative h-20 w-20 rounded-md overflow-hidden">
         <Image 
@@ -46,7 +46,7 @@ const CartItem: React.FC<CartItemProps> = ({
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={() => onUpdateQuantity(id, quantity - 1)}
-          className="p-1 rounded-full bg-background dark:bg-background-dark"
+          className="p-1 rounded-full bg-background dark:bg-background-dark overflow-hidden shadow-md hover:shadow-xl shadow-background-dark dark:shadow-background transition-shadow duration-500"
           disabled={quantity <= 1}
         >
           <Minus className="w-4 h-4" />
@@ -55,7 +55,7 @@ const CartItem: React.FC<CartItemProps> = ({
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={() => onUpdateQuantity(id, quantity + 1)}
-          className="p-1 rounded-full bg-background dark:bg-background-dark"
+          className="p-1 rounded-full bg-background dark:bg-background-dark overflow-hidden shadow-md hover:shadow-xl shadow-background-dark dark:shadow-background transition-shadow duration-500"
         >
           <Plus className="w-4 h-4" />
         </motion.button>
@@ -64,7 +64,7 @@ const CartItem: React.FC<CartItemProps> = ({
       <motion.button
         whileTap={{ scale: 0.9 }}
         onClick={() => onRemove(id)}
-        className="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-full"
+        className="p-2 text-red-500 hover:bg-background-dark dark:hover:bg-red-900/20 rounded-full"
       >
         <Trash2 className="w-5 h-5" />
       </motion.button>

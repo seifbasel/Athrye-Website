@@ -70,7 +70,7 @@ export default function CartPage() {
       </div>
 
       {cartItems.length > 0 ? (
-        <div className="p-4 bg-card dark:bg-background-dark rounded-lg">
+        <div className="p-4 bg-background dark:bg-background-dark rounded-xl overflow-hidden shadow-md hover:shadow-xl shadow-background-dark dark:shadow-background transition-shadow duration-500">
           <div className="flex justify-between items-center mb-4">
             <span className="text-lg font-medium text-text-dark dark:text-text">Total</span>
             <span className="text-2xl font-bold text-text-dark dark:text-text">

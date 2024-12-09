@@ -48,7 +48,7 @@ const exampleCoins: Product[] = [
 
 export const CoinGrid = () => {
   return (
-    <div className=" justify-center items-center ">
+    <div >
       <h1 className="text-text-dark dark:text-text font-playfair text-4xl font-semibold mb-6">
         Premium Coin Collection
       </h1>

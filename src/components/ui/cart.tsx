@@ -24,9 +24,9 @@ const CartItem: React.FC<CartItemProps> = ({
   return (
     <motion.div 
       layout
-      className="flex items-center gap-4 p-4 bg-background dark:bg-background-dark rounded-xl overflow-hidden shadow-md hover:shadow-xl shadow-background-dark dark:shadow-background transition-shadow duration-500"
+      className="flex items-center w-full gap-4 p-4  rounded-xl overflow-hidden shadow-md hover:shadow-xl shadow-background-dark dark:shadow-background transition-shadow duration-500"
     >
-      <div className="relative h-20 w-20 rounded-md overflow-hidden">
+      <div className="relative h-20 w-20 rounded-md overflow-hidden ">
         <Image 
           src={imageUrl} 
           alt={name}
@@ -36,17 +36,17 @@ const CartItem: React.FC<CartItemProps> = ({
       </div>
       
       <div className="flex-1">
-        <h3 className="font-medium text-text-dark dark:text-text">{name}</h3>
+        <h3 className="text-sm font-bold text-text-dark dark:text-text">{name}</h3>
         <p className="text-sm text-text-dark/70 dark:text-text/70">
           ${price.toLocaleString()}
         </p>
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center  gap-2">
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={() => onUpdateQuantity(id, quantity - 1)}
-          className="p-1 rounded-full bg-background dark:bg-background-dark overflow-hidden shadow-md hover:shadow-xl shadow-background-dark dark:shadow-background transition-shadow duration-500"
+          className="rounded-full bg-background dark:bg-background-dark overflow-hidden shadow-md hover:shadow-xl shadow-background-dark dark:shadow-background transition-shadow duration-500"
           disabled={quantity <= 1}
         >
           <Minus className="w-4 h-4" />
@@ -55,7 +55,7 @@ const CartItem: React.FC<CartItemProps> = ({
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={() => onUpdateQuantity(id, quantity + 1)}
-          className="p-1 rounded-full bg-background dark:bg-background-dark overflow-hidden shadow-md hover:shadow-xl shadow-background-dark dark:shadow-background transition-shadow duration-500"
+          className="rounded-full bg-background dark:bg-background-dark overflow-hidden shadow-md hover:shadow-xl shadow-background-dark dark:shadow-background transition-shadow duration-500"
         >
           <Plus className="w-4 h-4" />
         </motion.button>

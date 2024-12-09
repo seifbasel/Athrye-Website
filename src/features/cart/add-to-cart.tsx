@@ -45,7 +45,7 @@ export default function CartPage() {
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
+    <div className="max-w-4xl mx-auto justify-center items-center w-full">
       <h1 className="text-3xl font-bold mb-8 font-playfair text-text-dark dark:text-text">
         Shopping Cart
       </h1>
@@ -71,7 +71,7 @@ export default function CartPage() {
 
       {cartItems.length > 0 ? (
         <div className="p-4 bg-background dark:bg-background-dark rounded-xl overflow-hidden shadow-md hover:shadow-xl shadow-background-dark dark:shadow-background transition-shadow duration-500">
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex justify-between items-center mb-4 ">
             <span className="text-lg font-medium text-text-dark dark:text-text">Total</span>
             <span className="text-2xl font-bold text-text-dark dark:text-text">
               ${total.toLocaleString()}

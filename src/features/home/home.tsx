@@ -29,9 +29,9 @@ export default function Home() {
   useEffect(() => {
     setIsClient(true);
     const initGSAP = async () => {
-      const gsap = (await import('gsap')).default;
-      const ScrollTrigger = (await import('gsap/ScrollTrigger')).default;
-      
+      const gsap = (await import("gsap")).default;
+      const ScrollTrigger = (await import("gsap/ScrollTrigger")).default;
+
       gsap.registerPlugin(ScrollTrigger);
 
       if (!headerRef.current || !textRef.current || !gridRef.current) return;
@@ -40,28 +40,28 @@ export default function Home() {
         y: -50,
         opacity: 0,
         duration: 1,
-        ease: 'power3.out'
+        ease: "power3.out",
       });
 
       gsap.from(textRef.current, {
         y: 30,
         opacity: 0,
         duration: 1,
-        ease: 'power3.out',
-        delay: 0.5
+        ease: "power3.out",
+        delay: 0.5,
       });
 
       gsap.from(gridRef.current.children, {
         scrollTrigger: {
           trigger: gridRef.current,
-          start: 'top center',
-          end: 'bottom center',
+          start: "top center",
+          end: "bottom center",
         },
         y: 100,
         opacity: 0,
         duration: 0.8,
         stagger: 0.2,
-        ease: 'power3.out'
+        ease: "power3.out",
       });
     };
 
@@ -69,7 +69,6 @@ export default function Home() {
   }, []);
 
   if (!isClient) return null;
-
 
   const getSizeClasses = (size: ImageItem["size"]): string => {
     switch (size) {
@@ -92,16 +91,12 @@ export default function Home() {
           Welcome to Coinat
         </h1>
         <div ref={textRef} className="max-w-2xl mx-auto text-center space-y-6">
-          <p className="text-lg text-text-dark dark:text-text font-montserrat">
-            Discover our curated collection of authentic coins, where history
-            meets artistry. Each piece tells a unique story of civilizations
-            past, preserved for generations to come.
+          <p className="text-base font-light text-wrap  text-text-dark dark:text-text font-montserrat">
+            Discover our collection of authentic coins where Each piece tells a
+            unique story of civilizations past, preserved for generations to
+            come.
           </p>
-          <p className="text-base text-text-dark/80 dark:text-text/80 font-montserrat">
-            From ancient Roman denarii to modern commemorative pieces, our
-            expert-verified collection offers both historical significance and
-            investment potential.
-          </p>
+          <p className="text-base font-light text-text-dark dark:text-text/80 font-montserrat"></p>
           <div className="pt-4">
             <Button
               variant="default"

@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils";
 import Link, { LinkProps } from "next/link";
 import React, { useState, createContext, useContext, useEffect } from "react";
-import { AnimatePresence,motion } from "motion/react"
+import { AnimatePresence, motion } from "motion/react";
 import { Menu, Moon, Sun, X } from "lucide-react";
 
 interface Links {
@@ -41,7 +41,6 @@ export const SidebarProvider = ({
   animate?: boolean;
 }) => {
   const [openState, setOpenState] = useState(false);
-
   const open = openProp !== undefined ? openProp : openState;
   const setOpen = setOpenProp !== undefined ? setOpenProp : setOpenState;
 
@@ -200,20 +199,19 @@ export const MobileSidebar = ({
                 <X />
               </div>
               <div className="flex-grow">{children}</div>
-            <div
-              onClick={() => setDarkMode(!darkMode)}
-              className="flex items-center gap-2 py-2 cursor-pointer"
-            >
-              {darkMode ? (
-                <Sun className="w-5 h-5 text-text" />
-              ) : (
-                <Moon className="w-5 h-5 text-text-dark" />
-              )}
-              <span className="text-background-dark dark:text-background text-2xl">
-                {darkMode ? "Light Mode" : "Dark Mode"}
-              </span>
-            </div>
-
+              <div
+                onClick={() => setDarkMode(!darkMode)}
+                className="flex items-center gap-2 py-2 cursor-pointer"
+              >
+                {darkMode ? (
+                  <Sun className="w-5 h-5 text-text" />
+                ) : (
+                  <Moon className="w-5 h-5 text-text-dark" />
+                )}
+                <span className="text-background-dark dark:text-background text-xl">
+                  {darkMode ? "Light Mode" : "Dark Mode"}
+                </span>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

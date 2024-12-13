@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { AnimatePresence, motion } from "motion/react"
-import CartItem from '@/components/ui/cart';
+import CartItem from '@/components/ui/cart-item';
 
 interface CartItem {
   id: string;
@@ -70,7 +70,7 @@ export default function CartPage() {
       </div>
 
       {cartItems.length > 0 ? (
-        <div className="p-4 bg-background dark:bg-background-dark rounded-xl overflow-hidden shadow-md hover:shadow-xl shadow-background-dark dark:shadow-background transition-shadow duration-500">
+        <div className="p-4 bg-background dark:bg-background-dark rounded-xl overflow-hidden shadow-sm hover:shadow-md shadow-background-dark dark:shadow-background transition-shadow duration-500">
           <div className="flex justify-between items-center mb-4 ">
             <span className="text-lg font-medium text-text-dark dark:text-text">Total</span>
             <span className="text-2xl font-bold text-text-dark dark:text-text">

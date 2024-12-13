@@ -1,8 +1,9 @@
+import FavoritesPage from '@/features/favourites/favourites';
 import React from 'react'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div><FavoritesPage/></div>
   )
 }
 

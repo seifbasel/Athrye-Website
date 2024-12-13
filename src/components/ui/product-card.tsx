@@ -20,7 +20,7 @@ const ProductCard = ({
 
   return (
     <motion.div
-      className="w-80 bg-background dark:bg-background-dark rounded-xl overflow-hidden shadow-md hover:shadow-md shadow-background-dark dark:shadow-background transition-shadow duration-500"
+      className="w-80 bg-background dark:bg-background-dark rounded-xl overflow-hidden shadow-sm hover:shadow-md shadow-background-dark dark:shadow-background transition-shadow duration-500"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}

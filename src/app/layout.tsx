@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { SidebarWrapper } from "@/features/side-bar/sidebar-wrapper";
-import { Header } from "@/features/header/header";
 import { Footer } from "@/features/footer/footer";
 import { Montserrat, Playfair_Display } from "next/font/google";
 

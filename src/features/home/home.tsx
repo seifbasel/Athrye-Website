@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -121,7 +122,7 @@ export default function Home() {
                 image.size
               )}`}
             >
-              <img
+              <Image
                 src={image.src}
                 alt={image.alt}
                 className="w-full h-full object-cover"

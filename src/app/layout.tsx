@@ -8,13 +8,13 @@ import { Montserrat, Playfair_Display } from "next/font/google";
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
-  display: "swap"
+  display: "swap",
 });
 
 const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
-  display: "swap"
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body 
+      <body
         className={`${montserrat.variable} ${playfairDisplay.variable} font-sans antialiased`}
         suppressHydrationWarning
       >

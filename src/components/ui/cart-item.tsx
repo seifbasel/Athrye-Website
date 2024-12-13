@@ -1,7 +1,7 @@
-import React from 'react';
-import { Trash2, Plus, Minus } from 'lucide-react';
-import Image from 'next/image';
-import { motion } from "motion/react"
+import React from "react";
+import { Trash2, Plus, Minus } from "lucide-react";
+import Image from "next/image";
+import { motion } from "motion/react";
 interface CartItemProps {
   id: string;
   name: string;
@@ -22,27 +22,24 @@ const CartItem: React.FC<CartItemProps> = ({
   onUpdateQuantity,
 }) => {
   return (
-    <motion.div 
+    <motion.div
       layout
       className="flex items-center w-full gap-4 p-4  rounded-xl overflow-hidden shadow-sm hover:shadow-md shadow-background-dark dark:shadow-background transition-shadow duration-500"
     >
       <div className="relative h-20 w-20 rounded-md overflow-hidden ">
-        <Image 
-          src={imageUrl} 
-          alt={name}
-          fill
-          className="object-cover"
-        />
+        <Image src={imageUrl} alt={name} fill className="object-cover" />
       </div>
-      
+
       <div className="flex-1">
-        <h3 className="text-sm font-bold text-text-dark dark:text-text">{name}</h3>
+        <h3 className="text-sm font-bold text-text-dark dark:text-text">
+          {name}
+        </h3>
         <p className="text-sm text-text-dark/70 dark:text-text/70">
           ${price.toLocaleString()}
         </p>
       </div>
 
-      <div className="flex items-center  gap-2">
+      <div className="flex items-center gap-2">
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={() => onUpdateQuantity(id, quantity - 1)}
@@ -51,7 +48,9 @@ const CartItem: React.FC<CartItemProps> = ({
         >
           <Minus className="w-4 h-4 text-background-dark dark:text-background" />
         </motion.button>
-        <span className="text-lg font-medium w-8 text-center text-background-dark dark:text-background">{quantity}</span>
+        <span className="text-lg font-medium w-8 text-center text-background-dark dark:text-background">
+          {quantity}
+        </span>
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={() => onUpdateQuantity(id, quantity + 1)}

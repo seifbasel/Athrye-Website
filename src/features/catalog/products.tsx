@@ -28,7 +28,6 @@ const exampleCoins: Product[] = [
       "An extraordinary Roman gold coin from the reign of Emperor Hadrian. Well-centered with sharp details and beautiful golden toning.",
     origin: "Egypt",
     material: "silver",
-
   },
   {
     id: "3",
@@ -42,7 +41,6 @@ const exampleCoins: Product[] = [
       "An extraordinary Roman gold coin from the reign of Emperor Hadrian. Well-centered with sharp details and beautiful golden toning.",
     origin: "france",
     material: "copper",
-
   },
 ];
 

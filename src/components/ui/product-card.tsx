@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { motion } from "motion/react"
+import { motion } from "motion/react";
 import React, { useState } from "react";
 import { HeartIcon } from "lucide-react";
 import { cn } from "@/lib/utils";

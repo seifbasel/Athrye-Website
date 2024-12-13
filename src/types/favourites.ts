@@ -1,9 +1,9 @@
-type favouriteItem={
-    id: string;
-    name: string;
-    price: number;
-    imageUrl: string;
-    condition: string;
-    rarity: string;
-}
+type favouriteItem = {
+  id: string;
+  name: string;
+  price: number;
+  imageUrl: string;
+  condition: string;
+  rarity: string;
+};
 export default favouriteItem;

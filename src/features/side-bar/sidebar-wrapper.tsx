@@ -1,6 +1,14 @@
-'use client'
-import { Sidebar, SidebarBody, SidebarLink } from '@/components/ui/sidebar'
-import { Home, Coins, ShoppingCart, User, Info, Atom, Heart } from 'lucide-react'
+"use client";
+import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
+import {
+  Home,
+  Coins,
+  ShoppingCart,
+  User,
+  Info,
+  Atom,
+  Heart,
+} from "lucide-react";
 
 const sidebarLinks = [
   {
@@ -13,34 +21,46 @@ const sidebarLinks = [
   {
     label: "Home",
     href: "/",
-    icon: <Home className="w-5 h-5 text-primary-foreground dark:text-primary" />,
+    icon: (
+      <Home className="w-5 h-5 text-primary-foreground dark:text-primary" />
+    ),
   },
   {
     label: "Coin Catalog",
     href: "/catalog",
-    icon: <Coins className="w-5 h-5 text-primary-foreground dark:text-primary" />,
+    icon: (
+      <Coins className="w-5 h-5 text-primary-foreground dark:text-primary" />
+    ),
   },
   {
     label: "Shopping Cart",
     href: "/shopping-cart",
-    icon: <ShoppingCart className="w-5 h-5 text-primary-foreground dark:text-primary" />,
+    icon: (
+      <ShoppingCart className="w-5 h-5 text-primary-foreground dark:text-primary" />
+    ),
   },
   {
     label: "Favorites",
     href: "/favorites",
-    icon: <Heart className="w-5 h-5 text-primary-foreground dark:text-primary" />,
+    icon: (
+      <Heart className="w-5 h-5 text-primary-foreground dark:text-primary" />
+    ),
   },
   {
     label: "Profile",
     href: "/profile",
-    icon: <User className="w-5 h-5 text-primary-foreground dark:text-primary" />,
+    icon: (
+      <User className="w-5 h-5 text-primary-foreground dark:text-primary" />
+    ),
   },
   {
     label: "About",
     href: "/about",
-    icon: <Info className="w-5 h-5 text-primary-foreground dark:text-primary" />,
+    icon: (
+      <Info className="w-5 h-5 text-primary-foreground dark:text-primary" />
+    ),
   },
-]
+];
 
 export function SidebarWrapper() {
   return (
@@ -53,5 +73,5 @@ export function SidebarWrapper() {
         </div>
       </SidebarBody>
     </Sidebar>
-  )
+  );
 }

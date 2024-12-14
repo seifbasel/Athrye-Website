@@ -1,9 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { SidebarWrapper } from "@/features/side-bar/sidebar-wrapper";
-import { Header } from "@/features/header/header";
 import { Footer } from "@/features/footer/footer";
 import { Montserrat, Playfair_Display } from "next/font/google";
+import { Header } from "@/features/header/header";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -30,10 +30,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${montserrat.variable} ${playfairDisplay.variable} font-sans antialiased`}
+        className={`bg-background dark:bg-background-dark ${montserrat.variable} ${playfairDisplay.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
-        <div className="flex min-h-screen bg-background dark:bg-background-dark">
+        <div className="flex min-h-screen">
           <SidebarWrapper />
           <div className="flex-1 flex flex-col">
             <Header />

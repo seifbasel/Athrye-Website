@@ -24,7 +24,7 @@ const CartItem: React.FC<CartItemProps> = ({
   return (
     <motion.div
       layout
-      className="flex items-center w-full gap-4 p-4  rounded-xl overflow-hidden shadow-sm hover:shadow-md shadow-background-dark dark:shadow-background transition-shadow duration-500"
+      className="flex items-center w-full gap-4 p-4 rounded-xl overflow-hidden shadow-sm hover:shadow-md shadow-background-dark dark:shadow-background transition-shadow duration-500"
     >
       <div className="relative h-20 w-20 rounded-md overflow-hidden ">
         <Image src={imageUrl} alt={name} fill className="object-cover" />
@@ -46,7 +46,7 @@ const CartItem: React.FC<CartItemProps> = ({
           className="rounded-full bg-background dark:bg-background-dark overflow-hidden shadow-sm hover:shadow-md shadow-background-dark dark:shadow-background transition-shadow duration-500"
           disabled={quantity <= 1}
         >
-          <Minus className="w-4 h-4 text-background-dark dark:text-background" />
+          <Minus className="w-5 h-5 text-background-dark dark:text-background" />
         </motion.button>
         <span className="text-lg font-medium w-8 text-center text-background-dark dark:text-background">
           {quantity}
@@ -56,7 +56,7 @@ const CartItem: React.FC<CartItemProps> = ({
           onClick={() => onUpdateQuantity(id, quantity + 1)}
           className="rounded-full bg-background dark:bg-background-dark overflow-hidden shadow-sm hover:shadow-md shadow-background-dark dark:shadow-background transition-shadow duration-500"
         >
-          <Plus className="w-4 h-4 text-background-dark dark:text-background" />
+          <Plus className="w-5 h-5 text-background-dark dark:text-background" />
         </motion.button>
       </div>
 

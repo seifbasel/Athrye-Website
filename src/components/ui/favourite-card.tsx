@@ -1,6 +1,6 @@
-'use client';
-import Image from 'next/image';
-import { Trash2, ShoppingCart } from 'lucide-react';
+"use client";
+import Image from "next/image";
+import { Trash2, ShoppingCart } from "lucide-react";
 import { motion } from "motion/react";
 
 interface FavoriteItem {
@@ -25,27 +25,21 @@ const FavoriteItemCard = ({
   condition,
   rarity,
   onRemove,
-  onMoveToCart
+  onMoveToCart,
 }: FavoriteItemProps) => {
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
       className="flex items-center w-full gap-4 p-4 rounded-xl overflow-hidden shadow-sm hover:shadow-md shadow-background-dark dark:shadow-background transition-shadow duration-500"
     >
       <div className="relative h-20 w-20 rounded-md overflow-hidden">
-        <Image
-          src={imageUrl}
-          alt={name}
-          fill
-          className="object-cover"
-        />
+        <Image src={imageUrl} alt={name} fill className="object-cover" />
       </div>
 
       <div className="flex-1">
-        <h3 className="text-sm font-bold text-text-dark dark:text-text">{name}</h3>
+        <h3 className="text-sm font-bold text-text-dark dark:text-text">
+          {name}
+        </h3>
         <p className="text-sm text-text-dark/70 dark:text-text/70">
           ${price.toLocaleString()}
         </p>

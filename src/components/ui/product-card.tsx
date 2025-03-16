@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { motion } from "motion/react";
 import React, { useState } from "react";
@@ -5,18 +7,23 @@ import { HeartIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Product from "@/types/product";
 import { Button } from "./button";
+import { useRouter } from "next/navigation";
 
 const ProductCard = ({
+  id,
   name,
   year,
   price,
   rarity,
   condition,
   origin,
-  imageUrl,
+  material,
+  main_image,
   description,
 }: Product) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const imageUrl = main_image?.image || "coin1.jpg";
+  const router = useRouter();
 
   return (
     <motion.div
@@ -33,12 +40,7 @@ const ProductCard = ({
           objectFit="cover"
           className="transition-transform duration-300 hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
-          <span className="text-text text-lg font-semibold">{name}</span>
-          <span className="text-text text-lg font-bold">
-            ${price.toLocaleString()}
-          </span>
-        </div>
+
         <button
           onClick={() => setIsFavorite(!isFavorite)}
           className="absolute top-2 right-2 p-2 bg-white/80 dark:bg-gray-800/80 rounded-full shadow-md transition-colors duration-200 hover:bg-white dark:hover:bg-gray-700"
@@ -57,51 +59,67 @@ const ProductCard = ({
 
       <div className="p-4">
         <div className="flex justify-between items-center mb-2">
-          <span className="text-sm text-text-dark dark:text-text">{year}</span>
-          <span className="text-sm font-medium text-text-dark dark:text-text">
-            {origin}
+          <span className="font-bold font-montserrat text-xl text-card-foreground dark:text-text">
+            {name}
+          </span>
+          <span className="font-bold font-montserrat text-xl text-text-dark dark:text-text">
+            {price.toLocaleString()} EGP
           </span>
         </div>
 
         <div className="space-y-2 mb-4">
           <div className="flex justify-between text-sm">
-            <span className="text-card-foreground dark:text-text">Rarity:</span>
-            <span className="font-medium  text-text-dark dark:text-text">
+            <span className="text-sm font-montserrat font-light text-card-foreground dark:text-text">
+              Year:
+            </span>
+            <span className="text-sm font-montserrat font-semibold text-text-dark dark:text-text">
+              {year}
+            </span>
+          </div>
+          <div className="flex justify-between text-sm">
+            <span className="text-sm font-montserrat font-light text-card-foreground dark:text-text">
+              Origin:
+            </span>
+            <span className="text-sm font-montserrat font-semibold text-text-dark dark:text-text">
+              {origin}
+            </span>
+          </div>
+          <div className="flex justify-between text-sm">
+            <span className="text-sm font-montserrat font-light text-card-foreground dark:text-text">
+              Rarity:
+            </span>
+            <span className="text-sm font-montserrat font-semibold text-text-dark dark:text-text">
               {rarity}
             </span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-card-foreground dark:text-text">
+            <span className="text-sm font-montserrat font-light text-card-foreground dark:text-text">
               Condition:
             </span>
-            <span className="font-medium  text-text-dark dark:text-text">
+            <span className="text-sm font-montserrat font-semibold text-text-dark dark:text-text">
               {condition}
             </span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-card-foreground dark:text-text">
-              Condition:
+            <span className="text-sm font-montserrat font-light text-card-foreground dark:text-text">
+              Material:
             </span>
-            <span className="font-medium  text-text-dark dark:text-text">
-              {condition}
-            </span>
-          </div>
-          <div className="flex justify-between text-sm">
-            <span className="text-card-foreground dark:text-text">
-              Condition:
-            </span>
-            <span className="font-medium  text-text-dark dark:text-text">
-              {condition}
+            <span className="text-sm font-montserrat font-semibold text-text-dark dark:text-text">
+              {material}
             </span>
           </div>
         </div>
 
-        <p className="text-sm text-card-foreground dark:text-text line-clamp-3 mb-4">
+        <p className="text-sm font-montserrat text-card-foreground dark:text-text line-clamp-3 mb-4">
           {description}
         </p>
 
         <div className="flex space-x-2">
-          <Button variant="outline" className="flex-1">
+          <Button
+            variant="outline"
+            className="flex-1"
+            onClick={() => router.push(`/products/${id}`)}
+          >
             View Details
           </Button>
           <Button variant="default" className="flex-1">

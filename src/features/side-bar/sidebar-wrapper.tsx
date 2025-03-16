@@ -27,7 +27,7 @@ const sidebarLinks = [
   },
   {
     label: "Coin Catalog",
-    href: "/catalog",
+    href: "/products",
     icon: (
       <Coins className="w-5 h-5 text-primary-foreground dark:text-primary" />
     ),

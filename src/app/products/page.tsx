@@ -1,11 +1,11 @@
 "use client";
-import { CoinGrid } from "@/features/catalog/products";
+import CoinsCatalog from "@/features/catalog/products";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <CoinGrid />
+      <CoinsCatalog />
     </div>
   );
 };

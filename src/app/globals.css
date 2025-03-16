@@ -6,6 +6,7 @@
   :root {
     --font-montserrat: 'Montserrat', sans-serif;
     --font-playfair: 'Playfair Display', serif;
+    --radius: 0.5rem;
   }
 
   html {

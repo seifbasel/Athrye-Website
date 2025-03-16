@@ -1,70 +1,49 @@
-import React from "react";
-import CoinCard from "@/components/ui/product-card";
-import Product from "@/types/product";
+"use client";
 
-const exampleCoins: Product[] = [
-  {
-    id: "1",
-    imageUrl: "/coin1.jpg",
-    name: "1854 Indian Head Gold Dollar",
-    year: 1854,
-    price: 12500,
-    rarity: "Very Rare",
-    condition: "MS-63",
-    description:
-      "A magnificent example of early American gold coinage, featuring the classic Indian Head design by James B. Longacre. This piece exhibits exceptional strike quality and original mint luster.",
-    origin: "England",
-    material: "Gold",
-  },
-  {
-    id: "2",
-    imageUrl: "/coin1.jpg",
-    name: "Ancient Roman Aureus",
-    year: 2000,
-    price: 28000,
-    rarity: "Extremely Rare",
-    condition: "XF-45",
-    description:
-      "An extraordinary Roman gold coin from the reign of Emperor Hadrian. Well-centered with sharp details and beautiful golden toning.",
-    origin: "Egypt",
-    material: "silver",
-  },
-  {
-    id: "3",
-    imageUrl: "/coin1.jpg",
-    name: "Ancient Roman Aureus",
-    year: 1990,
-    price: 28000,
-    rarity: "Extremely Rare",
-    condition: "XF-45",
-    description:
-      "An extraordinary Roman gold coin from the reign of Emperor Hadrian. Well-centered with sharp details and beautiful golden toning.",
-    origin: "france",
-    material: "copper",
-  },
-];
+import ProductCard from "@/components/ui/product-card";
+import { Loader2 } from "lucide-react";
+import { useProducts } from "@/hooks/products/use-get-all-products";
 
-export const CoinGrid = () => {
+export const CoinsCatalog = () => {
+  const { data: products = [], isLoading, error } = useProducts();
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-[400px]">
+        <Loader2 className="w-8 h-8 animate-spin text-text-dark dark:text-text" />
+      </div>
+    );
+  }
+
+  if (error instanceof Error) {
+    return (
+      <div className="text-center py-16 text-text-dark dark:text-text">
+        Error loading products: {error.message}
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <h1 className="text-text-dark dark:text-text font-playfair text-4xl font-semibold mb-6">
+    <div className="space-y-8">
+      <h1 className="text-text-dark dark:text-text font-playfair text-4xl font-semibold">
         Premium Coin Collection
       </h1>
-      <div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4  gap-6"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-        }}
-      >
-        {exampleCoins.map((coin) => (
-          <div key={coin.id} className="w-full min-w-0 p-4">
-            <CoinCard {...coin} />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {products.map((coin) => (
+          <div key={coin.id} className="w-full min-w-0">
+            <ProductCard {...coin} />
           </div>
         ))}
       </div>
+
+      {products.length === 0 && (
+        <div className="text-center py-16 text-text-dark dark:text-text font-medium">
+          No coins available.
+        </div>
+      )}
     </div>
   );
 };
 
-export default CoinGrid;
+export default CoinsCatalog;

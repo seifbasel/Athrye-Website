@@ -1,5 +1,5 @@
-const page = () => {
-  return <div></div>;
-};
-
-export default page;
+"use client";
+import LoginPage from "@/features/auth/login/login";
+export default function LoginRoute() {
+  return <LoginPage />;
+}

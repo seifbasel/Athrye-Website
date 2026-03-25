@@ -1,19 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
     --font-montserrat: 'Montserrat', sans-serif;
-    --font-playfair: 'Playfair Display', serif;
+    --font-playfair:   'Playfair Display', serif;
     --radius: 0.5rem;
   }
 
   html {
     font-family: var(--font-montserrat);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-playfair);
   }
+
+  /* Smooth scrolling */
+  html { scroll-behavior: smooth; }
+
+  /* Custom scrollbar — subtle */
+  ::-webkit-scrollbar       { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(39,40,41,0.15); border-radius: 99px; }
+  .dark ::-webkit-scrollbar-thumb { background: rgba(236,235,222,0.15); }
+
+  /* Selection */
+  ::selection       { background: rgba(39,40,41,0.12); }
+  .dark ::selection { background: rgba(236,235,222,0.15); }
 }

@@ -24,15 +24,15 @@ const config: Config = {
   			border: '#3C3D37',
   			input: '#eeeeee',
   			background: {
-  				DEFAULT: '#ECEBDE',
-  				dark: '#272829'
+  				DEFAULT: '#e2e2e6',
+  				dark: '#111316'
   			},
   			foreground: {
   				DEFAULT: '#272829',
   				dark: '#ECEBDE'
   			},
   			primary: {
-  				DEFAULT: '#ECEBDE',
+  				DEFAULT: '#e9c349',
   				foreground: '#0F0F0F'
   			},
   			secondary: {

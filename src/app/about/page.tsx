@@ -1,9 +1,4 @@
-import React from 'react'
-
-const page = () => {
-  return (
-    <div>page</div>
-  )
+import AboutPage from "@/features/about/about";
+export default function AboutRoute() {
+  return <AboutPage />;
 }
-
-export default page

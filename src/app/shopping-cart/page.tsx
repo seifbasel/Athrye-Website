@@ -1,12 +1,4 @@
-import ProductPage from "@/features/cart/cart";
-import React from "react";
-
-const page = () => {
-  return (
-    <div>
-      <ProductPage />
-    </div>
-  );
-};
-
-export default page;
+import CartPage from "@/features/cart/cart";
+export default function ShoppingCartPage() {
+  return <CartPage />;
+}

@@ -118,7 +118,7 @@ export default function CartPage() {
               </span>
             </div>
 
-            <Button className="w-full h-11 font-montserrat text-sm" size="lg">
+            <Button onClick={() => router.push("/checkout")} className="w-full h-11 font-montserrat text-sm" size="lg">
               Checkout
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>

@@ -3,6 +3,7 @@ import * as React from 'react';
 interface CustomInputProps {
     border?: boolean;
     inputSize?: 'sm' | 'lg' | 'default';
+    placeholderColor?: string; // new prop to control placeholder color
 }
 
 type InputProps = CustomInputProps &
@@ -10,14 +11,15 @@ type InputProps = CustomInputProps &
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
     (
-        { className, type, border = true, inputSize = 'default', ...props },
+        { className, type, border = true, inputSize = 'default', placeholderColor = 'placeholder:text-muted-foreground', ...props },
         ref
     ) => {
         return (
             <input
                 type={type}
                 className={cn(
-                    'flex w-full bg-card px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+                    'flex w-full px-3 py-2 text-sm text-foreground ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+                    placeholderColor,
                     border
                         ? 'rounded-md border border-input focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
                         : 'border-input transition-colors hover:border-b focus-visible:border-b focus-visible:border-primary',

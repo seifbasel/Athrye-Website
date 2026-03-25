@@ -83,7 +83,7 @@ export default function Home() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4">
+    <div className="max-w-6xl mx-auto px-4 ">
       <section className="py-16 md:py-24">
         <h1
           ref={headerRef}

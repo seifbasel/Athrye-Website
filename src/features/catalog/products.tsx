@@ -1,27 +1,27 @@
 "use client";
 
 import ProductCard from "@/components/ui/product-card";
-import { Loader2 } from "lucide-react";
-import { useProducts } from "@/hooks/products/use-get-all-products";
+
+const products: Array<{ id: number; name: string }> = [
+{
+      id: 1,
+      name: "1854 Indian Head Gold Dollar",
+      price: 12500,
+      quantity: 1,
+      imageUrl: "/coin1.jpg",
+    },
+    {
+      id: 2,
+      name: "Ancient Roman Aureus",
+      price: 28000,
+      quantity: 1,
+      imageUrl: "/coin1.jpg",
+    },
+];
 
 export const CoinsCatalog = () => {
-  const { data: products = [], isLoading, error } = useProducts();
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center min-h-[400px]">
-        <Loader2 className="w-8 h-8 animate-spin text-text-dark dark:text-text" />
-      </div>
-    );
-  }
-
-  if (error instanceof Error) {
-    return (
-      <div className="text-center py-16 text-text-dark dark:text-text">
-        Error loading products: {error.message}
-      </div>
-    );
-  }
+  
 
   return (
     <div className="space-y-8">

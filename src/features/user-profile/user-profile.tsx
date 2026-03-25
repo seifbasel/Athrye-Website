@@ -49,7 +49,7 @@ export default function ProfilePage() {
             <Input
               {...register("firstName")}
               placeholder="Enter your first name"
-              className={errors.firstName ? "border-red-500" : ""}
+              className={errors.firstName ? "border-red-500 " : ""}
             />
             {errors.firstName && (
               <p className="text-red-500 text-sm">{errors.firstName.message}</p>

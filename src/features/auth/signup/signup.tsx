@@ -9,6 +9,7 @@ import { Eye, EyeOff, Loader2, Check } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/auth-context";
+import { Input } from "@/components/ui/input";
 
 const signupSchema = z
   .object({
@@ -262,14 +263,14 @@ export default function SignupPage() {
           {/* Name row */}
           <div className="grid grid-cols-2 gap-4">
             <Field label="First Name" error={errors.firstName?.message}>
-              <input
+              <Input
                 {...register("firstName")}
                 placeholder="James"
                 className={inputClass(!!errors.firstName)}
               />
             </Field>
             <Field label="Last Name" error={errors.lastName?.message}>
-              <input
+              <Input
                 {...register("lastName")}
                 placeholder="Sterling"
                 className={inputClass(!!errors.lastName)}
@@ -279,7 +280,7 @@ export default function SignupPage() {
 
           {/* Email */}
           <Field label="Email" error={errors.email?.message}>
-            <input
+            <Input
               {...register("email")}
               type="email"
               autoComplete="email"
@@ -291,7 +292,7 @@ export default function SignupPage() {
           {/* Password */}
           <Field label="Password" error={errors.password?.message}>
             <div className="relative">
-              <input
+              <Input
                 {...register("password")}
                 type={showPassword ? "text" : "password"}
                 autoComplete="new-password"
@@ -312,7 +313,7 @@ export default function SignupPage() {
           {/* Confirm Password */}
           <Field label="Confirm Password" error={errors.confirmPassword?.message}>
             <div className="relative">
-              <input
+              <Input
                 {...register("confirmPassword")}
                 type={showConfirm ? "text" : "password"}
                 autoComplete="new-password"

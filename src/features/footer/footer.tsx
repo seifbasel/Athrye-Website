@@ -3,7 +3,7 @@ import Link from "next/link";
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="md:pl-[56px] px-6 md:px-8 py-8 border-t border-text-dark/8 dark:border-text/8">
+    <footer className="md:pl-14 px-6 md:px-8 py-8 border-t border-text-dark/8 dark:border-text/8">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="space-y-0.5">
           <p className="font-playfair text-base font-semibold text-text-dark dark:text-text">Coinat</p>
@@ -19,7 +19,7 @@ export function Footer() {
             { label: "Terms",   href: "/terms" },
           ].map(({ label, href }) => (
             <Link key={href} href={href}
-              className="font-montserrat text-xs text-text-dark/45 dark:text-text/45 hover:text-text-dark dark:hover:text-text transition-colors">
+              className="font-montserrat text-xs text-text hover:text-dark dark:hover:text-text transition-colors">
               {label}
             </Link>
           ))}

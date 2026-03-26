@@ -1,4 +1,3 @@
-// schemas/profile-schema.ts
 import { z } from "zod";
 
 export const profileSchema = z.object({
@@ -17,25 +16,30 @@ export const profileSchema = z.object({
     .max(100, "Email must be less than 100 characters"),
   phoneNumber: z
     .string()
-    .min(10, "Phone number must be at least 10 characters")
+    .min(10, "Phone number must be at least 10 digits")
     .max(15, "Phone number must be less than 15 characters")
-    .regex(/^[0-9+\-\s()]*$/, "Invalid phone number format"),
+    .regex(/^[0-9+\-\s()]*$/, "Invalid phone number format")
+    .or(z.literal("")),
   address: z
     .string()
     .min(5, "Address must be at least 5 characters")
-    .max(100, "Address must be less than 100 characters"),
+    .max(100, "Address must be less than 100 characters")
+    .or(z.literal("")),
   city: z
     .string()
     .min(2, "City must be at least 2 characters")
-    .max(50, "City must be less than 50 characters"),
+    .max(50, "City must be less than 50 characters")
+    .or(z.literal("")),
   postalCode: z
     .string()
     .min(4, "Postal code must be at least 4 characters")
-    .max(10, "Postal code must be less than 10 characters"),
+    .max(10, "Postal code must be less than 10 characters")
+    .or(z.literal("")),
   country: z
     .string()
     .min(2, "Country must be at least 2 characters")
-    .max(50, "Country must be less than 50 characters"),
+    .max(50, "Country must be less than 50 characters")
+    .or(z.literal("")),
 });
 
 export type ProfileFormData = z.infer<typeof profileSchema>;

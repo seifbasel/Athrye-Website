@@ -8,6 +8,7 @@ import { useAuth } from "@/context/auth-context";
 import { motion } from "motion/react";
 import { Loader2, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const profileSchema = z.object({
   firstName:   z.string().min(2, "At least 2 characters").max(50),
@@ -105,17 +106,17 @@ export default function ProfilePage() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <Field label="First Name" error={errors.firstName?.message}>
-              <input {...register("firstName")} placeholder="James" className={inputCls(!!errors.firstName)} />
+              <Input {...register("firstName")} placeholder="James" className={inputCls(!!errors.firstName)} />
             </Field>
             <Field label="Last Name" error={errors.lastName?.message}>
-              <input {...register("lastName")} placeholder="Sterling" className={inputCls(!!errors.lastName)} />
+              <Input {...register("lastName")} placeholder="Sterling" className={inputCls(!!errors.lastName)} />
             </Field>
             <Field label="Email" error={errors.email?.message}>
-              <input {...register("email")} type="email" placeholder="your@email.com"
+              <Input {...register("email")} type="email" placeholder="your@email.com"
                 className={inputCls(!!errors.email)} />
             </Field>
             <Field label="Phone Number" error={errors.phoneNumber?.message}>
-              <input {...register("phoneNumber")} placeholder="+20 100 000 0000"
+              <Input {...register("phoneNumber")} placeholder="+20 100 000 0000"
                 className={inputCls(!!errors.phoneNumber)} />
             </Field>
           </div>
@@ -129,19 +130,19 @@ export default function ProfilePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="md:col-span-2">
               <Field label="Street Address" error={errors.address?.message}>
-                <input {...register("address")} placeholder="123 Collector's Lane"
+                <Input {...register("address")} placeholder="123 Collector's Lane"
                   className={inputCls(!!errors.address)} />
               </Field>
             </div>
             <Field label="City" error={errors.city?.message}>
-              <input {...register("city")} placeholder="Cairo" className={inputCls(!!errors.city)} />
+              <Input {...register("city")} placeholder="Cairo" className={inputCls(!!errors.city)} />
             </Field>
             <Field label="Postal Code" error={errors.postalCode?.message}>
-              <input {...register("postalCode")} placeholder="11511" className={inputCls(!!errors.postalCode)} />
+              <Input {...register("postalCode")} placeholder="11511" className={inputCls(!!errors.postalCode)} />
             </Field>
             <div className="md:col-span-2">
               <Field label="Country" error={errors.country?.message}>
-                <input {...register("country")} placeholder="Egypt" className={inputCls(!!errors.country)} />
+                <Input {...register("country")} placeholder="Egypt" className={inputCls(!!errors.country)} />
               </Field>
             </div>
           </div>
@@ -155,7 +156,7 @@ export default function ProfilePage() {
             Cancel
           </Button>
           <Button type="submit" disabled={isSubmitting || !isDirty}
-            className="font-montserrat font-semibold text-sm min-w-[140px] flex items-center justify-center gap-2">
+            className="font-montserrat font-semibold text-sm min-w-35 flex items-center justify-center gap-2">
             {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
             {isSubmitting ? "Saving…" : "Save Changes"}
           </Button>

@@ -14,4 +14,5 @@ type Product = {
   images?: imageItem[];
   description: string;
 };
+
 export default Product;

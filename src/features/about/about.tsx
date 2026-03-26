@@ -22,9 +22,10 @@ function FadeIn({ children, delay = 0, className = "" }: {
 
 function StatCard({ value, label }: { value: string; label: string }) {
   return (
-    <div className="text-center space-y-1.5 p-6 rounded-2xl bg-background dark:bg-background-dark shadow-sm shadow-background-dark/15 dark:shadow-background/8 hover:shadow-md transition-shadow duration-500">
-      <p className="text-4xl font-playfair font-bold text-text-dark dark:text-text">{value}</p>
-      <p className="text-xs tracking-widest uppercase font-montserrat text-text-dark/55 dark:text-text/55">{label}</p>
+    // Removed specific shadow-background-dark/15
+    <div className="text-center space-y-1.5 p-6 rounded-2xl bg-background shadow-sm border border-foreground/5 hover:shadow-md transition-shadow duration-500">
+      <p className="text-4xl font-playfair font-bold text-foreground">{value}</p>
+      <p className="text-xs tracking-[0.2em] uppercase font-montserrat font-medium text-foreground/50">{label}</p>
     </div>
   );
 }
@@ -146,20 +147,21 @@ export default function AboutPage() {
 
       {/* Quote */}
       <FadeIn>
-        <div className="p-8 md:p-12 rounded-2xl bg-text-dark dark:bg-text text-text dark:text-text-dark space-y-5">
-          <p className="text-xs tracking-[0.3em] uppercase font-montserrat text-text/45 dark:text-text-dark/45">
-            A Note from Our Founders
-          </p>
-          <blockquote className="text-2xl md:text-3xl font-playfair leading-relaxed">
-            &ldquo;We built Coinat because we were collectors first. We know the thrill
-            of finding the right coin — and the frustration of uncertainty.
-            That feeling drives every decision we make.&rdquo;
-          </blockquote>
-          <p className="font-montserrat text-sm text-text/60 dark:text-text-dark/60">
-            — The Coinat Team, Cairo
-          </p>
-        </div>
-      </FadeIn>
+  {/* Using bg-foreground and text-background creates the "inverted" look that automatically adjusts */}
+  <div className="p-8 md:p-12 rounded-2xl bg-foreground text-background space-y-5">
+    <p className="text-xs tracking-[0.3em] uppercase font-montserrat opacity-50">
+      A Note from Our Founders
+    </p>
+    <blockquote className="text-2xl md:text-3xl font-playfair leading-relaxed">
+      &ldquo;We built Coinat because we were collectors first. We know the thrill
+      of finding the right coin — and the frustration of uncertainty.
+      That feeling drives every decision we make.&rdquo;
+    </blockquote>
+    <p className="font-montserrat text-sm opacity-70">
+      — The Coinat Team
+    </p>
+  </div>
+</FadeIn>
 
     </div>
   );

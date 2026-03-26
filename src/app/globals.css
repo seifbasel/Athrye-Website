@@ -1,35 +1,85 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+/* Import the plugin directly - v4 supports this if the package is updated */
+@plugin "tailwindcss-animate";
+
+@theme {
+  /* --- FONTS --- */
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-playfair: 'Playfair Display', serif;
+
+  /* --- RADIUS --- */
+  --radius: 0.5rem;
+
+  /* --- COLORS --- */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+}
 
 @layer base {
   :root {
+    /* ───────── TYPOGRAPHY ───────── */
     --font-montserrat: 'Montserrat', sans-serif;
-    --font-playfair:   'Playfair Display', serif;
+    --font-playfair: 'Playfair Display', serif;
+
+    /* ───────── RADIUS ───────── */
     --radius: 0.5rem;
+
+    /* ───────── COLORS (LIGHT) ───────── */
+    --background: #e2e2e6;
+    --foreground: #272829;
+
+    --primary: #0F0F0F;
+    --primary-foreground: #e9c349;
+
+    --secondary: #D8D9DA;
+    --secondary-foreground: #888888;
+
+    --border: #3C3D37;
+    --input: #eeeeee;
+
+    --card: #D8D9DA;
+    --card-foreground: #222222;
   }
 
+  .dark {
+    /* ───────── COLORS (DARK) ───────── */
+    --background: #111316;
+    --foreground: #ECEBDE;
+
+    --primary: #e9c349;
+    --primary-foreground: #0F0F0F;
+
+    --secondary: #888888;
+    --secondary-foreground: #D8D9DA;
+
+    --border: #3C3D37;
+    --input: #2a2a2a;
+
+    --card: #1a1c1f;
+    --card-foreground: #ECEBDE;
+  }
+}
+
+@layer base {
   html {
     font-family: var(--font-montserrat);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    background-color: var(--background);
+    color: var(--foreground);
+    scroll-behavior: smooth;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-playfair);
   }
-
-  /* Smooth scrolling */
-  html { scroll-behavior: smooth; }
-
-  /* Custom scrollbar — subtle */
-  ::-webkit-scrollbar       { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(39,40,41,0.15); border-radius: 99px; }
-  .dark ::-webkit-scrollbar-thumb { background: rgba(236,235,222,0.15); }
-
-  /* Selection */
-  ::selection       { background: rgba(39,40,41,0.12); }
-  .dark ::selection { background: rgba(236,235,222,0.15); }
 }
+
+
+

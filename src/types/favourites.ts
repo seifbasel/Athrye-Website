@@ -6,4 +6,5 @@ type favouriteItem = {
   condition: string;
   rarity: string;
 };
+
 export default favouriteItem;

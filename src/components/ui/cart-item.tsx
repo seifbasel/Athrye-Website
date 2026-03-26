@@ -24,17 +24,17 @@ const CartItem: React.FC<CartItemProps> = ({
   return (
     <motion.div
       layout
-      className="flex items-center w-full gap-4 p-4 rounded-xl overflow-hidden shadow-sm hover:shadow-md shadow-background-dark dark:shadow-background transition-shadow duration-500"
+      className="flex items-center w-full gap-4 p-4 rounded-xl overflow-hidden shadow-sm hover:shadow-md shadow-foreground transition-shadow duration-300"
     >
       <div className="relative h-20 w-20 rounded-md overflow-hidden ">
         <Image src={imageUrl} alt={name} fill className="object-cover" />
       </div>
 
       <div className="flex-1">
-        <h3 className="text-sm font-bold text-text-dark dark:text-text">
+        <h3 className="text-sm font-bold text-foreground ">
           {name}
         </h3>
-        <p className="text-sm text-text-dark/70 dark:text-text/70">
+        <p className="text-sm text-foreground/70 ">
           ${price.toLocaleString()}
         </p>
       </div>
@@ -43,27 +43,27 @@ const CartItem: React.FC<CartItemProps> = ({
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={() => onUpdateQuantity(id, quantity - 1)}
-          className="rounded-full bg-background dark:bg-background-dark overflow-hidden shadow-sm hover:shadow-md shadow-background-dark dark:shadow-background transition-shadow duration-500"
+          className="rounded-full text-foreground overflow-hidden shadow-sm hover:shadow-md shadow-foreground transition-shadow duration-500"
           disabled={quantity <= 1}
         >
-          <Minus className="w-5 h-5 text-background-dark dark:text-background" />
+          <Minus className="w-5 h-5 text-foreground" />
         </motion.button>
-        <span className="text-lg font-medium w-8 text-center text-background-dark dark:text-background">
+        <span className="text-lg font-medium w-8 text-center text-foreground">
           {quantity}
         </span>
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={() => onUpdateQuantity(id, quantity + 1)}
-          className="rounded-full bg-background dark:bg-background-dark overflow-hidden shadow-sm hover:shadow-md shadow-background-dark dark:shadow-background transition-shadow duration-500"
+          className="rounded-full text-foreground overflow-hidden shadow-sm hover:shadow-md shadow-foreground transition-shadow duration-500"
         >
-          <Plus className="w-5 h-5 text-background-dark dark:text-background" />
+          <Plus className="w-5 h-5 text-foreground" />
         </motion.button>
       </div>
 
       <motion.button
         whileTap={{ scale: 0.9 }}
         onClick={() => onRemove(id)}
-        className="p-2 text-red-500 hover:bg-background-dark dark:hover:bg-red-900/20 rounded-full"
+        className="p-2 text-red-500 hover:bg-foreground/20 rounded-full"
       >
         <Trash2 className="w-5 h-5" />
       </motion.button>

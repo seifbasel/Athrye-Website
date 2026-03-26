@@ -29,12 +29,13 @@ export function Header() {
   };
 
   // Don't render auth UI during SSR hydration
-  if (isLoading) return (
-    <header className="sticky top-0 z-20 w-full px-6 md:px-8 md:pl-[76px] py-4 h-[60px] bg-background/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-text-dark/8 dark:border-text/8" />
-  );
+  if (isLoading)
+    return (
+      <header className="sticky top-0 z-20 w-full px-6 md:px-8 md:pl-19 py-4 h-15 bg-background/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-text-dark/8 dark:border-text/8" />
+    );
 
   return (
-    <header className="sticky top-0 z-20 w-full px-6 md:px-8 md:pl-[76px] py-4 bg-background/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-text-dark/8 dark:border-text/8">
+    <header className="sticky top-0 z-20 w-full px-6 md:px-8 md:pl-19 py-4 bg-background/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-text-dark/8 dark:border-text/8">
       <div className="flex items-center justify-end">
         {isAuthenticated && user ? (
           /* Authenticated — user menu */
@@ -46,7 +47,8 @@ export function Header() {
             >
               <div className="w-8 h-8 rounded-full bg-button dark:bg-button-dark flex items-center justify-center shrink-0">
                 <span className="text-xs font-montserrat font-bold text-text dark:text-text-dark uppercase">
-                  {user.firstName[0]}{user.lastName[0]}
+                  {user.firstName[0]}
+                  {user.lastName[0]}
                 </span>
               </div>
               <span className="hidden sm:block text-sm font-montserrat font-medium text-text-dark dark:text-text">
@@ -55,7 +57,7 @@ export function Header() {
               <ChevronDown
                 className={cn(
                   "w-3.5 h-3.5 text-text-dark/40 dark:text-text/40 transition-transform duration-200",
-                  menuOpen && "rotate-180"
+                  menuOpen && "rotate-180",
                 )}
               />
             </motion.button>
@@ -84,7 +86,10 @@ export function Header() {
                     <MenuButton
                       icon={<Settings className="w-3.5 h-3.5" />}
                       label="Profile Settings"
-                      onClick={() => { router.push("/profile"); setMenuOpen(false); }}
+                      onClick={() => {
+                        router.push("/profile");
+                        setMenuOpen(false);
+                      }}
                     />
                     <div className="mx-3 my-1 h-px bg-text-dark/8 dark:bg-text/8" />
                     <MenuButton
@@ -141,7 +146,7 @@ function MenuButton({
         "flex items-center gap-2.5 w-full px-4 py-2.5 text-sm font-montserrat transition-colors",
         danger
           ? "text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
-          : "text-text-dark dark:text-text hover:bg-text-dark/5 dark:hover:bg-text/5"
+          : "text-text-dark dark:text-text hover:bg-text-dark/5 dark:hover:bg-text/5",
       )}
     >
       {icon}

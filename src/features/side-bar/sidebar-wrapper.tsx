@@ -13,44 +13,44 @@ export function SidebarWrapper() {
     {
       label: "Coinat",
       href: "#",
-      icon: <Atom className="h-6 w-6 text-primary-foreground dark:text-primary" />,
+      icon: <Atom className="h-6 w-6 text-primary" />,
     },
     {
       label: "Home",
       href: "/",
-      icon: <Home className="w-5 h-5 text-primary-foreground dark:text-primary" />,
+      icon: <Home className="w-5 h-5 text-primary" />,
     },
     {
       label: "Coin Catalog",
       href: "/products",
-      icon: <Coins className="w-5 h-5 text-primary-foreground dark:text-primary" />,
+      icon: <Coins className="w-5 h-5 text-primary" />,
     },
     {
       label: "Shopping Cart",
       href: "/shopping-cart",
-      icon: <ShoppingCart className="w-5 h-5 text-primary-foreground dark:text-primary" />,
+      icon: <ShoppingCart className="w-5 h-5 text-primary" />,
       badge: cartCount,
     },
     {
       label: "Favorites",
       href: "/favorites",
-      icon: <Heart className="w-5 h-5 text-primary-foreground dark:text-primary" />,
+      icon: <Heart className="w-5 h-5 text-primary" />,
       badge: favCount,
     },
     {
       label: "My Orders",
       href: "/orders",
-      icon: <Package className="w-5 h-5 text-primary-foreground dark:text-primary" />,
+      icon: <Package className="w-5 h-5 text-primary" />,
     },
     {
       label: "Profile",
       href: "/profile",
-      icon: <User className="w-5 h-5 text-primary-foreground dark:text-primary" />,
+      icon: <User className="w-5 h-5 text-primary" />,
     },
     {
       label: "About",
       href: "/about",
-      icon: <Info className="w-5 h-5 text-primary-foreground dark:text-primary" />,
+      icon: <Info className="w-5 h-5 text-primary" />,
     },
   ];
 

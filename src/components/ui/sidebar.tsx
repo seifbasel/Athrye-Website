@@ -98,7 +98,7 @@ export const DesktopSidebar = ({
     <>
       <motion.div
         className={cn(
-          "fixed left-0 top-0 h-screen px-4 py-4 hidden md:flex md:flex-col bg-background dark:bg-background-dark w-[300px] flex-shrink-0 z-30",
+          "fixed left-0 top-0 h-screen px-4 py-4 hidden md:flex md:flex-col bg-background dark:bg-background-dark w-75 shrink-0 z-30",
           className
         )}
         animate={{
@@ -109,7 +109,7 @@ export const DesktopSidebar = ({
         {...props}
       >
         <motion.div className="flex flex-col h-full">
-          <motion.div className="flex-grow">
+          <motion.div className="grow">
             <motion.div>{children}</motion.div>
           </motion.div>
           <div
@@ -130,7 +130,7 @@ export const DesktopSidebar = ({
                   : "inline-block",
                 opacity: animate ? (open ? 1 : 0) : 1,
               }}
-              className="text-background-dark dark:text-background text-2xl whitespace-pre"
+              className="text-foreground text-2xl whitespace-pre"
             >
               {darkMode ? "Light Mode" : "Dark Mode"}
             </motion.span>
@@ -139,8 +139,8 @@ export const DesktopSidebar = ({
       </motion.div>
       <div
         className={cn(
-          "hidden md:block flex-shrink-0",
-          animate ? (open ? "w-[300px]" : "w-[60px]") : "w-[300px]"
+          "hidden md:block shrink-0",
+          animate ? (open ? "w-75" : "w-15") : "w-75"
         )}
       />
     </>
@@ -167,13 +167,13 @@ export const MobileSidebar = ({
     <>
       <div
         className={cn(
-          "fixed top-0 left-0 right-0 h-16 px-4 bg-background dark:bg-background-dark flex flex-row md:hidden items-center justify-between w-full z-30"
+          "fixed top-0 left-0 right-0 h-16 px-4 bg-background flex flex-row md:hidden items-center justify-between w-full z-30"
         )}
         {...props}
       >
-        <div className="flex justify-end z-20 w-full">
+        <div className="flex justify-start z-20 w-full">
           <Menu
-            className="text-foreground dark:text-foreground-dark"
+            className="text-foreground"
             onClick={() => setOpen(!open)}
           />
         </div>
@@ -188,27 +188,27 @@ export const MobileSidebar = ({
                 ease: "easeInOut",
               }}
               className={cn(
-                "fixed h-full w-full inset-0 bg-background dark:bg-background-dark p-10 z-[100] flex flex-col justify-between",
+                "fixed h-full w-full inset-0 bg-background p-10 z-100 flex flex-col justify-between",
                 className
               )}
             >
               <div
-                className="absolute right-10 top-10 z-50 text-primary-foreground dark:text-primary"
+                className="absolute right-10 top-10 z-50 text-primary"
                 onClick={() => setOpen(!open)}
               >
                 <X />
               </div>
-              <div className="flex-grow">{children}</div>
+              <div className="grow">{children}</div>
               <div
                 onClick={() => setDarkMode(!darkMode)}
                 className="flex items-center gap-2 py-2 cursor-pointer"
               >
                 {darkMode ? (
-                  <Sun className="w-5 h-5 text-text" />
+                  <Sun className="w-5 h-5 text-foreground" />
                 ) : (
-                  <Moon className="w-5 h-5 text-text-dark" />
+                  <Moon className="w-5 h-5 text-foreground" />
                 )}
-                <span className="text-background-dark dark:text-background text-xl">
+                <span className="text-foreground text-xl">
                   {darkMode ? "Light Mode" : "Dark Mode"}
                 </span>
               </div>
@@ -224,13 +224,35 @@ export const MobileSidebar = ({
 export const SidebarLink = ({
   link,
   className,
+  onClick, // capture any onClick from props
   ...props
 }: {
   link: Links;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
   props?: LinkProps;
 }) => {
-  const { open, animate } = useSidebar();
+  const { open, animate, setOpen } = useSidebar();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize(); // initial
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isMobile) {
+      setOpen(false);
+    }
+    if (onClick) {
+      onClick(e);
+    }
+  };
+
   return (
     <Link
       href={link.href}
@@ -238,6 +260,7 @@ export const SidebarLink = ({
         "flex items-center justify-start gap-2 group/sidebar py-2",
         className
       )}
+      onClick={handleClick}
       {...props}
     >
       {link.icon}
@@ -247,7 +270,7 @@ export const SidebarLink = ({
           display: animate ? (open ? "inline-block" : "none") : "inline-block",
           opacity: animate ? (open ? 1 : 0) : 1,
         }}
-        className="text-text-dark dark:text-text text-xl group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
+        className="text-foreground text-xl group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block p-0! m-0!"
       >
         {link.label}
       </motion.span>

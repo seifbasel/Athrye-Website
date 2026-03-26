@@ -8,4 +8,5 @@ type person = {
   postalCode: string;
   country: string;
 };
+
 export default person;

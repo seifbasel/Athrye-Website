@@ -41,14 +41,14 @@ const ProductCard = (product: Product) => {
 
   return (
     <motion.div
-      className="w-full bg-background dark:bg-background-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-lg shadow-background-dark/20 dark:shadow-background/10 transition-shadow duration-500 group cursor-pointer"
+      className="w-full bg-foreground/5 rounded-2xl overflow-hidden shadow-sm hover:shadow-md shadow-foreground transition-shadow duration-300 group cursor-pointer"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       onClick={() => router.push(`/products/${id}`)}
     >
       {/* Image */}
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative aspect-4/3 overflow-hidden">
         <Image
           src={imageUrl}
           alt={name}
@@ -58,11 +58,11 @@ const ProductCard = (product: Product) => {
         />
 
         {/* Hover overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         {/* View details — appears on hover */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-background/90 dark:bg-background-dark/90 backdrop-blur-sm text-xs font-montserrat font-semibold text-text-dark dark:text-text shadow-md">
+          <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-background backdrop-blur-sm text-xs font-montserrat font-semibold text-text-dark dark:text-text shadow-md">
             <Eye className="w-3.5 h-3.5" />
             View Details
           </span>
@@ -73,7 +73,7 @@ const ProductCard = (product: Product) => {
           <div
             className={cn(
               "absolute top-3 left-3 px-2.5 py-1 rounded-lg text-xs font-montserrat font-semibold",
-              rarityColor[rarity] ?? "text-text-dark bg-background/80"
+              rarityColor[rarity] ?? "text-background bg-foreground"
             )}
           >
             {rarity}
@@ -100,10 +100,10 @@ const ProductCard = (product: Product) => {
       <div className="p-5 space-y-4">
         {/* Name + Price */}
         <div>
-          <h3 className="font-playfair font-bold text-lg text-text-dark dark:text-text leading-snug line-clamp-1">
+          <h3 className="font-playfair font-bold text-lg text-foreground leading-snug line-clamp-1">
             {name}
           </h3>
-          <p className="font-montserrat font-bold text-xl text-text-dark dark:text-text mt-1">
+          <p className="font-montserrat font-bold text-xl text-foreground mt-1">
             {price.toLocaleString()}{" "}
             <span className="text-xs font-normal opacity-50">EGP</span>
           </p>
@@ -118,10 +118,10 @@ const ProductCard = (product: Product) => {
             { label: "Material",  value: material },
           ].map(({ label, value }) => (
             <div key={label} className="flex justify-between items-baseline gap-1">
-              <span className="text-xs font-montserrat text-text-dark/45 dark:text-text/45 shrink-0">
+              <span className="text-xs font-montserrat text-foreground shrink-0">
                 {label}
               </span>
-              <span className="text-xs font-montserrat font-semibold text-text-dark dark:text-text text-right line-clamp-1">
+              <span className="text-xs font-montserrat font-semibold text-foreground text-right line-clamp-1">
                 {value}
               </span>
             </div>
@@ -129,7 +129,7 @@ const ProductCard = (product: Product) => {
         </div>
 
         {/* Description */}
-        <p className="text-xs font-montserrat text-text-dark/55 dark:text-text/55 line-clamp-2 leading-relaxed">
+        <p className="text-xs font-montserrat text-foreground/55 line-clamp-2 leading-relaxed">
           {description}
         </p>
 
@@ -138,13 +138,13 @@ const ProductCard = (product: Product) => {
           whileTap={{ scale: 0.97 }}
           onClick={handleAddToCart}
           className={cn(
-            "w-full h-10 rounded-xl flex items-center justify-center gap-2 text-sm font-montserrat font-semibold transition-all duration-200",
+            "w-full h-10 rounded-xl flex items-center justify-center gap-2 text-sm font-montserrat font-semibold transition-all duration-00",
             inCart
-              ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 cursor-default"
-              : "bg-button dark:bg-button-dark text-text dark:text-text-dark hover:opacity-90"
+              ? "bg-primary-foreground text-foreground cursor-default"
+              : "bg-foreground text-background hover:opacity-80"
           )}
         >
-          <ShoppingCart className="w-4 h-4" />
+          <ShoppingCart className="w-5 h-5" />
           {inCart ? "Added to Cart" : "Add to Cart"}
         </motion.button>
       </div>

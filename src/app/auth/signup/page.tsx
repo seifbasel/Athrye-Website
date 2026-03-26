@@ -1,5 +1,7 @@
 "use client";
-import LoginPage from "@/features/auth/login/login";
+
+import SignupPage from "@/features/auth/signup/signup";
+
 export default function LoginRoute() {
-  return <LoginPage />;
+  return <SignupPage />;
 }

@@ -9,6 +9,7 @@ import { Eye, EyeOff, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/auth-context";
+import { Input } from "@/components/ui/input";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -197,7 +198,7 @@ export default function LoginPage() {
             <label className="block text-xs tracking-widest uppercase font-montserrat font-medium text-text-dark/60 dark:text-text/60">
               Email
             </label>
-            <input
+            <Input
               {...register("email")}
               type="email"
               autoComplete="email"
@@ -236,7 +237,7 @@ export default function LoginPage() {
               </Link>
             </div>
             <div className="relative">
-              <input
+              <Input
                 {...register("password")}
                 type={showPassword ? "text" : "password"}
                 autoComplete="current-password"

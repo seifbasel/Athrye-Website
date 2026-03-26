@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <CartProvider>
               <FavoritesProvider>
                 <OrderProvider>
-                  <div className="min-h-screen bg-background dark:bg-background-dark">
+                  <div className="min-h-screen bg-background">
                     <div className="flex min-h-screen">
                       <SidebarWrapper />
                       <div className="flex-1 flex flex-col min-w-0">

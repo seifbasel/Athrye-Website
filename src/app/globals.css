@@ -1,4 +1,8 @@
 @import "tailwindcss";
+/* Tell Tailwind v4 where your source files are */
+@source "../components/**/*.tsx";
+@source "../features/**/*.tsx";
+@source "../app/**/*.tsx";
 /* Import the plugin directly - v4 supports this if the package is updated */
 @plugin "tailwindcss-animate";
 
@@ -80,6 +84,3 @@
     font-family: var(--font-playfair);
   }
 }
-
-
-

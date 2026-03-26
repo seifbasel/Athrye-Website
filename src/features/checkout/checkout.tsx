@@ -15,7 +15,6 @@ import { useCart } from "@/context/cart-context";
 import { useOrders } from "@/context/order-context";
 import { ShippingAddress, PaymentMethod, CheckoutStep } from "@/types/order";
 import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
 
 // ─── Schemas ──────────────────────────────────────────────────────────────────
 
@@ -29,7 +28,7 @@ const addressSchema = z.object({
 });
 type AddressForm = z.infer<typeof addressSchema>;
 
-// ─── Shared Inputstyle ───────────────────────────────────────────────────────
+// ─── Shared input style ───────────────────────────────────────────────────────
 
 const inputCls = (err?: boolean) =>
   `w-full h-12 px-4 rounded-xl border bg-background dark:bg-background-dark font-montserrat text-sm text-text-dark dark:text-text placeholder:text-text-dark/30 dark:placeholder:text-text/30 outline-none transition-all duration-200 focus:ring-2 focus:ring-text-dark/12 dark:focus:ring-text/12 ${
@@ -170,26 +169,26 @@ function AddressStep({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="sm:col-span-2">
           <Field label="Full Name" error={errors.fullName?.message}>
-            <Input {...register("fullName")} placeholder="James Sterling" className={inputCls(!!errors.fullName)} />
+            <input {...register("fullName")} placeholder="James Sterling" className={inputCls(!!errors.fullName)} />
           </Field>
         </div>
         <Field label="Phone Number" error={errors.phone?.message}>
-          <Input {...register("phone")} placeholder="+20 100 000 0000" className={inputCls(!!errors.phone)} />
+          <input {...register("phone")} placeholder="+20 100 000 0000" className={inputCls(!!errors.phone)} />
         </Field>
         <div className="sm:col-span-2">
           <Field label="Street Address" error={errors.address?.message}>
-            <Input {...register("address")} placeholder="15 Tahrir Square, Apt 4B" className={inputCls(!!errors.address)} />
+            <input {...register("address")} placeholder="15 Tahrir Square, Apt 4B" className={inputCls(!!errors.address)} />
           </Field>
         </div>
         <Field label="City" error={errors.city?.message}>
-          <Input {...register("city")} placeholder="Cairo" className={inputCls(!!errors.city)} />
+          <input {...register("city")} placeholder="Cairo" className={inputCls(!!errors.city)} />
         </Field>
         <Field label="Postal Code" error={errors.postalCode?.message}>
-          <Input {...register("postalCode")} placeholder="11511" className={inputCls(!!errors.postalCode)} />
+          <input {...register("postalCode")} placeholder="11511" className={inputCls(!!errors.postalCode)} />
         </Field>
         <div className="sm:col-span-2">
           <Field label="Country" error={errors.country?.message}>
-            <Input {...register("country")} placeholder="Egypt" className={inputCls(!!errors.country)} />
+            <input {...register("country")} placeholder="Egypt" className={inputCls(!!errors.country)} />
           </Field>
         </div>
       </div>
@@ -289,23 +288,23 @@ function PaymentStep({
             exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
             <div className="p-5 rounded-xl border border-text-dark/10 dark:border-text/10 space-y-4">
               <Field label="Card Number" error={undefined}>
-                <Input type="text" value={cardNumber} placeholder="1234 5678 9012 3456"
+                <input type="text" value={cardNumber} placeholder="1234 5678 9012 3456"
                   onChange={(e) => { setCardNumber(formatCard(e.target.value)); setCardError(""); }}
                   className={inputCls(false)} maxLength={19} />
               </Field>
               <Field label="Cardholder Name" error={undefined}>
-                <Input type="text" value={cardName} placeholder="JAMES STERLING"
+                <input type="text" value={cardName} placeholder="JAMES STERLING"
                   onChange={(e) => { setCardName(e.target.value.toUpperCase()); setCardError(""); }}
                   className={inputCls(false)} />
               </Field>
               <div className="grid grid-cols-2 gap-4">
                 <Field label="Expiry Date" error={undefined}>
-                  <Input type="text" value={expiry} placeholder="MM/YY"
+                  <input type="text" value={expiry} placeholder="MM/YY"
                     onChange={(e) => { setExpiry(formatExpiry(e.target.value)); setCardError(""); }}
                     className={inputCls(false)} maxLength={5} />
                 </Field>
                 <Field label="CVV" error={undefined}>
-                  <Input type="password" value={cvv} placeholder="•••"
+                  <input type="password" value={cvv} placeholder="•••"
                     onChange={(e) => { setCvv(e.target.value.replace(/\D/g, "").slice(0, 4)); setCardError(""); }}
                     className={inputCls(false)} maxLength={4} />
                 </Field>
@@ -497,6 +496,7 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState<{ method: PaymentMethod; cardLastFour?: string } | null>(null);
   const [placedOrder, setPlacedOrder] = useState<{ orderNumber: string; estimatedDelivery: string } | null>(null);
   const [isPlacing, setIsPlacing]     = useState(false);
+  const [prevIndex, setPrevIndex]     = useState(0);
 
   // Redirect if cart is empty and not on confirmation
   if (items.length === 0 && step !== "confirmation") {
@@ -536,9 +536,8 @@ export default function CheckoutPage() {
     exit:  (dir: number) => ({ x: dir * -40, opacity: 0 }),
   };
 
-  const stepIndex    = STEPS.findIndex((s) => s.key === step);
-  const [prevIndex, setPrevIndex] = React.useState(0);
-  const direction    = stepIndex >= prevIndex ? 1 : -1;
+  const stepIndex = STEPS.findIndex((s) => s.key === step);
+  const direction = stepIndex >= prevIndex ? 1 : -1;
 
   const goToStep = (next: CheckoutStep) => {
     setPrevIndex(stepIndex);

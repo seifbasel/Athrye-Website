@@ -3,7 +3,7 @@
 import { useAuth } from "@/context/auth-context";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
-import { LogIn, LogOut, User, ChevronDown, Settings } from "lucide-react";
+import { LogIn, LogOut, ChevronDown, Settings } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
 export function Header() {

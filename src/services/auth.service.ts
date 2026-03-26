@@ -4,12 +4,7 @@
  * Swap: remove delay() + mock returns, uncomment fetch blocks, set BASE_URL.
  */
 
-import { SignupCredentials } from "@/types/auth";
-import { AuthResponse } from "@/types/auth";
-import { LoginCredentials } from "@/types/auth";
-
-
-
+import { AuthResponse, LoginCredentials, SignupCredentials } from "@/types/auth";
 
 // TODO: const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -53,21 +48,21 @@ export async function registerUser(c: SignupCredentials): Promise<AuthResponse> 
 }
 
 /** POST /api/auth/token/refresh/ → { access } */
-export async function refreshToken(refresh: string): Promise<{ access: string }> {
+export async function refreshToken(_refresh: string): Promise<{ access: string }> {
   await delay(300);
   return { access: "new-mock-access" };
 }
 
 /** POST /api/auth/google/ → { user, tokens } */
-export async function googleLogin(idToken: string): Promise<AuthResponse> {
-  // TODO: const res = await fetch(`${BASE_URL}/auth/google/`, { method: "POST", body: JSON.stringify({ token: idToken }) });
+export async function googleLogin(_idToken: string): Promise<AuthResponse> {
+  // TODO: const res = await fetch(`${BASE_URL}/auth/google/`, { method: "POST", body: JSON.stringify({ token: _idToken }) });
   await delay(700);
   return { user: { ...MOCK_USER, email: "google@gmail.com" }, tokens: MOCK_TOKENS };
 }
 
 /** POST /api/auth/apple/ → { user, tokens } */
-export async function appleLogin(code: string, idToken: string): Promise<AuthResponse> {
-  // TODO: const res = await fetch(`${BASE_URL}/auth/apple/`, { method: "POST", body: JSON.stringify({ code, id_token: idToken }) });
+export async function appleLogin(_code: string, _idToken: string): Promise<AuthResponse> {
+  // TODO: const res = await fetch(`${BASE_URL}/auth/apple/`, { method: "POST", body: JSON.stringify({ code: _code, id_token: _idToken }) });
   await delay(700);
   return { user: { ...MOCK_USER, email: "apple@icloud.com" }, tokens: MOCK_TOKENS };
 }

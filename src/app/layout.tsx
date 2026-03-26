@@ -2,7 +2,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { SidebarWrapper } from "@/features/side-bar/sidebar-wrapper";
 import { Footer } from "@/features/footer/footer";
-import { Header } from "@/features/header/header";
 import { Montserrat, Playfair_Display } from "next/font/google";
 import { AuthProvider } from "@/context/auth-context";
 import { CartProvider } from "@/context/cart-context";
@@ -44,8 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <div className="flex min-h-screen">
                       <SidebarWrapper />
                       <div className="flex-1 flex flex-col min-w-0">
-                        <Header />
-                        <main className="flex-1 p-6 md:p-8 md:pl-[76px] overflow-x-hidden">
+                        <main className="flex-1 p-6 mt-10 md:p-8 md:pl-19 overflow-x-hidden">
                           {children}
                         </main>
                         <Footer />

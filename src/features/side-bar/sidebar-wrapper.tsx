@@ -1,9 +1,19 @@
 "use client";
 
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
-import { Home, Coins, ShoppingCart, User, Info, Atom, Heart, Package } from "lucide-react";
+import {
+  Home,
+  Coins,
+  ShoppingCart,
+  Info,
+  Atom,
+  Heart,
+  Package,
+  User,
+} from "lucide-react";
 import { useCart } from "@/context/cart-context";
 import { useFavorites } from "@/context/favorites-context";
+import { SidebarUserSection } from "./sidebar-user-section";
 
 export function SidebarWrapper() {
   const { count: cartCount } = useCart();
@@ -43,11 +53,6 @@ export function SidebarWrapper() {
       icon: <Package className="w-5 h-5 text-primary" />,
     },
     {
-      label: "Profile",
-      href: "/profile",
-      icon: <User className="w-5 h-5 text-primary" />,
-    },
-    {
       label: "About",
       href: "/about",
       icon: <Info className="w-5 h-5 text-primary" />,
@@ -57,10 +62,16 @@ export function SidebarWrapper() {
   return (
     <Sidebar>
       <SidebarBody>
-        <div className="flex flex-col gap-1">
-          {links.map((link) => (
-            <SidebarLink key={link.href} link={link} />
-          ))}
+        <div className="flex flex-col h-full justify-between">
+          {/* Main Links */}
+          <div className="flex flex-col gap-1">
+            {links.map((link) => (
+              <SidebarLink key={link.href} link={link} />
+            ))}
+          </div>
+
+          {/* User Section */}
+          <SidebarUserSection />
         </div>
       </SidebarBody>
     </Sidebar>

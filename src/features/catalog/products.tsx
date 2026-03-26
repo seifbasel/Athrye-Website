@@ -7,6 +7,7 @@ import ProductCard from "@/components/ui/product-card";
 import { getProducts, ProductFilters } from "@/services/products.service";
 import Product from "@/types/product";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const RARITIES = ["Very Rare", "Extremely Rare", "Unique", "Rare", "Scarce"];
 const MATERIALS = ["Gold", "Silver", "Bronze", "Copper"];
@@ -47,21 +48,28 @@ export default function CoinsCatalog() {
       </div>
 
       <div className="flex gap-3">
-        <div className="flex-1 flex items-center gap-2.5 h-11 px-4 rounded-xl border border-foreground/15 bg-background focus-within:ring-2 focus-within:ring-foreground/15 transition-all">
-          <Search className="w-4 h-4 text-foreground/40 shrink-0" />
-          <Input
-            type="text"
-            placeholder="Search by name, origin, material…"
-            value={filters.search}
-            onChange={(e) => setFilters((f) => ({ ...f, search: e.target.value }))}
-            className="flex-1 bg-transparent text-sm font-montserrat text-foreground placeholder:text-foreground/40 outline-none"
-          />
-          {filters.search && (
-            <button onClick={() => setFilters((f) => ({ ...f, search: "" }))}>
-              <X className="w-3.5 h-3.5 text-foreground/40 hover:text-foreground transition-colors" />
-            </button>
-          )}
-        </div>
+  {/* Search Bar Wrapper */}
+  <div className="flex-1 flex items-center gap-3 h-12 px-4 rounded-xl border border-border bg-background focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+    <Search className="w-4 h-4 text-foreground/40 shrink-0" />
+    
+    <Input
+      variant="ghost" // Use the ghost variant here
+      type="text"
+      placeholder="Search by name, origin, material…"
+      value={filters.search}
+      onChange={(e) => setFilters((f) => ({ ...f, search: e.target.value }))}
+      className="font-montserrat placeholder:text-foreground/40"
+    />
+
+    {filters.search && (
+      <button 
+        onClick={() => setFilters((f) => ({ ...f, search: "" }))}
+        className="p-1 hover:bg-foreground/5 rounded-md transition-colors"
+      >
+        <X className="w-4 h-4 text-foreground/40 hover:text-foreground" />
+      </button>
+    )}
+  </div>
 
         <motion.button whileTap={{ scale: 0.96 }}
           onClick={() => setShowFilters(!showFilters)}

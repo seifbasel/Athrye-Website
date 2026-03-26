@@ -10,7 +10,7 @@ import FavoriteItemCard from "@/components/ui/favourite-card";
 
 export default function FavoritesPage() {
   const { items, removeItem, clearAll } = useFavorites();
-  const { addItem, isInCart } = useCart();
+  const { addItem } = useCart();
 
   const totalValue = items.reduce((sum, item) => sum + item.price, 0);
 

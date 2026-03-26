@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Award, Globe2, Sparkles, Clock, TrendingUp, ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const TRUST_ITEMS = [
   { icon: Shield, label: "Authenticated", sub: "Every coin verified", gradient: "from-primary/10 to-primary/5" },
@@ -28,13 +28,13 @@ const NEW_ARRIVALS = [
 
 export default function Home() {
   const router = useRouter();
-  const [scrolled, setScrolled] = useState(false);
+
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const handleScroll = () => {};
+  window.addEventListener('scroll', handleScroll);
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
 
   return (
     <div className="relative overflow-hidden bg-background">

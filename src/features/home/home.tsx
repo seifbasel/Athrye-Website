@@ -227,7 +227,7 @@ export default function Home() {
                   artistry, and unparalleled exclusivity in the numismatic world.
                 </p>
                 <p className="text-sm italic border-l-2 border-primary pl-4">
-                  Only 13 examples are known to exist, making it the "Mona Lisa" of American coinage.
+                  Only 13 examples are known to exist, making it the Mona Lisa of American coinage.
                 </p>
               </div>
 

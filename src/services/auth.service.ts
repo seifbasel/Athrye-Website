@@ -3,6 +3,7 @@
  * Each function documents the exact Django endpoint it maps to.
  * Swap: remove delay() + mock returns, uncomment fetch blocks, set BASE_URL.
  */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { AuthResponse, LoginCredentials, SignupCredentials } from "@/types/auth";
 

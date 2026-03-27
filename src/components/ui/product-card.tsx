@@ -10,16 +10,8 @@ import { useRouter } from "next/navigation";
 import { useCart } from "@/context/cart-context";
 import { useFavorites } from "@/context/favorites-context";
 
-const rarityColor: Record<string, string> = {
-  Unique:           "text-amber-700 dark:text-amber-400  bg-amber-50   dark:bg-amber-900/25",
-  "Extremely Rare": "text-red-700   dark:text-red-400    bg-red-50     dark:bg-red-900/25",
-  "Very Rare":      "text-orange-700 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/25",
-  Rare:             "text-blue-700  dark:text-blue-400   bg-blue-50    dark:bg-blue-900/25",
-  Scarce:           "text-green-700 dark:text-green-400  bg-green-50   dark:bg-green-900/25",
-};
-
 const ProductCard = (product: Product) => {
-  const { id, name, year, price, rarity, condition, origin, material, main_image, description } = product;
+  const { id, name, year, price, condition, origin, material, main_image, description } = product;
   const router = useRouter();
   const { addItem, isInCart } = useCart();
   const { toggleItem, isFavorite } = useFavorites();
@@ -36,7 +28,7 @@ const ProductCard = (product: Product) => {
 
   const handleFavorite = (e: React.MouseEvent) => {
     e.stopPropagation();
-    toggleItem({ id: id as string, name, price, imageUrl, condition, rarity });
+    toggleItem({ id: id as string, name, price, imageUrl, condition });
   };
 
   return (
@@ -68,17 +60,6 @@ const ProductCard = (product: Product) => {
           </span>
         </div>
 
-        {/* Rarity Badge */}
-        {rarity && (
-          <div
-            className={cn(
-              "absolute top-3 left-3 px-2.5 py-1 rounded-lg text-xs font-montserrat font-semibold",
-              rarityColor[rarity] ?? "text-background bg-foreground"
-            )}
-          >
-            {rarity}
-          </div>
-        )}
 
         {/* Favorite button */}
         <motion.button

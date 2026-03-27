@@ -9,7 +9,6 @@ interface FavoriteItem {
   price: number;
   imageUrl: string;
   condition: string;
-  rarity: string;
 }
 
 interface FavoriteItemProps extends FavoriteItem {
@@ -23,7 +22,6 @@ const FavoriteItemCard = ({
   price,
   imageUrl,
   condition,
-  rarity,
   onRemove,
   onMoveToCart,
 }: FavoriteItemProps) => {
@@ -45,7 +43,6 @@ const FavoriteItemCard = ({
         </p>
         <div className="flex gap-4 text-xs text-foreground/70 mt-1">
           <span>Condition: {condition}</span>
-          <span>Rarity: {rarity}</span>
         </div>
       </div>
 

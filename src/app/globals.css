@@ -37,7 +37,7 @@
     --radius: 0.5rem;
 
     /* ───────── COLORS (LIGHT) ───────── */
-    --background: #e2e2e6;
+    --background: #ecebde;
     --foreground: #272829;
 
     --primary: #0F0F0F;
@@ -56,7 +56,7 @@
   .dark {
     /* ───────── COLORS (DARK) ───────── */
     --background: #111316;
-    --foreground: #ECEBDE;
+    --foreground: #ecebde;
 
     --primary: #e9c349;
     --primary-foreground: #0F0F0F;

@@ -7,7 +7,6 @@ export const MOCK_PRODUCTS: Product[] = [
     name: "1854 Indian Head Gold Dollar",
     price: 12500,
     year: 1854,
-    rarity: "Very Rare",
     quantity: 2,
     condition: "MS-63",
     origin: "United States",
@@ -25,7 +24,6 @@ export const MOCK_PRODUCTS: Product[] = [
     name: "Ancient Roman Aureus — Hadrian",
     price: 28000,
     year: 117,
-    rarity: "Extremely Rare",
     quantity: 1,
     condition: "XF-45",
     origin: "Roman Empire",
@@ -43,7 +41,6 @@ export const MOCK_PRODUCTS: Product[] = [
     name: "1933 Saint-Gaudens Double Eagle",
     price: 185000,
     year: 1933,
-    rarity: "Unique",
     quantity: 1,
     condition: "MS-65",
     origin: "United States",
@@ -58,7 +55,6 @@ export const MOCK_PRODUCTS: Product[] = [
     name: "Byzantine Solidus — Justinian I",
     price: 8400,
     year: 540,
-    rarity: "Rare",
     quantity: 3,
     condition: "AU-55",
     origin: "Byzantine Empire",
@@ -73,7 +69,6 @@ export const MOCK_PRODUCTS: Product[] = [
     name: "1796 Draped Bust Quarter",
     price: 42000,
     year: 1796,
-    rarity: "Very Rare",
     quantity: 1,
     condition: "VF-30",
     origin: "United States",
@@ -88,7 +83,6 @@ export const MOCK_PRODUCTS: Product[] = [
     name: "Athenian Owl Tetradrachm",
     price: 6800,
     year: -440,
-    rarity: "Scarce",
     quantity: 4,
     condition: "VF-35",
     origin: "Ancient Greece",
@@ -106,6 +100,6 @@ export const MOCK_CART_ITEMS = [
 ];
 
 export const MOCK_FAVORITE_ITEMS = [
-  { id: "1", name: "1854 Indian Head Gold Dollar", price: 12500, imageUrl: "/coin1.jpg", condition: "MS-63", rarity: "Very Rare" },
-  { id: "2", name: "Ancient Roman Aureus", price: 28000, imageUrl: "/coin1.jpg", condition: "XF-45", rarity: "Extremely Rare" },
+  { id: "1", name: "1854 Indian Head Gold Dollar", price: 12500, imageUrl: "/coin1.jpg", condition: "MS-63"},
+  { id: "2", name: "Ancient Roman Aureus", price: 28000, imageUrl: "/coin1.jpg", condition: "XF-45"},
 ];

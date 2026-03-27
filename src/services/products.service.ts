@@ -12,7 +12,6 @@ const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export type ProductFilters = {
   search?: string;
-  rarity?: string;
   material?: string;
   minPrice?: number;
   maxPrice?: number;
@@ -29,7 +28,7 @@ export type PaginatedProducts = {
 
 /**
  * GET /api/products/
- * Query params: search, rarity, material, min_price, max_price, ordering, page
+ * Query params: search, material, min_price, max_price, ordering, page
  * Returns: DRF paginated response
  */
 export async function getProducts(filters: ProductFilters = {}): Promise<PaginatedProducts> {
@@ -51,7 +50,6 @@ export async function getProducts(filters: ProductFilters = {}): Promise<Paginat
         p.material.toLowerCase().includes(q)
     );
   }
-  if (filters.rarity)   results = results.filter((p) => p.rarity === filters.rarity);
   if (filters.material) results = results.filter((p) => p.material === filters.material);
   if (filters.minPrice) results = results.filter((p) => p.price >= filters.minPrice!);
   if (filters.maxPrice) results = results.filter((p) => p.price <= filters.maxPrice!);

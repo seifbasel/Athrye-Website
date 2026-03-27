@@ -13,13 +13,6 @@ import { cn } from "@/lib/utils";
 
 interface ProductDetailProps { productId: number; }
 
-const rarityColor: Record<string, string> = {
-  Unique: "text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/25",
-  "Extremely Rare": "text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-900/25",
-  "Very Rare": "text-orange-700 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/25",
-  Rare: "text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/25",
-  Scarce: "text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/25",
-};
 
 export default function ProductDetail({ productId }: ProductDetailProps) {
   const { data: product, isLoading, error } = useProduct(productId);
@@ -50,7 +43,7 @@ export default function ProductDetail({ productId }: ProductDetailProps) {
     for (let i = 0; i < quantity; i++) addItem({ id: product.id as string, name: product.name, price: product.price, imageUrl: product.main_image?.image ?? "/coin1.jpg" });
   };
 
-  const handleFavorite = () => toggleItem({ id: product.id as string, name: product.name, price: product.price, imageUrl: product.main_image?.image ?? "/coin1.jpg", condition: product.condition, rarity: product.rarity });
+  const handleFavorite = () => toggleItem({ id: product.id as string, name: product.name, price: product.price, imageUrl: product.main_image?.image ?? "/coin1.jpg", condition: product.condition});
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -87,7 +80,6 @@ export default function ProductDetail({ productId }: ProductDetailProps) {
         <div className="space-y-7">
           <div className="space-y-3">
             <div className="flex items-start justify-between gap-4">
-              {product.rarity && <span className={cn("px-3 py-1 rounded-lg text-xs font-montserrat font-semibold", rarityColor[product.rarity])}>{product.rarity}</span>}
               <motion.button whileTap={{ scale: 0.88 }} onClick={handleFavorite} className="p-2 rounded-full hover:bg-foreground/5 transition-colors ml-auto">
                 <Heart className={cn("w-5 h-5 transition-colors", favorited ? "fill-red-500 stroke-red-500" : "stroke-foreground/50")} />
               </motion.button>

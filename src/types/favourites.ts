@@ -4,7 +4,6 @@ type favouriteItem = {
   price: number;
   imageUrl: string;
   condition: string;
-  rarity: string;
 };
 
 export default favouriteItem;

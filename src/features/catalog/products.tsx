@@ -1,22 +1,20 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Search, SlidersHorizontal, X, Loader2 } from "lucide-react";
 import ProductCard from "@/components/ui/product-card";
 import { getProducts, ProductFilters } from "@/services/products.service";
 import Product from "@/types/product";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 
-const RARITIES = ["Very Rare", "Extremely Rare", "Unique", "Rare", "Scarce"];
 const MATERIALS = ["Gold", "Silver", "Bronze", "Copper"];
 
 export default function CoinsCatalog() {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showFilters, setShowFilters] = useState(false);
-  const [filters, setFilters] = useState<ProductFilters>({ search: "", rarity: "", material: "" });
+  const [filters, setFilters] = useState<ProductFilters>({ search: "", material: "" });
   const [debouncedSearch, setDebouncedSearch] = useState("");
 
   useEffect(() => {
@@ -31,12 +29,12 @@ export default function CoinsCatalog() {
       setProducts(data.results);
     } catch { setProducts([]); }
     finally { setIsLoading(false); }
-  }, [debouncedSearch, filters.rarity, filters.material]);
+  }, [debouncedSearch, filters.material]);
 
   useEffect(() => { fetchProducts(); }, [fetchProducts]);
 
-  const clearFilters = () => setFilters({ search: "", rarity: "", material: "" });
-  const activeCount = [filters.rarity, filters.material].filter(Boolean).length;
+  const clearFilters = () => setFilters({ search: "", material: "" });
+  const activeCount = [filters.material].filter(Boolean).length;
 
   return (
     <div className="space-y-8">
@@ -89,7 +87,7 @@ export default function CoinsCatalog() {
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.22, ease: "easeInOut" }} className="overflow-hidden">
             <div className="p-5 rounded-xl border border-foreground/10 bg-background space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {[{ label: "Rarity", options: RARITIES, key: "rarity" as const }, { label: "Material", options: MATERIALS, key: "material" as const }].map(({ label, options, key }) => (
+                {[ { label: "Material", options: MATERIALS, key: "material" as const }].map(({ label, options, key }) => (
                   <div key={key} className="space-y-2.5">
                     <p className="text-xs tracking-[0.2em] uppercase font-montserrat font-medium text-foreground/50">{label}</p>
                     <div className="flex flex-wrap gap-2">

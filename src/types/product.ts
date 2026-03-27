@@ -5,7 +5,6 @@ type Product = {
   name: string;
   price: number;
   year: number;
-  rarity: string;
   quantity: number;
   condition: string;
   origin: string;

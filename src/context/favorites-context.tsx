@@ -8,7 +8,6 @@ export type FavoriteItem = {
   price: number;
   imageUrl: string;
   condition: string;
-  rarity: string;
 };
 
 type FavoritesContextValue = {

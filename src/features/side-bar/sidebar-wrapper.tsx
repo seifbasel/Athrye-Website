@@ -64,7 +64,7 @@ export function SidebarWrapper() {
       <SidebarBody>
         <div className="flex flex-col h-full justify-between">
           {/* Main Links */}
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-5">
             {links.map((link) => (
               <SidebarLink key={link.href} link={link} />
             ))}

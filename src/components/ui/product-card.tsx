@@ -11,7 +11,18 @@ import { useCart } from "@/context/cart-context";
 import { useFavorites } from "@/context/favorites-context";
 
 const ProductCard = (product: Product) => {
-  const { id, name, year, price, condition, origin, material, main_image, description } = product;
+  const {
+    id,
+    name,
+    year,
+    price,
+    condition,
+    origin,
+    material,
+    main_image,
+    description,
+  } = product;
+
   const router = useRouter();
   const { addItem, isInCart } = useCart();
   const { toggleItem, isFavorite } = useFavorites();
@@ -33,13 +44,12 @@ const ProductCard = (product: Product) => {
 
   return (
     <motion.div
-      className="w-full bg-foreground/5 rounded-2xl overflow-hidden shadow-sm hover:shadow-md shadow-foreground transition-shadow duration-300 group cursor-pointer"
+      className="group w-full cursor-pointer overflow-hidden rounded-[1.4rem] border border-border/70 bg-card/94 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       onClick={() => router.push(`/products/${id}`)}
     >
-      {/* Image */}
       <div className="relative aspect-4/3 overflow-hidden">
         <Image
           src={imageUrl}
@@ -49,83 +59,72 @@ const ProductCard = (product: Product) => {
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
 
-        {/* Hover overlay */}
-        <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/58 via-black/8 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-        {/* View details — appears on hover */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-background backdrop-blur-sm text-xs font-montserrat font-semibold text-text-dark dark:text-text shadow-md">
-            <Eye className="w-3.5 h-3.5" />
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <span className="flex items-center gap-2 rounded-full border border-white/20 bg-background/95 px-4 py-2 text-xs font-montserrat font-semibold text-foreground shadow-md backdrop-blur-md">
+            <Eye className="h-3.5 w-3.5" />
             View Details
           </span>
         </div>
 
-
-        {/* Favorite button */}
         <motion.button
           whileTap={{ scale: 0.82 }}
           onClick={handleFavorite}
-          className="absolute top-3 right-3 p-2 bg-background/90 dark:bg-background-dark/90 backdrop-blur-sm rounded-full shadow-sm hover:bg-background dark:hover:bg-background-dark transition-colors"
+          className="absolute right-3 top-3 rounded-full border border-white/20 bg-background/90 p-2 shadow-sm backdrop-blur-md transition-colors hover:bg-background dark:bg-card/90 dark:hover:bg-card"
           aria-label={favorited ? "Remove from favorites" : "Add to favorites"}
         >
           <Heart
             className={cn(
-              "w-4 h-4 transition-colors duration-200",
-              favorited ? "fill-red-500 stroke-red-500" : "stroke-text-dark/50 dark:stroke-text/50"
+              "h-4 w-4 transition-colors duration-200",
+              favorited ? "fill-red-500 stroke-red-500" : "stroke-foreground/55"
             )}
           />
         </motion.button>
       </div>
 
-      {/* Content */}
-      <div className="p-5 space-y-4">
-        {/* Name + Price */}
+      <div className="space-y-4 p-5">
         <div>
-          <h3 className="font-playfair font-bold text-lg text-foreground leading-snug line-clamp-1">
-            {name}
-          </h3>
-          <p className="font-montserrat font-bold text-xl text-foreground mt-1">
+          <h3 className="line-clamp-1 text-lg font-bold leading-snug text-foreground">{name}</h3>
+          <p className="mt-1 text-xl font-bold text-foreground">
             {price.toLocaleString()}{" "}
-            <span className="text-xs font-normal opacity-50">EGP</span>
+            <span className="text-xs font-normal text-muted-foreground">EGP</span>
           </p>
         </div>
 
-        {/* Meta grid */}
         <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
           {[
-            { label: "Year",      value: displayYear },
-            { label: "Origin",    value: origin },
+            { label: "Year", value: displayYear },
+            { label: "Origin", value: origin },
             { label: "Condition", value: condition },
-            { label: "Material",  value: material },
+            { label: "Material", value: material },
           ].map(({ label, value }) => (
-            <div key={label} className="flex justify-between items-baseline gap-1">
-              <span className="text-xs font-montserrat text-foreground shrink-0">
+            <div key={label} className="flex items-baseline justify-between gap-1">
+              <span className="shrink-0 text-[11px] font-montserrat uppercase tracking-[0.14em] text-muted-foreground">
                 {label}
               </span>
-              <span className="text-xs font-montserrat font-semibold text-foreground text-right line-clamp-1">
+              <span className="line-clamp-1 text-right text-xs font-montserrat font-semibold text-foreground">
                 {value}
               </span>
             </div>
           ))}
         </div>
 
-        {/* Description */}
-        <p className="text-xs font-montserrat text-foreground/55 line-clamp-2 leading-relaxed">
+        <p className="line-clamp-2 text-sm font-montserrat leading-relaxed text-muted-foreground">
           {description}
         </p>
 
-        {/* Actions */}
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={handleAddToCart}
           className={cn(
-            "w-full h-10 rounded-xl flex items-center justify-center gap-2 text-sm font-montserrat font-semibold transition-all duration-00",
+            "flex h-11 w-full items-center justify-center gap-2 rounded-xl text-sm font-montserrat font-semibold transition-all duration-200",
             inCart
-              ? "bg-primary-foreground text-foreground cursor-default"
-              : "bg-foreground text-background hover:opacity-80"
+              ? "cursor-default bg-accent text-accent-foreground"
+              : "bg-foreground text-background hover:-translate-y-0.5 hover:opacity-95"
           )}
         >
-          <ShoppingCart className="w-5 h-5" />
+          <ShoppingCart className="h-5 w-5" />
           {inCart ? "Added to Cart" : "Add to Cart"}
         </motion.button>
       </div>

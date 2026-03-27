@@ -102,10 +102,10 @@ export default function Home() {
               </Button>
 
               <Button
-                variant="outline"
+                variant="secondary"
                 size="lg"
                 onClick={() => router.push("/about")}
-                className="px-8 py-6 text-base border-2 border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
+                className="px-8 py-6 text-base border-2 border-border bg-card/90 text-foreground hover:border-primary/50 hover:bg-secondary/70 transition-all duration-300"
               >
                 Discover Our Story
               </Button>

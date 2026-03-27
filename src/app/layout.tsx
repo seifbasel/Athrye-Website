@@ -22,7 +22,7 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Coinat — Numismatic Marketplace",
+  title: "Coinat - Numismatic Marketplace",
   description: "Discover, buy and sell authenticated coins from around the world.",
   keywords: ["coins", "numismatics", "collectibles", "rare coins", "coin trading"],
 };
@@ -42,9 +42,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <div className="min-h-screen bg-background">
                     <div className="flex min-h-screen">
                       <SidebarWrapper />
-                      <div className="flex-1 flex flex-col min-w-0">
-                        <main className="flex-1 p-6 mt-10 md:p-8 md:pl-19 overflow-x-hidden">
-                          {children}
+                      <div className="flex min-w-0 flex-1 flex-col">
+                        <main className="mt-10 flex-1 overflow-x-hidden p-6 md:p-8 md:pl-19">
+                          <div className="mx-auto w-full max-w-[1440px]">
+                            {children}
+                          </div>
                         </main>
                         <Footer />
                       </div>

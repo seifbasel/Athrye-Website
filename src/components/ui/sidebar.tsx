@@ -1,7 +1,9 @@
 "use client";
+
 import { cn } from "@/lib/utils";
 import Link, { LinkProps } from "next/link";
-import React, { useState, createContext, useContext, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, Moon, Sun, X } from "lucide-react";
 
@@ -17,9 +19,7 @@ interface SidebarContextProps {
   animate: boolean;
 }
 
-const SidebarContext = createContext<SidebarContextProps | undefined>(
-  undefined
-);
+const SidebarContext = createContext<SidebarContextProps | undefined>(undefined);
 
 export const useSidebar = () => {
   const context = useContext(SidebarContext);
@@ -45,7 +45,7 @@ export const SidebarProvider = ({
   const setOpen = setOpenProp !== undefined ? setOpenProp : setOpenState;
 
   return (
-    <SidebarContext.Provider value={{ open, setOpen, animate: animate }}>
+    <SidebarContext.Provider value={{ open, setOpen, animate }}>
       {children}
     </SidebarContext.Provider>
   );
@@ -87,18 +87,14 @@ export const DesktopSidebar = ({
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    document.documentElement.classList.toggle("dark", darkMode);
   }, [darkMode]);
 
   return (
     <>
       <motion.div
         className={cn(
-          "fixed left-0 top-0 h-screen px-4 py-4 hidden md:flex md:flex-col bg-background dark:bg-background-dark w-75 shrink-0 z-30",
+          "fixed left-0 top-0 z-30 hidden h-screen shrink-0 border-r border-border/70 bg-card/86 px-3 py-4 backdrop-blur-xl md:flex md:flex-col",
           className
         )}
         animate={{
@@ -108,38 +104,37 @@ export const DesktopSidebar = ({
         onMouseLeave={() => setOpen(false)}
         {...props}
       >
-        <motion.div className="flex flex-col h-full">
+        <motion.div className="flex h-full flex-col">
           <motion.div className="grow">
             <motion.div>{children}</motion.div>
           </motion.div>
-          <div
+
+          <button
+            type="button"
             onClick={() => setDarkMode(!darkMode)}
-            className="flex items-center gap-2 py-2 cursor-pointer mt-auto"
+            className="mt-auto flex items-center gap-3 rounded-2xl border border-border/70 bg-background/80 px-3 py-3 transition-colors hover:bg-secondary/70"
           >
             {darkMode ? (
-              <Sun className="w-5 h-5 text-background" />
+              <Sun className="h-5 w-5 text-primary" />
             ) : (
-              <Moon className="w-5 h-5 text-background-dark" />
+              <Moon className="h-5 w-5 text-primary" />
             )}
             <motion.span
               animate={{
-                display: animate
-                  ? open
-                    ? "inline-block"
-                    : "none"
-                  : "inline-block",
+                display: animate ? (open ? "inline-block" : "none") : "inline-block",
                 opacity: animate ? (open ? 1 : 0) : 1,
               }}
-              className="text-foreground text-2xl whitespace-pre"
+              className="whitespace-pre text-sm font-semibold text-foreground"
             >
               {darkMode ? "Light Mode" : "Dark Mode"}
             </motion.span>
-          </div>
+          </button>
         </motion.div>
       </motion.div>
+
       <div
         className={cn(
-          "hidden md:block shrink-0",
+          "hidden shrink-0 md:block",
           animate ? (open ? "w-75" : "w-15") : "w-75"
         )}
       />
@@ -154,68 +149,85 @@ export const MobileSidebar = ({
 }: React.ComponentProps<"div">) => {
   const { open, setOpen } = useSidebar();
   const [darkMode, setDarkMode] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    document.documentElement.classList.toggle("dark", darkMode);
   }, [darkMode]);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>
       <div
         className={cn(
-          "fixed top-0 left-0 right-0 h-16 px-4 bg-background flex flex-row md:hidden items-center justify-between w-full z-30"
+          "fixed left-0 right-0 top-0 z-30 flex h-16 w-full flex-row items-center justify-between border-b border-border/60 bg-background/92 px-4 backdrop-blur-md md:hidden"
         )}
         {...props}
       >
-        <div className="flex justify-start z-20 w-full">
-          <Menu
-            className="text-foreground"
-            onClick={() => setOpen(!open)}
-          />
+        <div className="z-20 flex w-full justify-start">
+          <Menu className="text-foreground" onClick={() => setOpen(!open)} />
         </div>
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{ x: "-100%", opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: "-100%", opacity: 0 }}
-              transition={{
-                duration: 0.3,
-                ease: "easeInOut",
-              }}
-              className={cn(
-                "fixed h-full w-full inset-0 bg-background p-10 z-100 flex flex-col justify-between",
-                className
-              )}
-            >
-              <div
-                className="absolute right-10 top-10 z-50 text-primary"
-                onClick={() => setOpen(!open)}
-              >
-                <X />
-              </div>
-              <div className="grow">{children}</div>
-              <div
-                onClick={() => setDarkMode(!darkMode)}
-                className="flex items-center gap-2 py-2 cursor-pointer"
-              >
-                {darkMode ? (
-                  <Sun className="w-5 h-5 text-foreground" />
-                ) : (
-                  <Moon className="w-5 h-5 text-foreground" />
-                )}
-                <span className="text-foreground text-xl">
-                  {darkMode ? "Light Mode" : "Dark Mode"}
-                </span>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+
       </div>
+
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {open && (
+              <>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  style={{ zIndex: 9998 }}
+                  className="fixed inset-0 bg-black/45 md:hidden"
+                  onClick={() => setOpen(false)}
+                />
+                <motion.div
+                  initial={{ x: "-100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "-100%" }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  style={{ backgroundColor: "var(--card)", zIndex: 9999 }}
+                  className={cn(
+                    "fixed inset-y-0 left-0 flex h-full w-full max-w-full flex-col justify-between border-r border-border p-8 shadow-elevated md:hidden",
+                    className
+                  )}
+                >
+                  <div
+                    className="absolute right-8 top-8 z-50 text-primary"
+                    onClick={() => setOpen(false)}
+                  >
+                    <X />
+                  </div>
+
+                  <div className="grow">{children}</div>
+
+                  <button
+                    type="button"
+                    onClick={() => setDarkMode(!darkMode)}
+                    className="flex items-center gap-3 rounded-2xl border border-border/70 bg-background px-4 py-3"
+                  >
+                    {darkMode ? (
+                      <Sun className="h-5 w-5 text-foreground" />
+                    ) : (
+                      <Moon className="h-5 w-5 text-foreground" />
+                    )}
+                    <span className="text-base font-semibold text-foreground">
+                      {darkMode ? "Light Mode" : "Dark Mode"}
+                    </span>
+                  </button>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
+
       <div className="h-16 md:hidden" />
     </>
   );
@@ -224,7 +236,7 @@ export const MobileSidebar = ({
 export const SidebarLink = ({
   link,
   className,
-  onClick, // capture any onClick from props
+  onClick,
   ...props
 }: {
   link: Links;
@@ -239,38 +251,42 @@ export const SidebarLink = ({
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    handleResize(); // initial
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (isMobile) {
       setOpen(false);
     }
-    if (onClick) {
-      onClick(e);
-    }
+    onClick?.(e);
   };
 
   return (
     <Link
       href={link.href}
       className={cn(
-        "flex items-center justify-start gap-2 group/sidebar py-2",
+        "group/sidebar flex items-center justify-start gap-3 rounded-2xl px-2 py-3 text-sm transition-colors hover:bg-secondary/72",
         className
       )}
       onClick={handleClick}
       {...props}
     >
-      {link.icon}
+      <motion.span
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className="flex h-5 w-5  shrink-0 items-center justify-center"
+      >
+        {link.icon}
+      </motion.span>
 
       <motion.span
         animate={{
           display: animate ? (open ? "inline-block" : "none") : "inline-block",
           opacity: animate ? (open ? 1 : 0) : 1,
         }}
-        className="text-foreground text-xl group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block p-0! m-0!"
+        className="inline-block whitespace-pre p-0! m-0! text-sm font-medium text-foreground transition duration-150 group-hover/sidebar:translate-x-1"
       >
         {link.label}
       </motion.span>

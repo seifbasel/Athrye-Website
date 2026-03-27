@@ -1,153 +1,197 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, Award, Globe2, Sparkles, Clock, TrendingUp, ChevronRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
-import { useEffect } from "react";
+import {
+  ArrowRight,
+  Award,
+  ChevronRight,
+  Clock3,
+  Globe2,
+  ShieldCheck,
+  Sparkles,
+  TrendingUp,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-const TRUST_ITEMS = [
-  { icon: Shield, label: "Authenticated", sub: "Every coin verified", gradient: "from-primary/10 to-primary/5" },
-  { icon: Award, label: "Expert Graded", sub: "PCGS & NGC standards", gradient: "from-primary/10 to-primary/5" },
-  { icon: Globe2, label: "Global Catalog", sub: "3,000+ years of history", gradient: "from-primary/10 to-primary/5" },
+const TRUST_STRIP = [
+  "Authenticated Assets",
+  "Global Collectors",
+  "Verified Provenance",
+  "Premium Marketplace",
 ];
 
-const FEATURED_COINS = [
-  { era: "Roman Empire", year: "27 BC - 476 AD", significance: "Imperial Legacy", image: "/coin1.jpg" },
-  { era: "Greek City-States", year: "600 BC - 146 BC", significance: "Artistic Mastery", image: "/coin1.jpg" },
-  { era: "Byzantine Empire", year: "330 - 1453 AD", significance: "Sacred Treasury", image: "/coin1.jpg" },
+const TRUST_ITEMS = [
+  {
+    icon: ShieldCheck,
+    label: "Verified Provenance",
+    sub: "Every coin undergoes rigorous authentication and historical validation.",
+  },
+  {
+    icon: Award,
+    label: "Expert Graded",
+    sub: "Museum-quality presentation driven by strict PCGS & NGC standards.",
+  },
+  {
+    icon: Globe2,
+    label: "Global Catalog",
+    sub: "Curated acquisitions spanning over 3,000 years of human civilization.",
+  },
+];
+
+const COLLECTIONS = [
+  {
+    era: "Roman Empire",
+    year: "27 BC – 476 AD",
+    significance: "Portrait-led denarii & imperial icons",
+    image: "/coin1.jpg",
+  },
+  {
+    era: "Greek City-States",
+    year: "600 BC – 146 BC",
+    significance: "Sculptural owls & artistic mastery",
+    image: "/coin1.jpg",
+  },
+  {
+    era: "Royal Europe",
+    year: "1485 – 1910",
+    significance: "Ceremonial crowns & precious metals",
+    image: "/coin1.jpg",
+  },
 ];
 
 const NEW_ARRIVALS = [
-  { name: "Athenian Tetradrachm", year: "454 BC", price: "$8,250" },
-  { name: "Julius Caesar Denarius", year: "44 BC", price: "$12,400"},
-  { name: "Constantine Solidus", year: "324 AD", price: "$5,800"},
-  { name: "Elizabeth I Crown", year: "1592", price: "$3,200"},
+  { name: "Athenian Tetradrachm", year: "454 BC", price: "\$8,250" },
+  { name: "Julius Caesar Denarius", year: "44 BC", price: "\$12,400" },
+  { name: "Constantine Solidus", year: "324 AD", price: "\$5,800" },
+  { name: "Elizabeth I Crown", year: "1592", price: "\$3,200" },
 ];
+
+// Explicitly typed as a 4-number tuple to satisfy Framer Motion's Easing type
+const easeOutQuint: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export default function Home() {
   const router = useRouter();
 
-
-  useEffect(() => {
-  const handleScroll = () => {};
-  window.addEventListener('scroll', handleScroll);
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
-
   return (
-    <div className="relative overflow-hidden bg-background">
+    <div className="relative min-h-screen overflow-hidden bg-background">
+      {/* ── 1. DISTRACTION-FREE HERO ─────────────────────────────────── */}
+      <section className="relative flex min-h-[90vh] flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:px-8">
+        {/* Soft atmospheric glow */}
+        <div className="absolute left-1/2 top-1/2 -z-10 h-[60vw] max-h-[600px] w-[60vw] max-w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[120px]" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Hero Section */}
-        <section className="min-h-[90vh] flex items-center justify-center pb-16">
-          <motion.div 
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: easeOutQuint }}
+          className="mx-auto max-w-5xl"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: easeOutQuint }}
+            className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2 backdrop-blur-sm"
+          >
+            <Sparkles className="h-3.5 w-3.5 text-primary" />
+            <span className="font-montserrat text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+              The Premier Numismatic Gallery
+            </span>
+          </motion.div>
+
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-5xl mx-auto"
+            transition={{ duration: 0.8, delay: 0.3, ease: easeOutQuint }}
+            className="font-playfair text-5xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-[5.5rem]"
           >
-            {/* Decorative Badge */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8 backdrop-blur-sm"
+            Own a Piece of <br className="hidden sm:block" />
+            <span className="bg-linear-to-r from-primary via-amber-600 to-primary bg-clip-text text-transparent">
+              Living History
+            </span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: easeOutQuint }}
+            className="mx-auto mb-10 mt-8 max-w-2xl font-montserrat text-base leading-relaxed text-foreground/80 sm:text-lg md:text-xl"
+          >
+            A curated gallery of authenticated numismatic treasures—where
+            ancient empires, artistic mastery, and scarcity meet modern
+            collecting excellence.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: easeOutQuint }}
+            className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+          >
+            <Button
+              onClick={() => router.push("/products")}
+              size="lg"
+              className="group relative h-14 w-full overflow-hidden bg-primary px-8 text-[15px] font-semibold text-primary-foreground transition-all hover:bg-primary/90 sm:w-auto"
             >
-              <Sparkles className="w-3 h-3 text-primary" />
-              <span className="text-xs tracking-wider uppercase font-montserrat text-primary font-semibold">
-                The Premier Numismatic Gallery
+              <span className="relative z-10 flex items-center">
+                Explore Marketplace
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </span>
-            </motion.div>
+              <div className="absolute inset-0 z-0 scale-x-0 bg-white/20 transition-transform duration-500 group-hover:scale-x-100" />
+            </Button>
 
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-playfair font-bold leading-[1.1] mb-6 bg-linear-to-br from-background via-foreground to-primary bg-clip-text text-transparent"
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => router.push("/about")}
+              className="h-14 w-full border-border/60 bg-transparent px-8 font-montserrat text-[15px] font-semibold text-foreground transition-all hover:bg-card/50 sm:w-auto"
             >
-              Own a Piece of
-              <br />
-              <span className="bg-linear-to-r from-primary via-amber-500 to-primary-foreground bg-clip-text text-transparent">
-                Living History
-              </span>
-            </motion.h1>
-
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-base sm:text-lg md:text-xl font-montserrat text-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
-            >
-              A curated gallery of authenticated numismatic treasures —
-              where ancient empires meet modern collecting excellence.
-            </motion.p>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="flex flex-col sm:flex-row justify-center gap-4"
-            >
-              <Button
-                onClick={() => router.push("/products")}
-                size="lg"
-                className="group relative px-8 py-6 text-base font-semibold overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90"
-              >
-                <span className="relative z-10">Explore Marketplace</span>
-                <ArrowRight className="relative z-10 ml-2 group-hover:translate-x-1 transition-transform" />
-                <div className="absolute inset-0 bg-linear-to-r from-primary to-primary/80 group-hover:scale-110 transition-transform duration-500" />
-              </Button>
-
-              <Button
-                variant="secondary"
-                size="lg"
-                onClick={() => router.push("/about")}
-                className="px-8 py-6 text-base border-2 border-border bg-card/90 text-foreground hover:border-primary/50 hover:bg-secondary/70 transition-all duration-300"
-              >
-                Discover Our Story
-              </Button>
-            </motion.div>
+              Discover Our Story
+            </Button>
           </motion.div>
-        </section>
+        </motion.div>
+      </section>
 
-        {/* Trust Indicators */}
-        <section className="py-12 border-y border-border mb-24">
-          <div className="grid grid-cols-2 md:flex md:flex-wrap items-center justify-center gap-6 md:gap-12">
-            {["Authenticated Assets", "Global Collectors", "Verified Provenance", "Premium Marketplace"].map((item, idx) => (
-              <motion.div 
+      {/* ── 2. TRUST STRIP ────────────────────────────────────────────── */}
+      <section className="border-y border-border/50 bg-background-dark/5 py-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-6 md:justify-between md:gap-12">
+            {TRUST_STRIP.map((item, idx) => (
+              <motion.div
                 key={item}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                className="text-center"
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                viewport={{ once: true }}
               >
-                <p className="text-[10px] sm:text-[11px] tracking-[0.25em] uppercase text-foreground font-montserrat font-semibold whitespace-nowrap">
+                <p className="font-montserrat text-[10px] font-bold uppercase tracking-[0.25em] text-foreground/70 sm:text-[11px]">
                   {item}
                 </p>
               </motion.div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Curated Collections */}
-        <section className="mb-28">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* ── 3. CURATED COLLECTIONS ────────────────────────────────────── */}
+        <section className="py-24 sm:py-32">
+          <div className="mb-12 flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <motion.h2 
+              <motion.h2
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-foreground"
+                viewport={{ once: true }}
+                className="font-playfair text-4xl font-bold text-foreground sm:text-5xl"
               >
                 Curated Collections
               </motion.h2>
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-primary mt-2 font-montserrat"
+                viewport={{ once: true }}
+                className="mt-3 font-montserrat text-base text-foreground/60"
               >
                 Hand-selected eras from the annals of history
               </motion.p>
@@ -156,237 +200,206 @@ export default function Home() {
             <motion.button
               whileHover={{ x: 5 }}
               onClick={() => router.push("/products")}
-              className="group flex items-center gap-2 text-sm font-montserrat text-foreground hover:text-primary transition-colors"
+              className="group flex items-center gap-2 font-montserrat text-sm font-semibold text-foreground transition-colors hover:text-primary"
             >
               View all collections
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </motion.button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[280px] sm:auto-rows-[300px] gap-5">
-            {FEATURED_COINS.map((coin, idx) => (
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {COLLECTIONS.map((coin, idx) => (
               <motion.div
                 key={coin.era}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                whileHover={{ y: -5 }}
-                className={`relative rounded-3xl overflow-hidden group cursor-pointer ${idx === 0 ? 'lg:row-span-2 lg:col-span-2' : ''}`}
+                transition={{ duration: 0.8, delay: idx * 0.1, ease: easeOutQuint }}
+                viewport={{ once: true, amount: 0.2 }}
+                onClick={() => router.push("/products")}
+                className={`group relative cursor-pointer overflow-hidden rounded-[2rem] border border-border/40 bg-card shadow-soft transition-all hover:border-primary/40 hover:shadow-elevated sm:min-h-[400px] ${
+                  idx === 0 ? "sm:col-span-2 sm:row-span-2 lg:min-h-[500px]" : "min-h-[300px]"
+                }`}
               >
                 <Image
                   src={coin.image}
                   alt={coin.era}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 text-white">
-                  <h3 className="text-2xl sm:text-3xl font-playfair font-bold mb-1">{coin.era}</h3>
-                  <p className="text-sm opacity-80 font-montserrat">{coin.year}</p>
-                  <p className="text-xs opacity-60 mt-2">{coin.significance}</p>
+                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-90" />
+                
+                <div className="absolute bottom-6 left-6 right-6 text-white sm:bottom-8 sm:left-8">
+                  <h3 className="font-playfair text-3xl font-bold tracking-tight sm:text-4xl">
+                    {coin.era}
+                  </h3>
+                  <p className="mt-2 font-montserrat text-xs font-semibold uppercase tracking-widest text-primary">
+                    {coin.year}
+                  </p>
+                  <p className="mt-3 font-montserrat text-sm font-light text-white/70 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                    {coin.significance}
+                  </p>
                 </div>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* Featured Artifact */}
-        <section className="mb-32">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              className="relative group"
+        {/* ── 4. THE MASTERPIECE ────────────────────────────────────────── */}
+        <section className="mb-24 overflow-hidden rounded-[2.5rem] border border-border/50 bg-card/40 shadow-soft sm:mb-32">
+          <div className="grid lg:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, ease: easeOutQuint }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="relative aspect-square w-full sm:aspect-[4/3] lg:aspect-auto lg:h-[600px]"
             >
-              <div className="relative aspect-square rounded-3xl overflow-hidden bg-card">
-                <Image src="/coin1.jpg" alt="Featured coin" fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent" />
-              </div>
-              <div className="absolute -inset-4 border-2 border-primary/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Image
+                src="/coin1.jpg"
+                alt="1933 Double Eagle"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-linear-to-r from-black/20 to-transparent lg:from-transparent" />
             </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              className="space-y-6"
+              transition={{ duration: 0.8, ease: easeOutQuint }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="flex flex-col justify-center p-8 sm:p-12 lg:p-16"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
-                <Clock className="w-3 h-3 text-primary" />
-                <span className="text-xs tracking-wider uppercase font-montserrat text-primary font-semibold">
+              <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1">
+                <Clock3 className="h-3 w-3 text-primary" />
+                <span className="font-montserrat text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
                   Featured Artifact
                 </span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-foreground">
+              <h2 className="font-playfair text-4xl font-bold text-foreground sm:text-5xl lg:text-6xl">
                 1933 Double Eagle
               </h2>
 
-              <div className="space-y-4 text-foreground font-montserrat leading-relaxed">
+              <div className="mt-6 space-y-4 font-montserrat text-base leading-relaxed text-foreground/80">
                 <p>
-                  One of the rarest and most coveted coins ever minted — a symbol of history,
-                  artistry, and unparalleled exclusivity in the numismatic world.
+                  One of the rarest and most coveted coins ever minted—a symbol
+                  of history, artistry, and unparalleled exclusivity in the
+                  numismatic world.
                 </p>
-                <p className="text-sm italic border-l-2 border-primary pl-4">
-                  Only 13 examples are known to exist, making it the Mona Lisa of American coinage.
+                <p className="border-l-2 border-primary/50 pl-4 text-sm italic text-foreground/60">
+                  Only 13 examples are known to exist, making it the Mona Lisa of
+                  American coinage.
                 </p>
               </div>
 
-              <div className="flex items-center gap-4 pt-4">
-                <Button 
+              <div className="mt-10 flex flex-col items-start gap-6 border-t border-border/50 pt-8 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="font-montserrat text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground">
+                    Starting From
+                  </p>
+                  <p className="mt-1 font-playfair text-3xl font-bold text-primary">
+                    \$7,500,000
+                  </p>
+                </div>
+                <Button
                   onClick={() => router.push("/products")}
-                  className="group bg-foreground text-background hover:text-primary-foreground "
+                  size="lg"
+                  className="w-full px-8 shadow-md sm:w-auto"
                 >
                   View Details
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
-                <div className="text-right">
-                  <p className="text-xs text-foreground">Starting from</p>
-                  <p className="text-xl font-bold text-primary">$7,500,000</p>
-                </div>
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* New Arrivals */}
-        <section className="mb-32">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-12">
-            <div>
-              <motion.h2 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                className="text-3xl sm:text-4xl font-playfair font-bold text-foreground"
-              >
-                New Arrivals
-              </motion.h2>
-              <motion.p 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.1 }}
-                className="text-foreground/60 text-sm sm:text-base mt-2"
-              >
-                Fresh additions to our gallery
-              </motion.p>
-            </div>
-            <motion.button
-              whileHover={{ x: 5 }}
-              onClick={() => router.push("/products")}
-              className="group flex items-center gap-2 text-sm font-montserrat text-primary hover:text-primary/80 transition-colors"
-            >
-              View all arrivals
-              <TrendingUp className="w-4 h-4" />
-            </motion.button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {NEW_ARRIVALS.map((item, idx) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                whileHover={{ y: -8 }}
-                className="group cursor-pointer"
-              >
-                <div className="relative aspect-square rounded-2xl overflow-hidden mb-4 bg-card shadow-lg group-hover:shadow-xl transition-all duration-300">
-                  <Image
-                    src="/coin1.jpg"
-                    alt={item.name}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-all duration-500"
-                  />
-                </div>
-
-                <div className="space-y-1">
-                  <p className="font-playfair font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {item.name}
-                  </p>
-                  <p className="text-xs font-montserrat text-foreground/50">{item.year}</p>
-                  <p className="text-primary font-bold text-lg mt-2">{item.price}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* Trust Section */}
-        <section className="py-16 sm:py-24 border-t border-border">
-          <motion.div 
+        {/* ── 6. TRUST GRID ─────────────────────────────────────────────── */}
+        <section className="mb-24 border-t border-border/50 pt-20 sm:mb-32 sm:pt-24">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
+            viewport={{ once: true }}
+            className="mb-16 text-center"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-4 bg-linear-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+            <h2 className="font-playfair text-4xl font-bold text-foreground sm:text-5xl">
               Verified by Experts
             </h2>
-            <p className="text-foreground/60 font-montserrat max-w-2xl mx-auto">
-              Every coin undergoes rigorous authentication, professional grading, 
+            <p className="mx-auto mt-4 max-w-2xl font-montserrat text-foreground/60">
+              Every coin undergoes rigorous authentication, professional grading,
               and comprehensive provenance validation before entering our marketplace.
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {TRUST_ITEMS.map(({ icon: Icon, label, sub, gradient }, idx) => (
+          <div className="grid gap-6 sm:grid-cols-3">
+            {TRUST_ITEMS.map(({ icon: Icon, label, sub }, idx) => (
               <motion.div
                 key={label}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                whileHover={{ y: -5 }}
-                className={`group relative p-6 sm:p-8 rounded-2xl border border-border hover:border-primary/40 transition-all duration-300 bg-linear-to-br ${gradient} bg-card`}
+                transition={{ delay: idx * 0.1, duration: 0.6, ease: easeOutQuint }}
+                viewport={{ once: true }}
+                className="group relative overflow-hidden rounded-[2rem] border border-border/50 bg-card p-8 shadow-soft transition-all hover:border-primary/40 hover:shadow-elevated"
               >
+                <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                
                 <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <Icon className="w-6 h-6 text-primary" />
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-transform duration-500 group-hover:scale-110">
+                    <Icon className="h-6 w-6" />
                   </div>
-                  <p className="font-semibold text-foreground text-lg mb-2">{label}</p>
-                  <p className="text-sm text-foreground/60 leading-relaxed">{sub}</p>
+                  <h3 className="font-playfair text-2xl font-bold text-foreground">
+                    {label}
+                  </h3>
+                  <p className="mt-3 font-montserrat text-sm leading-relaxed text-foreground/70">
+                    {sub}
+                  </p>
                 </div>
-                <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 sm:py-32 text-center relative">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
+        {/* ── 7. FINAL CTA ──────────────────────────────────────────────── */}
+        <section className="pb-16 sm:pb-24">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            className="relative z-10"
+            transition={{ duration: 0.8, ease: easeOutQuint }}
+            viewport={{ once: true, amount: 0.4 }}
+            className="relative overflow-hidden rounded-[2.5rem] border border-primary/20 bg-card/60 px-6 py-20 text-center shadow-elevated backdrop-blur-md sm:px-12 sm:py-28"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8">
-              <Sparkles className="w-3 h-3 text-primary" />
-              <span className="text-xs tracking-wider uppercase font-montserrat text-primary font-semibold">
-                Begin Your Journey
-              </span>
+            <div className="absolute left-1/2 top-0 h-[300px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[100px]" />
+
+            <div className="relative z-10 flex flex-col items-center">
+              <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2">
+                <Sparkles className="h-3.5 w-3.5 text-primary" />
+                <span className="font-montserrat text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+                  Begin Your Journey
+                </span>
+              </div>
+
+              <h2 className="bg-linear-to-r from-foreground via-foreground/80 to-foreground bg-clip-text font-playfair text-4xl font-bold text-transparent sm:text-5xl lg:text-6xl">
+                Start Your Collection
+              </h2>
+              <p className="mx-auto mt-6 max-w-xl font-montserrat text-base leading-relaxed text-foreground/60 sm:text-lg">
+                Join a community of discerning collectors and acquire pieces
+                that tell the story of human civilization.
+              </p>
+
+              <Button
+                onClick={() => router.push("/products")}
+                size="lg"
+                className="group mt-10 h-14 w-full px-10 font-montserrat text-[15px] shadow-soft sm:w-auto"
+              >
+                Explore Marketplace
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Button>
+
+              <p className="mt-6 font-montserrat text-xs text-foreground/40">
+                Free shipping worldwide • Lifetime authenticity guarantee
+              </p>
             </div>
-
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-bold mb-6 bg-linear-to-r from-primary via-amber-500 to-primary bg-clip-text text-transparent">
-              Start Your Collection
-            </h2>
-
-            <p className="text-foreground/60 mb-10 font-montserrat max-w-2xl mx-auto text-base sm:text-lg">
-              Join a community of discerning collectors and acquire pieces that 
-              tell the story of human civilization.
-            </p>
-
-            <Button
-              onClick={() => router.push("/products")}
-              size="lg"
-              className="px-8 sm:px-12 py-6 text-base sm:text-lg group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90"
-            >
-              <span className="relative z-10">Explore Marketplace</span>
-              <ArrowRight className="relative z-10 ml-2 group-hover:translate-x-1 transition-transform" />
-              <div className="absolute inset-0 bg-linear-to-r from-primary to-primary/80 group-hover:scale-110 transition-transform duration-500" />
-            </Button>
-
-            <p className="mt-6 text-xs text-foreground/40 font-montserrat">
-              Free shipping worldwide • Lifetime authenticity guarantee
-            </p>
           </motion.div>
-
-          
         </section>
       </div>
     </div>

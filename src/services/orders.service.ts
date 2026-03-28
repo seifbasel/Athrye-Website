@@ -9,7 +9,12 @@
  *   POST   /api/orders/:id/cancel/   → cancel order
  */
 
-import { Order, ShippingAddress, PaymentDetails, OrderStatus } from "@/types/order";
+import {
+  Order,
+  ShippingAddress,
+  PaymentDetails,
+  OrderStatus,
+} from "@/types/order";
 import { CartItem } from "@/context/cart-context";
 import { MOCK_ORDERS } from "@/mocks/orders";
 
@@ -37,7 +42,7 @@ export async function getOrders(): Promise<Order[]> {
 
   await delay(500);
   return [...sessionOrders].sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
   );
 }
 
@@ -88,11 +93,36 @@ export async function placeOrder(payload: PlaceOrderPayload): Promise<Order> {
     createdAt: now,
     estimatedDelivery,
     trackingEvents: [
-      { status: "pending",    label: "Order Placed",    description: "Your order has been received.",          timestamp: now },
-      { status: "confirmed",  label: "Order Confirmed", description: "Payment verified, order confirmed.",     timestamp: now },
-      { status: "processing", label: "Being Prepared",  description: "Your coins are being carefully packaged.", timestamp: null },
-      { status: "shipped",    label: "Shipped",         description: "Package handed to courier.",             timestamp: null },
-      { status: "delivered",  label: "Delivered",       description: "Package delivered to your address.",     timestamp: null },
+      {
+        status: "pending",
+        label: "Order Placed",
+        description: "Your order has been received.",
+        timestamp: now,
+      },
+      {
+        status: "confirmed",
+        label: "Order Confirmed",
+        description: "Payment verified, order confirmed.",
+        timestamp: now,
+      },
+      {
+        status: "processing",
+        label: "Being Prepared",
+        description: "Your coins are being carefully packaged.",
+        timestamp: null,
+      },
+      {
+        status: "shipped",
+        label: "Shipped",
+        description: "Package handed to courier.",
+        timestamp: null,
+      },
+      {
+        status: "delivered",
+        label: "Delivered",
+        description: "Package delivered to your address.",
+        timestamp: null,
+      },
     ],
   };
 
@@ -104,7 +134,7 @@ export async function placeOrder(payload: PlaceOrderPayload): Promise<Order> {
 export async function cancelOrder(id: string): Promise<Order> {
   await delay(600);
   sessionOrders = sessionOrders.map((o) =>
-    o.id === id ? { ...o, status: "cancelled" as OrderStatus } : o
+    o.id === id ? { ...o, status: "cancelled" as OrderStatus } : o,
   );
   const order = sessionOrders.find((o) => o.id === id);
   if (!order) throw new Error("Order not found");

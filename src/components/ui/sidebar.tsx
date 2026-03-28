@@ -19,7 +19,9 @@ interface SidebarContextProps {
   animate: boolean;
 }
 
-const SidebarContext = createContext<SidebarContextProps | undefined>(undefined);
+const SidebarContext = createContext<SidebarContextProps | undefined>(
+  undefined,
+);
 
 export const useSidebar = () => {
   const context = useContext(SidebarContext);
@@ -95,7 +97,7 @@ export const DesktopSidebar = ({
       <motion.div
         className={cn(
           "fixed left-0 top-0 z-30 hidden h-screen shrink-0 border-r border-border/70 bg-card/86 px-3 py-4 backdrop-blur-xl md:flex md:flex-col",
-          className
+          className,
         )}
         animate={{
           width: animate ? (open ? "300px" : "60px") : "300px",
@@ -121,7 +123,11 @@ export const DesktopSidebar = ({
             )}
             <motion.span
               animate={{
-                display: animate ? (open ? "inline-block" : "none") : "inline-block",
+                display: animate
+                  ? open
+                    ? "inline-block"
+                    : "none"
+                  : "inline-block",
                 opacity: animate ? (open ? 1 : 0) : 1,
               }}
               className="whitespace-pre text-sm font-semibold text-foreground"
@@ -135,7 +141,7 @@ export const DesktopSidebar = ({
       <div
         className={cn(
           "hidden shrink-0 md:block",
-          animate ? (open ? "w-75" : "w-15") : "w-75"
+          animate ? (open ? "w-75" : "w-15") : "w-75",
         )}
       />
     </>
@@ -163,14 +169,13 @@ export const MobileSidebar = ({
     <>
       <div
         className={cn(
-          "fixed left-0 right-0 top-0 z-30 flex h-16 w-full flex-row items-center justify-between border-b border-border/60 bg-background/92 px-4 backdrop-blur-md md:hidden"
+          "fixed left-0 right-0 top-0 z-30 flex h-16 w-full flex-row items-center justify-between border-b border-border/60 bg-background/92 px-4 backdrop-blur-md md:hidden",
         )}
         {...props}
       >
         <div className="z-20 flex w-full justify-start">
           <Menu className="text-foreground" onClick={() => setOpen(!open)} />
         </div>
-
       </div>
 
       {mounted &&
@@ -195,7 +200,7 @@ export const MobileSidebar = ({
                   style={{ backgroundColor: "var(--card)", zIndex: 9999 }}
                   className={cn(
                     "fixed inset-y-0 left-0 flex h-full w-full max-w-full flex-col justify-between border-r border-border p-8 shadow-elevated md:hidden",
-                    className
+                    className,
                   )}
                 >
                   <div
@@ -225,7 +230,7 @@ export const MobileSidebar = ({
               </>
             )}
           </AnimatePresence>,
-          document.body
+          document.body,
         )}
 
       <div className="h-16 md:hidden" />
@@ -269,7 +274,7 @@ export const SidebarLink = ({
       href={link.href}
       className={cn(
         "group/sidebar flex items-center justify-start gap-3 rounded-2xl px-2 py-3 text-sm transition-colors hover:bg-secondary/72",
-        className
+        className,
       )}
       onClick={handleClick}
       {...props}

@@ -10,7 +10,10 @@ import { ShippingAddress } from "@/types/order";
 
 const addressSchema = z.object({
   fullName: z.string().min(2, "Full name required"),
-  phone: z.string().min(10, "Valid phone number required").regex(/^[0-9+\-\s()]+$/),
+  phone: z
+    .string()
+    .min(10, "Valid phone number required")
+    .regex(/^[0-9+\-\s()]+$/),
   address: z.string().min(5, "Street address required"),
   city: z.string().min(2, "City required"),
   postalCode: z.string().min(4, "Postal code required"),
@@ -63,7 +66,9 @@ export function CheckoutAddress({
   return (
     <form onSubmit={handleSubmit(onNext)} className="space-y-5">
       <div>
-        <h2 className="mb-1 font-playfair text-2xl font-bold text-foreground">Shipping Address</h2>
+        <h2 className="mb-1 font-playfair text-2xl font-bold text-foreground">
+          Shipping Address
+        </h2>
         <p className="text-sm font-montserrat text-muted-foreground">
           Where should we deliver your coins?
         </p>
@@ -72,26 +77,50 @@ export function CheckoutAddress({
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <Field label="Full Name" error={errors.fullName?.message}>
-            <input {...register("fullName")} placeholder="James Sterling" className={inputCls(!!errors.fullName)} />
+            <input
+              {...register("fullName")}
+              placeholder="James Sterling"
+              className={inputCls(!!errors.fullName)}
+            />
           </Field>
         </div>
         <Field label="Phone Number" error={errors.phone?.message}>
-          <input {...register("phone")} placeholder="+20 100 000 0000" className={inputCls(!!errors.phone)} />
+          <input
+            {...register("phone")}
+            placeholder="+20 100 000 0000"
+            className={inputCls(!!errors.phone)}
+          />
         </Field>
         <div className="sm:col-span-2">
           <Field label="Street Address" error={errors.address?.message}>
-            <input {...register("address")} placeholder="15 Tahrir Square, Apt 4B" className={inputCls(!!errors.address)} />
+            <input
+              {...register("address")}
+              placeholder="15 Tahrir Square, Apt 4B"
+              className={inputCls(!!errors.address)}
+            />
           </Field>
         </div>
         <Field label="City" error={errors.city?.message}>
-          <input {...register("city")} placeholder="Cairo" className={inputCls(!!errors.city)} />
+          <input
+            {...register("city")}
+            placeholder="Cairo"
+            className={inputCls(!!errors.city)}
+          />
         </Field>
         <Field label="Postal Code" error={errors.postalCode?.message}>
-          <input {...register("postalCode")} placeholder="11511" className={inputCls(!!errors.postalCode)} />
+          <input
+            {...register("postalCode")}
+            placeholder="11511"
+            className={inputCls(!!errors.postalCode)}
+          />
         </Field>
         <div className="sm:col-span-2">
           <Field label="Country" error={errors.country?.message}>
-            <input {...register("country")} placeholder="Egypt" className={inputCls(!!errors.country)} />
+            <input
+              {...register("country")}
+              placeholder="Egypt"
+              className={inputCls(!!errors.country)}
+            />
           </Field>
         </div>
       </div>

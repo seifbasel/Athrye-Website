@@ -77,7 +77,9 @@ const ProductCard = (product: Product) => {
           <Heart
             className={cn(
               "h-4 w-4 transition-colors duration-200",
-              favorited ? "fill-red-500 stroke-red-500" : "stroke-foreground/55"
+              favorited
+                ? "fill-red-500 stroke-red-500"
+                : "stroke-foreground/55",
             )}
           />
         </motion.button>
@@ -85,10 +87,14 @@ const ProductCard = (product: Product) => {
 
       <div className="space-y-4 p-5">
         <div>
-          <h3 className="line-clamp-1 text-lg font-bold leading-snug text-foreground">{name}</h3>
+          <h3 className="line-clamp-1 text-lg font-bold leading-snug text-foreground">
+            {name}
+          </h3>
           <p className="mt-1 text-xl font-bold text-foreground">
             {price.toLocaleString()}{" "}
-            <span className="text-xs font-normal text-muted-foreground">EGP</span>
+            <span className="text-xs font-normal text-muted-foreground">
+              EGP
+            </span>
           </p>
         </div>
 
@@ -99,7 +105,10 @@ const ProductCard = (product: Product) => {
             { label: "Condition", value: condition },
             { label: "Material", value: material },
           ].map(({ label, value }) => (
-            <div key={label} className="flex items-baseline justify-between gap-1">
+            <div
+              key={label}
+              className="flex items-baseline justify-between gap-1"
+            >
               <span className="shrink-0 text-[11px] font-montserrat uppercase tracking-[0.14em] text-muted-foreground">
                 {label}
               </span>
@@ -121,7 +130,7 @@ const ProductCard = (product: Product) => {
             "flex h-11 w-full items-center justify-center gap-2 rounded-xl text-sm font-montserrat font-semibold transition-all duration-200",
             inCart
               ? "cursor-default bg-accent text-accent-foreground"
-              : "bg-foreground text-background hover:-translate-y-0.5 hover:opacity-95"
+              : "bg-foreground text-background hover:-translate-y-0.5 hover:opacity-95",
           )}
         >
           <ShoppingCart className="h-5 w-5" />

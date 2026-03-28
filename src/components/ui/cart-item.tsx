@@ -31,9 +31,7 @@ const CartItem: React.FC<CartItemProps> = ({
       </div>
 
       <div className="flex-1">
-        <h3 className="text-sm font-bold text-foreground ">
-          {name}
-        </h3>
+        <h3 className="text-sm font-bold text-foreground ">{name}</h3>
         <p className="text-sm text-muted-foreground ">
           ${price.toLocaleString()}
         </p>

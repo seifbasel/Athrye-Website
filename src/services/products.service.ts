@@ -31,7 +31,9 @@ export type PaginatedProducts = {
  * Query params: search, material, min_price, max_price, ordering, page
  * Returns: DRF paginated response
  */
-export async function getProducts(filters: ProductFilters = {}): Promise<PaginatedProducts> {
+export async function getProducts(
+  filters: ProductFilters = {},
+): Promise<PaginatedProducts> {
   // TODO: swap with real fetch:
   // const params = new URLSearchParams();
   // Object.entries(filters).forEach(([k, v]) => v && params.set(k, String(v)));
@@ -47,12 +49,15 @@ export async function getProducts(filters: ProductFilters = {}): Promise<Paginat
       (p) =>
         p.name.toLowerCase().includes(q) ||
         p.origin.toLowerCase().includes(q) ||
-        p.material.toLowerCase().includes(q)
+        p.material.toLowerCase().includes(q),
     );
   }
-  if (filters.material) results = results.filter((p) => p.material === filters.material);
-  if (filters.minPrice) results = results.filter((p) => p.price >= filters.minPrice!);
-  if (filters.maxPrice) results = results.filter((p) => p.price <= filters.maxPrice!);
+  if (filters.material)
+    results = results.filter((p) => p.material === filters.material);
+  if (filters.minPrice)
+    results = results.filter((p) => p.price >= filters.minPrice!);
+  if (filters.maxPrice)
+    results = results.filter((p) => p.price <= filters.maxPrice!);
 
   return { results, count: results.length, next: null, previous: null };
 }

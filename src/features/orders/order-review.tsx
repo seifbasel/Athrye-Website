@@ -35,7 +35,9 @@ export function OrderReview({
       <div className="h-px bg-border/70" />
 
       <div className="flex justify-between">
-        <span className="font-montserrat font-semibold text-foreground">Total</span>
+        <span className="font-montserrat font-semibold text-foreground">
+          Total
+        </span>
         <span className="font-playfair text-xl font-bold text-foreground">
           {total.toLocaleString()}{" "}
           <span className="text-xs font-montserrat font-normal text-muted-foreground">

@@ -42,7 +42,9 @@ export default function ProductDetail({ productId }: ProductDetailProps) {
   if (error || !product) {
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4">
-        <p className="font-playfair text-2xl text-foreground">Product not found</p>
+        <p className="font-playfair text-2xl text-foreground">
+          Product not found
+        </p>
         <Button variant="outline" onClick={() => router.push("/products")}>
           Back to Catalog
         </Button>
@@ -52,10 +54,13 @@ export default function ProductDetail({ productId }: ProductDetailProps) {
 
   const allImages = product.images ?? [];
   const imageUrl =
-    allImages[selectedImage]?.image ?? product.main_image?.image ?? "/coin1.jpg";
+    allImages[selectedImage]?.image ??
+    product.main_image?.image ??
+    "/coin1.jpg";
   const inCart = isInCart(product.id as string);
   const favorited = isFavorite(product.id as string);
-  const displayYear = product.year < 0 ? `${Math.abs(product.year)} BC` : `${product.year} AD`;
+  const displayYear =
+    product.year < 0 ? `${Math.abs(product.year)} BC` : `${product.year} AD`;
   const totalPrice = product.price * quantity;
   const maxQty = Math.min(5, product.quantity);
 
@@ -114,7 +119,9 @@ export default function ProductDetail({ productId }: ProductDetailProps) {
               <>
                 <button
                   onClick={() =>
-                    setSelectedImage((prev) => (prev === 0 ? allImages.length - 1 : prev - 1))
+                    setSelectedImage((prev) =>
+                      prev === 0 ? allImages.length - 1 : prev - 1,
+                    )
                   }
                   className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-background/92 p-2 shadow-md backdrop-blur-sm transition-colors hover:bg-background"
                 >
@@ -122,7 +129,9 @@ export default function ProductDetail({ productId }: ProductDetailProps) {
                 </button>
                 <button
                   onClick={() =>
-                    setSelectedImage((prev) => (prev === allImages.length - 1 ? 0 : prev + 1))
+                    setSelectedImage((prev) =>
+                      prev === allImages.length - 1 ? 0 : prev + 1,
+                    )
                   }
                   className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-background/92 p-2 shadow-md backdrop-blur-sm transition-colors hover:bg-background"
                 >
@@ -142,7 +151,7 @@ export default function ProductDetail({ productId }: ProductDetailProps) {
                     "relative mt-1 h-20 w-20 shrink-0 overflow-hidden rounded-xl border transition-all duration-200",
                     selectedImage === index
                       ? "border-primary ring-2 ring-primary/25 ring-offset-2 ring-offset-background"
-                      : "border-border/60 opacity-60 hover:opacity-100"
+                      : "border-border/60 opacity-60 hover:opacity-100",
                   )}
                 >
                   <Image
@@ -168,7 +177,9 @@ export default function ProductDetail({ productId }: ProductDetailProps) {
                 <Heart
                   className={cn(
                     "h-5 w-5 transition-colors",
-                    favorited ? "fill-red-500 stroke-red-500" : "stroke-foreground/50"
+                    favorited
+                      ? "fill-red-500 stroke-red-500"
+                      : "stroke-foreground/50",
                   )}
                 />
               </motion.button>
@@ -181,7 +192,9 @@ export default function ProductDetail({ productId }: ProductDetailProps) {
             <div>
               <p className="text-3xl font-montserrat font-bold text-foreground">
                 {totalPrice.toLocaleString()}{" "}
-                <span className="text-base font-normal text-muted-foreground">EGP</span>
+                <span className="text-base font-normal text-muted-foreground">
+                  EGP
+                </span>
               </p>
               {quantity > 1 && (
                 <p className="mt-0.5 text-sm font-montserrat text-muted-foreground">
@@ -208,7 +221,9 @@ export default function ProductDetail({ productId }: ProductDetailProps) {
                 <p className="text-xs font-montserrat uppercase tracking-widest text-muted-foreground">
                   {label}
                 </p>
-                <p className="text-sm font-montserrat font-semibold text-foreground">{value}</p>
+                <p className="text-sm font-montserrat font-semibold text-foreground">
+                  {value}
+                </p>
               </div>
             ))}
           </div>
@@ -219,7 +234,9 @@ export default function ProductDetail({ productId }: ProductDetailProps) {
             <p className="text-xs font-montserrat uppercase tracking-widest text-muted-foreground">
               Description
             </p>
-            <p className="text-sm leading-relaxed text-foreground/85">{product.description}</p>
+            <p className="text-sm leading-relaxed text-foreground/85">
+              {product.description}
+            </p>
           </div>
 
           <div className="space-y-4">
@@ -239,7 +256,9 @@ export default function ProductDetail({ productId }: ProductDetailProps) {
                   {quantity}
                 </span>
                 <button
-                  onClick={() => setQuantity((qty) => Math.min(maxQty, qty + 1))}
+                  onClick={() =>
+                    setQuantity((qty) => Math.min(maxQty, qty + 1))
+                  }
                   disabled={quantity >= maxQty}
                   className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-foreground transition-colors hover:bg-secondary/75 disabled:opacity-30"
                 >
@@ -259,12 +278,16 @@ export default function ProductDetail({ productId }: ProductDetailProps) {
                   "flex h-12 flex-1 items-center justify-center gap-2 rounded-xl text-sm font-montserrat font-semibold transition-all duration-200",
                   inCart
                     ? "cursor-default bg-accent text-accent-foreground"
-                    : "bg-foreground text-background hover:-translate-y-0.5 hover:opacity-95"
+                    : "bg-foreground text-background hover:-translate-y-0.5 hover:opacity-95",
                 )}
               >
-                <ShoppingCart className="h-4 w-4" /> {inCart ? "In Cart" : "Add to Cart"}
+                <ShoppingCart className="h-4 w-4" />{" "}
+                {inCart ? "In Cart" : "Add to Cart"}
               </motion.button>
-              <Button variant="secondary" className="h-12 flex-1 font-montserrat bg-primary text-text text-sm font-semibold">
+              <Button
+                variant="secondary"
+                className="h-12 flex-1 font-montserrat bg-primary text-text text-sm font-semibold"
+              >
                 Buy Now
               </Button>
             </div>

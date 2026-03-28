@@ -12,7 +12,10 @@ export default function NotFound() {
           </p>
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-16 h-16 rounded-full bg-text-dark/6 dark:bg-text/6 flex items-center justify-center">
-              <Coins className="w-8 h-8 text-text-dark/40 dark:text-text/40" strokeWidth={1.5} />
+              <Coins
+                className="w-8 h-8 text-text-dark/40 dark:text-text/40"
+                strokeWidth={1.5}
+              />
             </div>
           </div>
         </div>
@@ -22,8 +25,8 @@ export default function NotFound() {
             Page Not Found
           </h1>
           <p className="text-sm font-montserrat text-text-dark/55 dark:text-text/55 leading-relaxed">
-            The page you&apos;re looking for doesn&apos;t exist or has been moved.
-            Perhaps it was as rare as a 1933 Double Eagle.
+            The page you&apos;re looking for doesn&apos;t exist or has been
+            moved. Perhaps it was as rare as a 1933 Double Eagle.
           </p>
         </div>
 

@@ -22,8 +22,8 @@ type OrderContextValue = {
 const OrderContext = createContext<OrderContextValue | undefined>(undefined);
 
 export function OrderProvider({ children }: { children: React.ReactNode }) {
-  const [orders, setOrders]               = useState<Order[]>([]);
-  const [isLoading, setIsLoading]         = useState(false);
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [lastPlacedOrder, setLastPlacedOrder] = useState<Order | null>(null);
 
   const fetchOrders = useCallback(async () => {
@@ -36,16 +36,19 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const submitOrder = useCallback(async (payload: {
-    items: CartItem[];
-    shippingAddress: ShippingAddress;
-    paymentDetails: PaymentDetails;
-  }) => {
-    const order = await placeOrder(payload);
-    setOrders((prev) => [order, ...prev]);
-    setLastPlacedOrder(order);
-    return order;
-  }, []);
+  const submitOrder = useCallback(
+    async (payload: {
+      items: CartItem[];
+      shippingAddress: ShippingAddress;
+      paymentDetails: PaymentDetails;
+    }) => {
+      const order = await placeOrder(payload);
+      setOrders((prev) => [order, ...prev]);
+      setLastPlacedOrder(order);
+      return order;
+    },
+    [],
+  );
 
   const cancelOrderById = useCallback(async (id: string) => {
     const updated = await cancelOrder(id);
@@ -56,7 +59,15 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <OrderContext.Provider
-      value={{ orders, isLoading, fetchOrders, submitOrder, cancelOrderById, lastPlacedOrder, clearLastOrder }}
+      value={{
+        orders,
+        isLoading,
+        fetchOrders,
+        submitOrder,
+        cancelOrderById,
+        lastPlacedOrder,
+        clearLastOrder,
+      }}
     >
       {children}
     </OrderContext.Provider>

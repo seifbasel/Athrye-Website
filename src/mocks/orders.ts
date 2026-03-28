@@ -1,8 +1,10 @@
 import { Order } from "@/types/order";
 
 const now = new Date();
-const daysAgo = (n: number) => new Date(now.getTime() - n * 86400000).toISOString();
-const daysFromNow = (n: number) => new Date(now.getTime() + n * 86400000).toISOString();
+const daysAgo = (n: number) =>
+  new Date(now.getTime() - n * 86400000).toISOString();
+const daysFromNow = (n: number) =>
+  new Date(now.getTime() + n * 86400000).toISOString();
 
 export const MOCK_ORDERS: Order[] = [
   {
@@ -13,7 +15,13 @@ export const MOCK_ORDERS: Order[] = [
     estimatedDelivery: daysFromNow(2),
     trackingNumber: "EG123456789EG",
     items: [
-      { id: "2", name: "Ancient Roman Aureus — Hadrian", price: 28000, quantity: 1, imageUrl: "/coin1.jpg" },
+      {
+        id: "2",
+        name: "Ancient Roman Aureus — Hadrian",
+        price: 28000,
+        quantity: 1,
+        imageUrl: "/coin1.jpg",
+      },
     ],
     shippingAddress: {
       fullName: "James Sterling",
@@ -28,11 +36,36 @@ export const MOCK_ORDERS: Order[] = [
     shippingCost: 0,
     total: 28000,
     trackingEvents: [
-      { status: "pending",    label: "Order Placed",      description: "Your order has been received.",         timestamp: daysAgo(5) },
-      { status: "confirmed",  label: "Order Confirmed",   description: "Payment verified, order confirmed.",    timestamp: daysAgo(5) },
-      { status: "processing", label: "Being Prepared",    description: "Your coin is being carefully packaged.", timestamp: daysAgo(3) },
-      { status: "shipped",    label: "Shipped",           description: "Package handed to courier. Tracking #EG123456789EG.", timestamp: daysAgo(1) },
-      { status: "delivered",  label: "Delivered",         description: "Package delivered to your address.",    timestamp: null },
+      {
+        status: "pending",
+        label: "Order Placed",
+        description: "Your order has been received.",
+        timestamp: daysAgo(5),
+      },
+      {
+        status: "confirmed",
+        label: "Order Confirmed",
+        description: "Payment verified, order confirmed.",
+        timestamp: daysAgo(5),
+      },
+      {
+        status: "processing",
+        label: "Being Prepared",
+        description: "Your coin is being carefully packaged.",
+        timestamp: daysAgo(3),
+      },
+      {
+        status: "shipped",
+        label: "Shipped",
+        description: "Package handed to courier. Tracking #EG123456789EG.",
+        timestamp: daysAgo(1),
+      },
+      {
+        status: "delivered",
+        label: "Delivered",
+        description: "Package delivered to your address.",
+        timestamp: null,
+      },
     ],
   },
   {
@@ -43,8 +76,20 @@ export const MOCK_ORDERS: Order[] = [
     estimatedDelivery: daysAgo(11),
     trackingNumber: "EG987654321EG",
     items: [
-      { id: "6", name: "Athenian Owl Tetradrachm", price: 6800, quantity: 1, imageUrl: "/coin1.jpg" },
-      { id: "4", name: "Byzantine Solidus — Justinian I", price: 8400, quantity: 1, imageUrl: "/coin1.jpg" },
+      {
+        id: "6",
+        name: "Athenian Owl Tetradrachm",
+        price: 6800,
+        quantity: 1,
+        imageUrl: "/coin1.jpg",
+      },
+      {
+        id: "4",
+        name: "Byzantine Solidus — Justinian I",
+        price: 8400,
+        quantity: 1,
+        imageUrl: "/coin1.jpg",
+      },
     ],
     shippingAddress: {
       fullName: "James Sterling",
@@ -59,11 +104,36 @@ export const MOCK_ORDERS: Order[] = [
     shippingCost: 0,
     total: 15200,
     trackingEvents: [
-      { status: "pending",    label: "Order Placed",      description: "Your order has been received.",         timestamp: daysAgo(18) },
-      { status: "confirmed",  label: "Order Confirmed",   description: "Payment verified, order confirmed.",    timestamp: daysAgo(18) },
-      { status: "processing", label: "Being Prepared",    description: "Your coins are being carefully packaged.", timestamp: daysAgo(16) },
-      { status: "shipped",    label: "Shipped",           description: "Package handed to courier.",            timestamp: daysAgo(14) },
-      { status: "delivered",  label: "Delivered",         description: "Package delivered successfully.",       timestamp: daysAgo(11) },
+      {
+        status: "pending",
+        label: "Order Placed",
+        description: "Your order has been received.",
+        timestamp: daysAgo(18),
+      },
+      {
+        status: "confirmed",
+        label: "Order Confirmed",
+        description: "Payment verified, order confirmed.",
+        timestamp: daysAgo(18),
+      },
+      {
+        status: "processing",
+        label: "Being Prepared",
+        description: "Your coins are being carefully packaged.",
+        timestamp: daysAgo(16),
+      },
+      {
+        status: "shipped",
+        label: "Shipped",
+        description: "Package handed to courier.",
+        timestamp: daysAgo(14),
+      },
+      {
+        status: "delivered",
+        label: "Delivered",
+        description: "Package delivered successfully.",
+        timestamp: daysAgo(11),
+      },
     ],
   },
   {
@@ -73,7 +143,13 @@ export const MOCK_ORDERS: Order[] = [
     createdAt: daysAgo(1),
     estimatedDelivery: daysFromNow(6),
     items: [
-      { id: "1", name: "1854 Indian Head Gold Dollar", price: 12500, quantity: 1, imageUrl: "/coin1.jpg" },
+      {
+        id: "1",
+        name: "1854 Indian Head Gold Dollar",
+        price: 12500,
+        quantity: 1,
+        imageUrl: "/coin1.jpg",
+      },
     ],
     shippingAddress: {
       fullName: "James Sterling",
@@ -88,11 +164,36 @@ export const MOCK_ORDERS: Order[] = [
     shippingCost: 0,
     total: 12500,
     trackingEvents: [
-      { status: "pending",    label: "Order Placed",      description: "Your order has been received.",         timestamp: daysAgo(1) },
-      { status: "confirmed",  label: "Order Confirmed",   description: "Order confirmed, awaiting preparation.", timestamp: daysAgo(1) },
-      { status: "processing", label: "Being Prepared",    description: "Your coin is being carefully packaged.", timestamp: null },
-      { status: "shipped",    label: "Shipped",           description: "Package handed to courier.",            timestamp: null },
-      { status: "delivered",  label: "Delivered",         description: "Package delivered to your address.",    timestamp: null },
+      {
+        status: "pending",
+        label: "Order Placed",
+        description: "Your order has been received.",
+        timestamp: daysAgo(1),
+      },
+      {
+        status: "confirmed",
+        label: "Order Confirmed",
+        description: "Order confirmed, awaiting preparation.",
+        timestamp: daysAgo(1),
+      },
+      {
+        status: "processing",
+        label: "Being Prepared",
+        description: "Your coin is being carefully packaged.",
+        timestamp: null,
+      },
+      {
+        status: "shipped",
+        label: "Shipped",
+        description: "Package handed to courier.",
+        timestamp: null,
+      },
+      {
+        status: "delivered",
+        label: "Delivered",
+        description: "Package delivered to your address.",
+        timestamp: null,
+      },
     ],
   },
 ];

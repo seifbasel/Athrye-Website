@@ -28,14 +28,21 @@ export function CheckoutConfirmation({
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        transition={{ delay: 0.15, type: "spring", stiffness: 200, damping: 18 }}
+        transition={{
+          delay: 0.15,
+          type: "spring",
+          stiffness: 200,
+          damping: 18,
+        }}
         className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30"
       >
         <CheckCircle2 className="h-10 w-10 text-green-600 dark:text-green-400" />
       </motion.div>
 
       <div className="space-y-2">
-        <h2 className="font-playfair text-3xl font-bold text-foreground">Order Confirmed!</h2>
+        <h2 className="font-playfair text-3xl font-bold text-foreground">
+          Order Confirmed!
+        </h2>
         <p className="text-sm font-montserrat text-muted-foreground">
           Thank you for your purchase. Your order has been placed successfully.
         </p>
@@ -45,13 +52,16 @@ export function CheckoutConfirmation({
         <p className="mb-1 text-xs font-montserrat uppercase tracking-[0.2em] text-muted-foreground">
           Order Number
         </p>
-        <p className="font-playfair text-xl font-bold text-foreground">{orderNumber}</p>
+        <p className="font-playfair text-xl font-bold text-foreground">
+          {orderNumber}
+        </p>
       </div>
 
       <div className="flex items-center justify-center gap-3 rounded-xl border border-border bg-card p-4 shadow-soft">
         <Package className="h-5 w-5 shrink-0 text-muted-foreground" />
         <p className="text-sm font-montserrat text-muted-foreground">
-          Estimated delivery: <span className="font-semibold text-foreground">{date}</span>
+          Estimated delivery:{" "}
+          <span className="font-semibold text-foreground">{date}</span>
         </p>
       </div>
 

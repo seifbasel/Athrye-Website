@@ -12,15 +12,36 @@ const PAYMENT_METHODS: {
   sub: string;
   icon: string;
 }[] = [
-  { method: "card", label: "Credit / Debit Card", sub: "Visa, Mastercard, Amex", icon: "Card" },
-  { method: "cash_on_delivery", label: "Cash on Delivery", sub: "Pay when your order arrives", icon: "Cash" },
-  { method: "bank_transfer", label: "Bank Transfer", sub: "Direct transfer to our account", icon: "Bank" },
+  {
+    method: "card",
+    label: "Credit / Debit Card",
+    sub: "Visa, Mastercard, Amex",
+    icon: "Card",
+  },
+  {
+    method: "cash_on_delivery",
+    label: "Cash on Delivery",
+    sub: "Pay when your order arrives",
+    icon: "Cash",
+  },
+  {
+    method: "bank_transfer",
+    label: "Bank Transfer",
+    sub: "Direct transfer to our account",
+    icon: "Bank",
+  },
 ];
 
 const inputCls =
   "h-12 w-full rounded-xl border border-border bg-card px-4 text-sm text-foreground placeholder:text-muted-foreground transition-all duration-200 hover:border-primary/45 focus:ring-2 focus:ring-ring";
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="space-y-1.5">
       <label className="block text-xs font-montserrat font-medium uppercase tracking-[0.2em] text-muted-foreground">
@@ -50,9 +71,11 @@ export function CheckoutPayment({
   const handleNext = () => {
     if (method === "card") {
       const cleaned = cardNumber.replace(/\s/g, "");
-      if (cleaned.length < 16) return setCardError("Please enter a valid 16-digit card number.");
+      if (cleaned.length < 16)
+        return setCardError("Please enter a valid 16-digit card number.");
       if (!cardName) return setCardError("Cardholder name is required.");
-      if (expiry.length < 5) return setCardError("Please enter a valid expiry date.");
+      if (expiry.length < 5)
+        return setCardError("Please enter a valid expiry date.");
       if (cvv.length < 3) return setCardError("Please enter a valid CVV.");
       onNext("card", cleaned.slice(-4));
       return;
@@ -62,17 +85,25 @@ export function CheckoutPayment({
   };
 
   const formatCard = (value: string) =>
-    value.replace(/\D/g, "").slice(0, 16).replace(/(.{4})/g, "$1 ").trim();
+    value
+      .replace(/\D/g, "")
+      .slice(0, 16)
+      .replace(/(.{4})/g, "$1 ")
+      .trim();
 
   const formatExpiry = (value: string) => {
     const digits = value.replace(/\D/g, "").slice(0, 4);
-    return digits.length >= 2 ? `${digits.slice(0, 2)}/${digits.slice(2)}` : digits;
+    return digits.length >= 2
+      ? `${digits.slice(0, 2)}/${digits.slice(2)}`
+      : digits;
   };
 
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="mb-1 font-playfair text-2xl font-bold text-foreground">Payment Method</h2>
+        <h2 className="mb-1 font-playfair text-2xl font-bold text-foreground">
+          Payment Method
+        </h2>
         <p className="text-sm font-montserrat text-muted-foreground">
           All transactions are secure and encrypted.
         </p>
@@ -92,23 +123,31 @@ export function CheckoutPayment({
               "flex w-full items-center gap-4 rounded-xl border p-4 text-left transition-all duration-200",
               method === payment.method
                 ? "border-primary bg-primary/6"
-                : "border-border bg-card hover:border-primary/40"
+                : "border-border bg-card hover:border-primary/40",
             )}
           >
             <div
               className={cn(
                 "flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 transition-colors",
-                method === payment.method ? "border-primary" : "border-muted-foreground/50"
+                method === payment.method
+                  ? "border-primary"
+                  : "border-muted-foreground/50",
               )}
             >
-              {method === payment.method && <div className="h-2 w-2 rounded-full bg-primary" />}
+              {method === payment.method && (
+                <div className="h-2 w-2 rounded-full bg-primary" />
+              )}
             </div>
             <span className="min-w-12 text-xs font-montserrat font-semibold uppercase tracking-[0.18em] text-primary">
               {payment.icon}
             </span>
             <div>
-              <p className="text-sm font-montserrat font-semibold text-foreground">{payment.label}</p>
-              <p className="text-xs font-montserrat text-muted-foreground">{payment.sub}</p>
+              <p className="text-sm font-montserrat font-semibold text-foreground">
+                {payment.label}
+              </p>
+              <p className="text-xs font-montserrat text-muted-foreground">
+                {payment.sub}
+              </p>
             </div>
           </motion.button>
         ))}
@@ -176,7 +215,11 @@ export function CheckoutPayment({
                   />
                 </Field>
               </div>
-              {cardError && <p className="text-xs font-montserrat text-red-500">{cardError}</p>}
+              {cardError && (
+                <p className="text-xs font-montserrat text-red-500">
+                  {cardError}
+                </p>
+              )}
               <p className="text-xs font-montserrat text-muted-foreground">
                 Your card details are encrypted and never stored on our servers.
               </p>

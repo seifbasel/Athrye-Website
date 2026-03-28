@@ -34,7 +34,9 @@ export default function CheckoutPage() {
   if (items.length === 0 && step !== "confirmation") {
     return (
       <div className="mx-auto max-w-md space-y-4 py-24 text-center">
-        <p className="font-playfair text-2xl text-foreground">Your cart is empty</p>
+        <p className="font-playfair text-2xl text-foreground">
+          Your cart is empty
+        </p>
         <button
           onClick={() => router.push("/products")}
           className="h-12 rounded-xl border border-border bg-card px-8 text-sm font-medium text-foreground transition-colors hover:bg-secondary/80"
@@ -77,7 +79,12 @@ export default function CheckoutPage() {
     exit: (dir: number) => ({ x: dir * -40, opacity: 0 }),
   };
 
-  const steps: CheckoutStep[] = ["address", "payment", "review", "confirmation"];
+  const steps: CheckoutStep[] = [
+    "address",
+    "payment",
+    "review",
+    "confirmation",
+  ];
   const stepIndex = steps.findIndex((entry) => entry === step);
   const direction = stepIndex >= prevIndex ? 1 : -1;
 
@@ -99,9 +106,11 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="mx-auto max-w-5xl">
+    <div className="mx-auto">
       <div className="mb-8">
-        <h1 className="font-playfair text-4xl font-bold text-foreground">Checkout</h1>
+        <h1 className="font-playfair text-3xl font-bold text-foreground">
+          Checkout
+        </h1>
       </div>
 
       <CheckoutStepIndicator current={step} />

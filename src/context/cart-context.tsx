@@ -1,6 +1,12 @@
 "use client";
 
-import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
 
 export type CartItem = {
   id: string;
@@ -46,7 +52,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       const existing = prev.find((i) => i.id === item.id);
       if (existing) {
         return prev.map((i) =>
-          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i,
         );
       }
       return [...prev, { ...item, quantity: 1 }];
@@ -59,16 +65,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const updateQuantity = useCallback((id: string, quantity: number) => {
     if (quantity < 1) return;
-    setItems((prev) =>
-      prev.map((i) => (i.id === id ? { ...i, quantity } : i))
-    );
+    setItems((prev) => prev.map((i) => (i.id === id ? { ...i, quantity } : i)));
   }, []);
 
   const clearCart = useCallback(() => setItems([]), []);
 
   const isInCart = useCallback(
     (id: string) => items.some((i) => i.id === id),
-    [items]
+    [items],
   );
 
   const count = items.reduce((sum, i) => sum + i.quantity, 0);
@@ -76,7 +80,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <CartContext.Provider
-      value={{ items, count, total, addItem, removeItem, updateQuantity, clearCart, isInCart }}
+      value={{
+        items,
+        count,
+        total,
+        addItem,
+        removeItem,
+        updateQuantity,
+        clearCart,
+        isInCart,
+      }}
     >
       {children}
     </CartContext.Provider>

@@ -11,13 +11,44 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-const STATUS_CONFIG: Record<OrderStatus, { label: string; dot: string; badge: string }> = {
-  pending: { label: "Pending", dot: "bg-yellow-400", badge: "bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-400" },
-  confirmed: { label: "Confirmed", dot: "bg-blue-400", badge: "bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400" },
-  processing: { label: "Processing", dot: "bg-purple-400", badge: "bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400" },
-  shipped: { label: "Shipped", dot: "bg-orange-400", badge: "bg-orange-50 text-orange-700 dark:bg-orange-900/20 dark:text-orange-400" },
-  delivered: { label: "Delivered", dot: "bg-green-400", badge: "bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400" },
-  cancelled: { label: "Cancelled", dot: "bg-red-400", badge: "bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400" },
+const STATUS_CONFIG: Record<
+  OrderStatus,
+  { label: string; dot: string; badge: string }
+> = {
+  pending: {
+    label: "Pending",
+    dot: "bg-yellow-400",
+    badge:
+      "bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-400",
+  },
+  confirmed: {
+    label: "Confirmed",
+    dot: "bg-blue-400",
+    badge: "bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400",
+  },
+  processing: {
+    label: "Processing",
+    dot: "bg-purple-400",
+    badge:
+      "bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400",
+  },
+  shipped: {
+    label: "Shipped",
+    dot: "bg-orange-400",
+    badge:
+      "bg-orange-50 text-orange-700 dark:bg-orange-900/20 dark:text-orange-400",
+  },
+  delivered: {
+    label: "Delivered",
+    dot: "bg-green-400",
+    badge:
+      "bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400",
+  },
+  cancelled: {
+    label: "Cancelled",
+    dot: "bg-red-400",
+    badge: "bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400",
+  },
 };
 
 export function StatusBadge({ status }: { status: OrderStatus }) {
@@ -27,7 +58,7 @@ export function StatusBadge({ status }: { status: OrderStatus }) {
     <span
       className={cn(
         "inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-montserrat font-semibold",
-        config.badge
+        config.badge,
       )}
     >
       <span className={cn("h-1.5 w-1.5 shrink-0 rounded-full", config.dot)} />
@@ -44,7 +75,12 @@ function OrderCard({ order }: { order: Order }) {
     e.preventDefault();
     e.stopPropagation();
     order.items.forEach((item) =>
-      addItem({ id: item.id, name: item.name, price: item.price, imageUrl: item.imageUrl })
+      addItem({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        imageUrl: item.imageUrl,
+      }),
     );
     router.push("/shopping-cart");
   };
@@ -68,8 +104,12 @@ function OrderCard({ order }: { order: Order }) {
       >
         <div className="mb-4 flex items-start justify-between gap-3">
           <div>
-            <p className="font-playfair text-lg font-bold text-foreground">{order.orderNumber}</p>
-            <p className="mt-0.5 text-xs font-montserrat text-muted-foreground">{date}</p>
+            <p className="font-playfair text-lg font-bold text-foreground">
+              {order.orderNumber}
+            </p>
+            <p className="mt-0.5 text-xs font-montserrat text-muted-foreground">
+              {date}
+            </p>
           </div>
           <div className="flex items-center gap-2">
             <StatusBadge status={order.status} />
@@ -85,7 +125,12 @@ function OrderCard({ order }: { order: Order }) {
                 style={{ zIndex: order.items.length - index }}
                 className="relative h-11 w-11 overflow-hidden rounded-lg border-2 border-card"
               >
-                <Image src={item.imageUrl} alt={item.name} fill className="object-cover" />
+                <Image
+                  src={item.imageUrl}
+                  alt={item.name}
+                  fill
+                  className="object-cover"
+                />
               </div>
             ))}
             {order.items.length > 3 && (
@@ -103,7 +148,9 @@ function OrderCard({ order }: { order: Order }) {
             </p>
             <p className="mt-0.5 text-xs font-montserrat text-muted-foreground">
               {order.items.reduce((sum, item) => sum + item.quantity, 0)} item
-              {order.items.reduce((sum, item) => sum + item.quantity, 0) !== 1 ? "s" : ""}
+              {order.items.reduce((sum, item) => sum + item.quantity, 0) !== 1
+                ? "s"
+                : ""}
             </p>
           </div>
         </div>
@@ -111,7 +158,9 @@ function OrderCard({ order }: { order: Order }) {
         <div className="flex items-center justify-between">
           <p className="font-playfair text-lg font-bold text-foreground">
             {order.total.toLocaleString()}{" "}
-            <span className="text-sm font-montserrat font-normal text-muted-foreground">EGP</span>
+            <span className="text-sm font-montserrat font-normal text-muted-foreground">
+              EGP
+            </span>
           </p>
           {order.status === "delivered" && (
             <motion.button
@@ -137,11 +186,15 @@ export default function OrdersPage() {
   }, [fetchOrders]);
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <div className="mx-auto">
       <div className="mb-8">
-        <h1 className="font-playfair text-4xl font-bold text-foreground">My Orders</h1>
+        <h1 className="font-playfair text-3xl font-bold text-foreground">
+          My Orders
+        </h1>
         <p className="mt-1 text-sm font-montserrat text-muted-foreground">
-          {isLoading ? "Loading..." : `${orders.length} order${orders.length !== 1 ? "s" : ""}`}
+          {isLoading
+            ? "Loading..."
+            : `${orders.length} order${orders.length !== 1 ? "s" : ""}`}
         </p>
       </div>
 
@@ -159,7 +212,9 @@ export default function OrdersPage() {
             <Package className="h-9 w-9 text-muted-foreground" />
           </div>
           <div className="space-y-1 text-center">
-            <p className="font-playfair text-2xl text-foreground">No orders yet</p>
+            <p className="font-playfair text-2xl text-foreground">
+              No orders yet
+            </p>
             <p className="text-sm font-montserrat text-muted-foreground">
               Your order history will appear here
             </p>

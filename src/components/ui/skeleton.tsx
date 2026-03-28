@@ -7,7 +7,7 @@ function Skeleton({ className }: { className?: string }) {
     <div
       className={cn(
         "animate-pulse rounded-xl bg-foreground/10", // Using foreground with low opacity for a neutral shimmer
-        className
+        className,
       )}
     />
   );
@@ -50,7 +50,10 @@ export function OrderCardSkeleton() {
       <div className="flex items-center gap-3">
         <div className="flex -space-x-2">
           {[...Array(2)].map((_, i) => (
-            <Skeleton key={i} className="w-11 h-11 rounded-lg border-2 border-background" />
+            <Skeleton
+              key={i}
+              className="w-11 h-11 rounded-lg border-2 border-background"
+            />
           ))}
         </div>
         <div className="flex-1 space-y-1.5">

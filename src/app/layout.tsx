@@ -23,11 +23,22 @@ const playfairDisplay = Playfair_Display({
 
 export const metadata: Metadata = {
   title: "Coinat - Numismatic Marketplace",
-  description: "Discover, buy and sell authenticated coins from around the world.",
-  keywords: ["coins", "numismatics", "collectibles", "rare coins", "coin trading"],
+  description:
+    "Discover, buy and sell authenticated coins from around the world.",
+  keywords: [
+    "coins",
+    "numismatics",
+    "collectibles",
+    "rare coins",
+    "coin trading",
+  ],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -43,8 +54,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <div className="flex min-h-screen">
                       <SidebarWrapper />
                       <div className="flex min-w-0 flex-1 flex-col">
-                        <main className="mt-10 flex-1 overflow-x-hidden p-6 md:p-8 md:pl-19">
-                          <div className="mx-auto w-full max-w-[1440px]">
+                        <main className="mt-16 md:mt-0 flex-1 overflow-x-hidden p-6 md:p-8 md:pl-19">
+                          <div className="mx-auto w-full max-w-360">
                             {children}
                           </div>
                         </main>

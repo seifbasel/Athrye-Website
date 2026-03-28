@@ -32,13 +32,15 @@ export function CheckoutStepIndicator({ current }: { current: CheckoutStep }) {
                     ? "bg-button dark:bg-button-dark"
                     : active
                       ? "bg-button ring-4 ring-primary/20 dark:bg-button-dark dark:ring-button-dark/20"
-                      : "bg-secondary"
+                      : "bg-secondary",
                 )}
               >
                 <Icon
                   className={cn(
                     "h-4 w-4 transition-colors duration-300",
-                    done || active ? "text-text dark:text-text-dark" : "text-muted-foreground"
+                    done || active
+                      ? "text-text dark:text-text-dark"
+                      : "text-muted-foreground",
                   )}
                 />
               </div>
@@ -49,7 +51,7 @@ export function CheckoutStepIndicator({ current }: { current: CheckoutStep }) {
                     ? "font-semibold text-foreground"
                     : done
                       ? "text-foreground/70"
-                      : "text-muted-foreground"
+                      : "text-muted-foreground",
                 )}
               >
                 {step.label}
@@ -60,7 +62,9 @@ export function CheckoutStepIndicator({ current }: { current: CheckoutStep }) {
               <div
                 className={cn(
                   "mx-1 mb-4 h-px w-12 transition-colors duration-500 sm:w-20",
-                  index < currentIdx ? "bg-button dark:bg-button-dark" : "bg-border"
+                  index < currentIdx
+                    ? "bg-button dark:bg-button-dark"
+                    : "bg-border",
                 )}
               />
             )}

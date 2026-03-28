@@ -1,7 +1,18 @@
 "use client";
 
-import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
-import { loginUser, registerUser, googleLogin, appleLogin } from "@/services/auth.service";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
+import {
+  loginUser,
+  registerUser,
+  googleLogin,
+  appleLogin,
+} from "@/services/auth.service";
 import { AuthUser, LoginCredentials, SignupCredentials } from "@/types/auth";
 
 type AuthState = {
@@ -30,7 +41,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     try {
       const stored = localStorage.getItem("coinat_user");
-      if (stored) setState({ user: JSON.parse(stored), isAuthenticated: true, isLoading: false });
+      if (stored)
+        setState({
+          user: JSON.parse(stored),
+          isAuthenticated: true,
+          isLoading: false,
+        });
       else setState((s) => ({ ...s, isLoading: false }));
     } catch {
       setState((s) => ({ ...s, isLoading: false }));
@@ -73,7 +89,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ ...state, login, signup, loginWithGoogle, loginWithApple, logout }}>
+    <AuthContext.Provider
+      value={{
+        ...state,
+        login,
+        signup,
+        loginWithGoogle,
+        loginWithApple,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

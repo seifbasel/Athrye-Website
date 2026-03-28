@@ -28,10 +28,12 @@ export default function FavoritesPage() {
   };
 
   return (
-    <div className="mx-auto max-w-4xl">
+    <div className="mx-auto">
       <div className="mb-8 flex items-center justify-between">
         <div>
-          <h1 className="font-playfair text-3xl font-bold text-foreground">Favorites</h1>
+          <h1 className="font-playfair text-3xl font-bold text-foreground">
+            Favorites
+          </h1>
           <p className="mt-1 text-sm font-montserrat text-muted-foreground">
             {items.length === 0
               ? "No saved items"
@@ -74,7 +76,9 @@ export default function FavoritesPage() {
             layout
             className="h-fit space-y-5 rounded-2xl border border-border bg-card p-6 shadow-soft"
           >
-            <h2 className="font-playfair text-lg font-bold text-foreground">Collection Value</h2>
+            <h2 className="font-playfair text-lg font-bold text-foreground">
+              Collection Value
+            </h2>
             <div className="space-y-3">
               {items.map((item) => (
                 <div key={item.id} className="flex justify-between gap-2">
@@ -89,7 +93,9 @@ export default function FavoritesPage() {
             </div>
             <div className="h-px bg-border/70" />
             <div className="flex items-center justify-between">
-              <span className="font-montserrat font-semibold text-foreground">Total Value</span>
+              <span className="font-montserrat font-semibold text-foreground">
+                Total Value
+              </span>
               <span className="font-playfair text-2xl font-bold text-foreground">
                 {totalValue.toLocaleString()}{" "}
                 <span className="font-montserrat text-sm font-normal text-muted-foreground">
@@ -116,13 +122,18 @@ export default function FavoritesPage() {
             <Heart className="h-9 w-9 text-muted-foreground" />
           </div>
           <div className="space-y-1 text-center">
-            <p className="font-playfair text-2xl text-foreground">No favorites yet</p>
+            <p className="font-playfair text-2xl text-foreground">
+              No favorites yet
+            </p>
             <p className="text-sm font-montserrat text-muted-foreground">
               Heart coins in the catalog to save them here
             </p>
           </div>
           <Link href="/products">
-            <Button variant="secondary" className="bg-card font-montserrat text-sm text-foreground">
+            <Button
+              variant="secondary"
+              className="bg-card font-montserrat text-sm text-foreground"
+            >
               Browse Catalog
             </Button>
           </Link>

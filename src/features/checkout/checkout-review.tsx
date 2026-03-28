@@ -26,7 +26,9 @@ export function CheckoutReview({
   isPlacing: boolean;
 }) {
   const paymentLabel = {
-    card: cardLastFour ? `Card ending in ${cardLastFour}` : "Credit / Debit Card",
+    card: cardLastFour
+      ? `Card ending in ${cardLastFour}`
+      : "Credit / Debit Card",
     cash_on_delivery: "Cash on Delivery",
     bank_transfer: "Bank Transfer",
   }[paymentMethod];
@@ -34,7 +36,9 @@ export function CheckoutReview({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="mb-1 font-playfair text-2xl font-bold text-foreground">Review Order</h2>
+        <h2 className="mb-1 font-playfair text-2xl font-bold text-foreground">
+          Review Order
+        </h2>
         <p className="text-sm font-montserrat text-muted-foreground">
           Please confirm all details before placing your order.
         </p>
@@ -67,7 +71,9 @@ export function CheckoutReview({
         <p className="text-xs font-montserrat font-semibold uppercase tracking-[0.2em] text-muted-foreground">
           Payment
         </p>
-        <p className="text-sm font-montserrat font-semibold text-foreground">{paymentLabel}</p>
+        <p className="text-sm font-montserrat font-semibold text-foreground">
+          {paymentLabel}
+        </p>
       </div>
 
       <div className="space-y-3 rounded-xl border border-border bg-card p-5 shadow-soft">
@@ -77,13 +83,20 @@ export function CheckoutReview({
         {items.map((item) => (
           <div key={item.id} className="flex items-center gap-3">
             <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg">
-              <Image src={item.imageUrl} alt={item.name} fill className="object-cover" />
+              <Image
+                src={item.imageUrl}
+                alt={item.name}
+                fill
+                className="object-cover"
+              />
             </div>
             <p className="line-clamp-1 flex-1 text-sm font-montserrat text-foreground">
               {item.name}
             </p>
             <div className="shrink-0 text-right">
-              <p className="text-xs font-montserrat text-muted-foreground">x{item.quantity}</p>
+              <p className="text-xs font-montserrat text-muted-foreground">
+                x{item.quantity}
+              </p>
               <p className="text-sm font-montserrat font-semibold text-foreground">
                 {(item.price * item.quantity).toLocaleString()} EGP
               </p>
@@ -92,7 +105,9 @@ export function CheckoutReview({
         ))}
         <div className="h-px bg-border/70" />
         <div className="flex justify-between">
-          <span className="font-montserrat font-semibold text-foreground">Total</span>
+          <span className="font-montserrat font-semibold text-foreground">
+            Total
+          </span>
           <span className="font-playfair text-lg font-bold text-foreground">
             {total.toLocaleString()} EGP
           </span>

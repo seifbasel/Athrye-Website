@@ -45,7 +45,8 @@ function TrackingTimeline({ order }: { order: Order }) {
     <div className="space-y-0">
       {order.trackingEvents.map((event, index) => {
         const eventIdx = STATUS_ORDER.indexOf(event.status);
-        const isDone = !isCancelled && eventIdx <= currentIdx && event.timestamp !== null;
+        const isDone =
+          !isCancelled && eventIdx <= currentIdx && event.timestamp !== null;
         const isActive = !isCancelled && eventIdx === currentIdx;
         const isReached = !isCancelled && eventIdx <= currentIdx;
         const isLast = index === order.trackingEvents.length - 1;
@@ -71,11 +72,14 @@ function TrackingTimeline({ order }: { order: Order }) {
                     ? "bg-button dark:bg-button-dark"
                     : isActive
                       ? "bg-button ring-4 ring-primary/20 dark:bg-button-dark dark:ring-button-dark/20"
-                      : "bg-secondary"
+                      : "bg-secondary",
                 )}
               >
                 {isDone ? (
-                  <Check className="h-3.5 w-3.5 text-text dark:text-text-dark" strokeWidth={2.5} />
+                  <Check
+                    className="h-3.5 w-3.5 text-text dark:text-text-dark"
+                    strokeWidth={2.5}
+                  />
                 ) : isActive ? (
                   <motion.div
                     animate={{ scale: [1, 1.3, 1] }}
@@ -93,7 +97,7 @@ function TrackingTimeline({ order }: { order: Order }) {
                     "my-1 min-h-10 w-0.5 flex-1 transition-colors duration-500",
                     isReached && eventIdx < currentIdx
                       ? "bg-button dark:bg-button-dark"
-                      : "bg-border"
+                      : "bg-border",
                   )}
                 />
               )}
@@ -104,7 +108,7 @@ function TrackingTimeline({ order }: { order: Order }) {
                 <p
                   className={cn(
                     "text-sm font-montserrat font-semibold transition-colors",
-                    isReached ? "text-foreground" : "text-muted-foreground"
+                    isReached ? "text-foreground" : "text-muted-foreground",
                   )}
                 >
                   {event.label}
@@ -118,7 +122,7 @@ function TrackingTimeline({ order }: { order: Order }) {
               <p
                 className={cn(
                   "mt-0.5 text-xs font-montserrat leading-relaxed transition-colors",
-                  isReached ? "text-foreground/70" : "text-muted-foreground/70"
+                  isReached ? "text-foreground/70" : "text-muted-foreground/70",
                 )}
               >
                 {event.description}
@@ -177,7 +181,9 @@ export function OrderConfirmation({
         <div className="mt-4 border-t border-border pt-4">
           <p className="text-xs font-montserrat text-muted-foreground">
             Estimated delivery:{" "}
-            <span className="font-semibold text-foreground">{deliveryDate}</span>
+            <span className="font-semibold text-foreground">
+              {deliveryDate}
+            </span>
           </p>
         </div>
       )}

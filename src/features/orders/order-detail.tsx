@@ -1,17 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { useOrders } from "@/context/order-context";
 import { useCart } from "@/context/cart-context";
 import { Order } from "@/types/order";
 import { StatusBadge } from "./orders-list";
-import {
-  ArrowLeft,
-  Loader2,
-  RotateCcw,
-  XCircle,
-} from "lucide-react";
+import { ArrowLeft, Loader2, RotateCcw, XCircle } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { getOrderById } from "@/services/orders.service";
@@ -46,7 +41,9 @@ export default function OrderDetailPage({ orderId }: { orderId: string }) {
   if (!order) {
     return (
       <div className="space-y-4 py-24 text-center">
-        <p className="font-playfair text-2xl text-foreground">Order not found</p>
+        <p className="font-playfair text-2xl text-foreground">
+          Order not found
+        </p>
         <button
           onClick={() => router.push("/orders")}
           className="text-sm font-montserrat text-muted-foreground underline"
@@ -79,7 +76,7 @@ export default function OrderDetailPage({ orderId }: { orderId: string }) {
         name: item.name,
         price: item.price,
         imageUrl: item.imageUrl,
-      })
+      }),
     );
     router.push("/shopping-cart");
   };
@@ -90,11 +87,14 @@ export default function OrderDetailPage({ orderId }: { orderId: string }) {
     day: "numeric",
   });
 
-  const deliveryDate = new Date(order.estimatedDelivery).toLocaleDateString("en-EG", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-  });
+  const deliveryDate = new Date(order.estimatedDelivery).toLocaleDateString(
+    "en-EG",
+    {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+    },
+  );
 
   const paymentLabel = {
     card: order.paymentDetails.cardLastFour
@@ -175,21 +175,28 @@ export default function OrderDetailPage({ orderId }: { orderId: string }) {
             className="rounded-2xl border border-border bg-card p-6 shadow-soft"
           >
             <h2 className="mb-5 font-playfair text-lg font-bold text-foreground">
-              Items ({order.items.reduce((sum, item) => sum + item.quantity, 0)})
+              Items ({order.items.reduce((sum, item) => sum + item.quantity, 0)}
+              )
             </h2>
 
             <div className="space-y-4">
               {order.items.map((item) => (
                 <div key={item.id} className="flex items-center gap-4">
                   <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl">
-                    <Image src={item.imageUrl} alt={item.name} fill className="object-cover" />
+                    <Image
+                      src={item.imageUrl}
+                      alt={item.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="line-clamp-1 text-sm font-montserrat font-semibold text-foreground">
                       {item.name}
                     </p>
                     <p className="mt-0.5 text-xs font-montserrat text-muted-foreground">
-                      Qty: {item.quantity} x {item.price.toLocaleString()} EGP each
+                      Qty: {item.quantity} x {item.price.toLocaleString()} EGP
+                      each
                     </p>
                   </div>
                   <p className="shrink-0 text-sm font-montserrat font-bold text-foreground">

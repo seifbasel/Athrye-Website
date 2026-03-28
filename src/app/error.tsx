@@ -35,7 +35,8 @@ export default function GlobalError({
             Something went wrong
           </h2>
           <p className="text-sm font-montserrat text-text-dark/60 dark:text-text/60">
-            An unexpected error occurred. Please try again or return to the homepage.
+            An unexpected error occurred. Please try again or return to the
+            homepage.
           </p>
           {error.digest && (
             <p className="text-xs font-montserrat text-text-dark/35 dark:text-text/35 mt-1">

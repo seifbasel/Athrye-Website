@@ -11,24 +11,37 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const profileSchema = z.object({
-  firstName:   z.string().min(2, "At least 2 characters").max(50),
-  lastName:    z.string().min(2, "At least 2 characters").max(50),
-  email:       z.string().email("Invalid email address"),
-  phoneNumber: z.string().regex(/^[0-9+\-\s()]*$/, "Invalid phone number").min(10).max(15).or(z.literal("")),
-  address:     z.string().min(5).max(100).or(z.literal("")),
-  city:        z.string().min(2).max(50).or(z.literal("")),
-  postalCode:  z.string().min(4).max(10).or(z.literal("")),
-  country:     z.string().min(2).max(50).or(z.literal("")),
+  firstName: z.string().min(2, "At least 2 characters").max(50),
+  lastName: z.string().min(2, "At least 2 characters").max(50),
+  email: z.string().email("Invalid email address"),
+  phoneNumber: z
+    .string()
+    .regex(/^[0-9+\-\s()]*$/, "Invalid phone number")
+    .min(10)
+    .max(15)
+    .or(z.literal("")),
+  address: z.string().min(5).max(100).or(z.literal("")),
+  city: z.string().min(2).max(50).or(z.literal("")),
+  postalCode: z.string().min(4).max(10).or(z.literal("")),
+  country: z.string().min(2).max(50).or(z.literal("")),
 });
 type ProfileForm = z.infer<typeof profileSchema>;
 
 const inputCls = (err?: boolean) =>
   `w-full h-12 px-4 rounded-xl border bg-background dark:bg-background-dark font-montserrat text-sm text-text-dark dark:text-text placeholder:text-text-dark/30 dark:placeholder:text-text/30 outline-none transition-all duration-200 focus:ring-2 focus:ring-text-dark/12 dark:focus:ring-text/12 ${
-    err ? "border-red-400" : "border-text-dark/12 dark:border-text/12 hover:border-text-dark/25 dark:hover:border-text/25"
+    err
+      ? "border-red-400"
+      : "border-text-dark/12 dark:border-text/12 hover:border-text-dark/25 dark:hover:border-text/25"
   }`;
 
-function Field({ label, error, children }: {
-  label: string; error?: string; children: React.ReactNode;
+function Field({
+  label,
+  error,
+  children,
+}: {
+  label: string;
+  error?: string;
+  children: React.ReactNode;
 }) {
   return (
     <div className="space-y-1.5">
@@ -44,17 +57,21 @@ function Field({ label, error, children }: {
 export default function ProfilePage() {
   const { user } = useAuth();
 
-  const { register, handleSubmit, formState: { errors, isSubmitting, isDirty } } = useForm<ProfileForm>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting, isDirty },
+  } = useForm<ProfileForm>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
-      firstName:   user?.firstName ?? "",
-      lastName:    user?.lastName  ?? "",
-      email:       user?.email     ?? "",
+      firstName: user?.firstName ?? "",
+      lastName: user?.lastName ?? "",
+      email: user?.email ?? "",
       phoneNumber: "",
-      address:     "",
-      city:        "",
-      postalCode:  "",
-      country:     "",
+      address: "",
+      city: "",
+      postalCode: "",
+      country: "",
     },
   });
 
@@ -69,7 +86,11 @@ export default function ProfilePage() {
   return (
     <div className="max-w-2xl mx-auto space-y-10">
       {/* Header */}
-      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="flex items-center gap-5 mb-8">
           <div className="w-16 h-16 rounded-full bg-button dark:bg-button-dark flex items-center justify-center shrink-0">
             {user ? (
@@ -95,10 +116,13 @@ export default function ProfilePage() {
       </motion.div>
 
       {/* Form */}
-      <motion.form initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+      <motion.form
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1, duration: 0.5 }}
-        onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-8"
+      >
         {/* Personal Info */}
         <div className="space-y-5">
           <p className="text-xs tracking-[0.25em] uppercase font-montserrat font-semibold text-text-dark/45 dark:text-text/45">
@@ -106,18 +130,33 @@ export default function ProfilePage() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <Field label="First Name" error={errors.firstName?.message}>
-              <Input {...register("firstName")} placeholder="James" className={inputCls(!!errors.firstName)} />
+              <Input
+                {...register("firstName")}
+                placeholder="James"
+                className={inputCls(!!errors.firstName)}
+              />
             </Field>
             <Field label="Last Name" error={errors.lastName?.message}>
-              <Input {...register("lastName")} placeholder="Sterling" className={inputCls(!!errors.lastName)} />
+              <Input
+                {...register("lastName")}
+                placeholder="Sterling"
+                className={inputCls(!!errors.lastName)}
+              />
             </Field>
             <Field label="Email" error={errors.email?.message}>
-              <Input {...register("email")} type="email" placeholder="your@email.com"
-                className={inputCls(!!errors.email)} />
+              <Input
+                {...register("email")}
+                type="email"
+                placeholder="your@email.com"
+                className={inputCls(!!errors.email)}
+              />
             </Field>
             <Field label="Phone Number" error={errors.phoneNumber?.message}>
-              <Input {...register("phoneNumber")} placeholder="+20 100 000 0000"
-                className={inputCls(!!errors.phoneNumber)} />
+              <Input
+                {...register("phoneNumber")}
+                placeholder="+20 100 000 0000"
+                className={inputCls(!!errors.phoneNumber)}
+              />
             </Field>
           </div>
         </div>
@@ -130,19 +169,34 @@ export default function ProfilePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="md:col-span-2">
               <Field label="Street Address" error={errors.address?.message}>
-                <Input {...register("address")} placeholder="123 Collector's Lane"
-                  className={inputCls(!!errors.address)} />
+                <Input
+                  {...register("address")}
+                  placeholder="123 Collector's Lane"
+                  className={inputCls(!!errors.address)}
+                />
               </Field>
             </div>
             <Field label="City" error={errors.city?.message}>
-              <Input {...register("city")} placeholder="Cairo" className={inputCls(!!errors.city)} />
+              <Input
+                {...register("city")}
+                placeholder="Cairo"
+                className={inputCls(!!errors.city)}
+              />
             </Field>
             <Field label="Postal Code" error={errors.postalCode?.message}>
-              <Input {...register("postalCode")} placeholder="11511" className={inputCls(!!errors.postalCode)} />
+              <Input
+                {...register("postalCode")}
+                placeholder="11511"
+                className={inputCls(!!errors.postalCode)}
+              />
             </Field>
             <div className="md:col-span-2">
               <Field label="Country" error={errors.country?.message}>
-                <Input {...register("country")} placeholder="Egypt" className={inputCls(!!errors.country)} />
+                <Input
+                  {...register("country")}
+                  placeholder="Egypt"
+                  className={inputCls(!!errors.country)}
+                />
               </Field>
             </div>
           </div>
@@ -150,13 +204,19 @@ export default function ProfilePage() {
 
         {/* Actions */}
         <div className="flex justify-end items-center gap-3 pt-2">
-          <Button type="button" variant="outline"
+          <Button
+            type="button"
+            variant="outline"
             onClick={() => window.history.back()}
-            className="font-montserrat font-medium text-sm">
+            className="font-montserrat font-medium text-sm"
+          >
             Cancel
           </Button>
-          <Button type="submit" disabled={isSubmitting || !isDirty}
-            className="font-montserrat font-semibold text-sm min-w-35 flex items-center justify-center gap-2">
+          <Button
+            type="submit"
+            disabled={isSubmitting || !isDirty}
+            className="font-montserrat font-semibold text-sm min-w-35 flex items-center justify-center gap-2"
+          >
             {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
             {isSubmitting ? "Saving…" : "Save Changes"}
           </Button>

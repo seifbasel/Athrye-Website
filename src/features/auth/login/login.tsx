@@ -91,7 +91,7 @@ export default function LoginPage() {
     try {
       await new Promise((resolve) => setTimeout(resolve, 350));
       if (data.email !== MOCK_LOGIN_USER.user.email) {
-        throw new Error("Mock login failed. Use collector@coinat.com.");
+        throw new Error("Mock login failed. Use collector@athrye.com.");
       }
 
       setLoggedInEmail(data.email);
@@ -218,7 +218,7 @@ export default function LoginPage() {
               {...register("email")}
               type="email"
               autoComplete="email"
-              placeholder="collector@coinat.com"
+              placeholder="collector@athrye.com"
               className={`h-12 w-full rounded-xl border px-4 text-sm ${
                 errors.email
                   ? "border-red-400"

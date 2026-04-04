@@ -1,10 +1,10 @@
-# Coinat Architecture Alignment Gap Report
+# Athrye Architecture Alignment Gap Report
 
 ## Summary
 
-This report compares the current Coinat codebase to the TransHub architecture guide and turns that comparison into a phased migration roadmap. The goal is to align the project with the same layering and decision style without doing a broad blind refactor that risks changing product behavior.
+This report compares the current Athrye codebase to the TransHub architecture guide and turns that comparison into a phased migration roadmap. The goal is to align the project with the same layering and decision style without doing a broad blind refactor that risks changing product behavior.
 
-Coinat already aligns on several important foundation choices:
+Athrye already aligns on several important foundation choices:
 
 - Next.js App Router is used under `src/app`.
 - Global provider wiring is centralized near the root layout.
@@ -37,7 +37,7 @@ Current assessment:
 
 ### App Routes
 
-Coinat already has several thin App Router pages that mostly delegate to feature components:
+Athrye already has several thin App Router pages that mostly delegate to feature components:
 
 - [`src/app/products/page.tsx`](../src/app/products/page.tsx)
 - [`src/app/auth/login/page.tsx`](../src/app/auth/login/page.tsx)
@@ -82,7 +82,7 @@ Current assessment:
 
 ### API/Data Access
 
-Coinat currently splits data access between:
+Athrye currently splits data access between:
 
 - [`src/lib/api-client.ts`](../src/lib/api-client.ts) for Axios configuration, token storage helpers, token refresh, interceptors, and `apiFetch`
 - `src/api/*.ts` for domain-specific API calls
@@ -139,7 +139,7 @@ Target shape:
 
 Gap:
 
-- Coinat has the right concepts but not the target file placement or separation of responsibilities.
+- Athrye has the right concepts but not the target file placement or separation of responsibilities.
 - The refactor should be mostly organizational first, not behavioral.
 
 Decision:
@@ -220,7 +220,7 @@ Target style from the guide:
 
 Gap:
 
-- Coinat already uses the correct split in spirit, but the boundaries need to be documented and tightened.
+- Athrye already uses the correct split in spirit, but the boundaries need to be documented and tightened.
 
 Decision:
 
@@ -374,6 +374,6 @@ Validate each migration phase against these scenarios:
 
 - This document is the first deliverable; it does not itself perform the refactor.
 - Auth should ultimately move to a shared provider to match the guide.
-- Coinat should align closely with TransHub without silently changing product behavior.
+- Athrye should align closely with TransHub without silently changing product behavior.
 - Cart and checkout workflow state may remain local-state driven because they are not purely server-owned.
 - Barrel exports and folder normalization should be introduced where they improve consistency, not as churn for untouched areas.

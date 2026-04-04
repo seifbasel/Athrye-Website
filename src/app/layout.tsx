@@ -17,7 +17,7 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Coinat - Numismatic Marketplace",
+  title: "Athrye - Numismatic Marketplace",
   description:
     "Discover, buy and sell authenticated coins from around the world.",
   keywords: [

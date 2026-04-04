@@ -1,4 +1,4 @@
-# Coinat - Numismatic Marketplace
+# Athrye - Numismatic Marketplace
 
 A modern platform for collectors to discover, buy and sell authentic coins built with cutting-edge web technologies.
 
@@ -60,8 +60,8 @@ The project architecture alignment report and phased migration roadmap live in [
 1. **Clone repository**
 
 ```bash
-git clone https://github.com/yourusername/coinat.git
-cd coinat
+git clone https://github.com/yourusername/athrye.git
+cd athrye
 npm i
 npm run dev
 ```

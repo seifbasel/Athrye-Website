@@ -208,7 +208,7 @@ export default function SignupPage() {
             transition={{ delay: 0.1 }}
             className="mb-3 text-xs font-montserrat uppercase tracking-[0.25em] text-muted-foreground"
           >
-            Join Coinat
+            Join Athrye
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 10 }}

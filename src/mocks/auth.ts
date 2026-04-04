@@ -3,7 +3,7 @@ import type { AuthResponse } from "@/types/auth";
 export const MOCK_LOGIN_USER: AuthResponse = {
   user: {
     id: "user-1",
-    email: "collector@coinat.com",
+    email: "collector@athrye.com",
     firstName: "James",
     lastName: "Sterling",
     avatar: "/coin1.jpg",

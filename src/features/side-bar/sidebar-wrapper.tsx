@@ -16,7 +16,7 @@ export function SidebarWrapper() {
 
   const links = [
     {
-      label: "Coinat",
+      label: "Athrye",
       href: "#",
       icon: <Atom className="h-6 w-6 text-primary" />,
     },

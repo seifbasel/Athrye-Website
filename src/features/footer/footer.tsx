@@ -27,7 +27,7 @@ export function Footer() {
               </span>
               <div>
                 <p className="font-playfair text-lg font-bold text-foreground">
-                  Coinat
+                  Athrye
                 </p>
                 <p className="text-[11px] font-montserrat uppercase tracking-[0.24em] text-muted-foreground">
                   Numismatic Marketplace
@@ -69,7 +69,7 @@ export function Footer() {
           </div>
         </div>
         <div className="flex flex-col gap-2 border-t border-border/70 mt-4 pt-4 text-xs font-montserrat text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p>(c) {year} Coinat. All rights reserved.</p>
+          <p>(c) {year} Athrye. All rights reserved.</p>
           <p>
             Authenticated pieces. Transparent provenance. Collector-first
             experience.

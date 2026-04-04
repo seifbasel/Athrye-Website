@@ -103,7 +103,7 @@ const PILLARS = [
     icon: Users,
     title: "Collector Community",
     description:
-      "Coinat is built for collectors, by collectors. Expert guidance, market insights, and a community of passionate numismatists who share your love of the discipline.",
+      "Athrye is built for collectors, by collectors. Expert guidance, market insights, and a community of passionate numismatists who share your love of the discipline.",
   },
 ];
 
@@ -475,7 +475,7 @@ export default function Home() {
                 <span className="text-primary">Meets Craft</span>
               </h2>
               <p className="max-w-2xl text-lg font-light leading-relaxed font-montserrat text-muted-foreground">
-                Coinat was founded on a singular belief: that every coin is a
+                Athrye was founded on a singular belief: that every coin is a
                 witness to history. We created a marketplace where collectors,
                 historians, and investors can find authenticated numismatic pieces
                 with full confidence in their provenance and condition.
@@ -513,7 +513,7 @@ export default function Home() {
                 What We Stand For
               </p>
               <h2 className="text-4xl font-bold font-playfair text-foreground sm:text-5xl">
-                The Coinat Standard
+                The Athrye Standard
               </h2>
               <p className="max-w-2xl mx-auto mt-4 font-montserrat text-foreground/60">
                 Every coin undergoes rigorous authentication, professional grading,
@@ -565,11 +565,11 @@ export default function Home() {
                 A Note from Our Founders
               </p>
               <blockquote className="text-2xl leading-relaxed font-playfair sm:text-3xl md:text-4xl">
-                &ldquo;We built Coinat because we were collectors first. We know
+                &ldquo;We built Athrye because we were collectors first. We know
                 the thrill of finding the right coin - and the frustration of
                 uncertainty. That feeling drives every decision we make.&rdquo;
               </blockquote>
-              <p className="text-sm font-montserrat opacity-70">- The Coinat Team</p>
+              <p className="text-sm font-montserrat opacity-70">- The Athrye Team</p>
             </div>
           </FadeIn>
         </section>

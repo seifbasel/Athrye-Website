@@ -6,7 +6,7 @@ export const MOCK_LOGIN_USER: AuthResponse = {
     email: "collector@athrye.com",
     firstName: "James",
     lastName: "Sterling",
-    avatar: "/coin1.jpg",
+    avatar: "/7.jpg",
   },
   tokens: {
     access: "mock-access-token",

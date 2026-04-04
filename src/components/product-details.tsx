@@ -56,7 +56,7 @@ export default function ProductDetail({ productId }: ProductDetailProps) {
   const imageUrl =
     allImages[selectedImage]?.image ??
     product.main_image?.image ??
-    "/coin1.jpg";
+    "/7.jpg";
   const inCart = isInCart(product.id as string);
   const favorited = isFavorite(product.id as string);
   const displayYear =
@@ -70,7 +70,7 @@ export default function ProductDetail({ productId }: ProductDetailProps) {
         id: product.id as string,
         name: product.name,
         price: product.price,
-        imageUrl: product.main_image?.image ?? "/coin1.jpg",
+        imageUrl: product.main_image?.image ?? "/7.jpg",
       });
     }
   };
@@ -80,7 +80,7 @@ export default function ProductDetail({ productId }: ProductDetailProps) {
       id: product.id as string,
       name: product.name,
       price: product.price,
-      imageUrl: product.main_image?.image ?? "/coin1.jpg",
+      imageUrl: product.main_image?.image ?? "/7.jpg",
       condition: product.condition,
     });
 

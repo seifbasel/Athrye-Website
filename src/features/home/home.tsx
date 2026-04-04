@@ -401,7 +401,7 @@ export default function Home() {
               className="relative w-full aspect-square sm:aspect-4/3 lg:aspect-auto lg:h-150"
             >
               <Image
-                src="/coin1.jpg"
+                src="/7.jpg"
                 alt="1933 Double Eagle"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"

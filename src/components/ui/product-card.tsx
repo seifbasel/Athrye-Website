@@ -27,7 +27,7 @@ const ProductCard = (product: Product) => {
   const [isFavorited, setIsFavorited] = useState(false);
   const [isInCart, setIsInCart] = useState(false);
 
-  const imageUrl = main_image?.image || "/coin1.jpg";
+  const imageUrl = main_image?.image || "/7.jpg";
   const displayYear = year < 0 ? `${Math.abs(year)} BC` : `${year} AD`;
 
   // 3. Toggle Handlers

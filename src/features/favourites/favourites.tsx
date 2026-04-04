@@ -1,29 +1,44 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "motion/react";
 import { Heart, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useFavorites } from "@/context/favorites-context";
-import { useCart } from "@/context/cart-context";
 import FavoriteItemCard from "@/components/ui/favourite-card";
+import { MOCK_FAVORITE_ITEMS } from "@/mocks/favorites";
+import type { FavoriteItem } from "@/types/favourites";
+import type { CartItem } from "@/types/cart-item";
 
 export default function FavoritesPage() {
-  const { items, removeItem, clearAll } = useFavorites();
-  const { addItem } = useCart();
+  const [items, setItems] = useState<FavoriteItem[]>(MOCK_FAVORITE_ITEMS);
+  const [mockCartPreview, setMockCartPreview] = useState<CartItem[]>([]);
 
-  const totalValue = items.reduce((sum, item) => sum + item.price, 0);
+  const totalValue = useMemo(
+    () => items.reduce((sum, item) => sum + item.price, 0),
+    [items],
+  );
+
+  const removeItem = (id: string) => {
+    setItems((currentItems) => currentItems.filter((item) => item.id !== id));
+  };
+
+  const clearAll = () => setItems([]);
 
   const handleMoveToCart = (id: string) => {
     const item = items.find((entry) => entry.id === id);
     if (!item) return;
 
-    addItem({
-      id: item.id,
-      name: item.name,
-      price: item.price,
-      imageUrl: item.imageUrl,
-    });
+    setMockCartPreview((currentItems) => [
+      ...currentItems,
+      {
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: 1,
+        imageUrl: item.imageUrl,
+      },
+    ]);
     removeItem(item.id);
   };
 
@@ -92,6 +107,13 @@ export default function FavoritesPage() {
               ))}
             </div>
             <div className="h-px bg-border/70" />
+            {mockCartPreview.length > 0 && (
+              <p className="text-xs font-montserrat text-muted-foreground">
+                {mockCartPreview.length} item
+                {mockCartPreview.length !== 1 ? "s" : ""} added to this page's
+                mock cart preview.
+              </p>
+            )}
             <div className="flex items-center justify-between">
               <span className="font-montserrat font-semibold text-foreground">
                 Total Value

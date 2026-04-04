@@ -8,8 +8,8 @@ import { motion, AnimatePresence } from "motion/react";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/context/auth-context";
 import { Input } from "@/components/ui/input";
+import { MOCK_LOGIN_USER } from "@/mocks/auth";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -73,12 +73,12 @@ function AppleIcon() {
 
 export default function LoginPage() {
   const router = useRouter();
-  const { login, loginWithGoogle, loginWithApple } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [socialLoading, setSocialLoading] = useState<"google" | "apple" | null>(
     null,
   );
   const [serverError, setServerError] = useState<string | null>(null);
+  const [loggedInEmail, setLoggedInEmail] = useState<string | null>(null);
 
   const {
     register,
@@ -89,7 +89,12 @@ export default function LoginPage() {
   const onSubmit = async (data: LoginForm) => {
     setServerError(null);
     try {
-      await login(data);
+      await new Promise((resolve) => setTimeout(resolve, 350));
+      if (data.email !== MOCK_LOGIN_USER.user.email) {
+        throw new Error("Mock login failed. Use collector@coinat.com.");
+      }
+
+      setLoggedInEmail(data.email);
       router.push("/");
     } catch (error: unknown) {
       setServerError(
@@ -102,8 +107,10 @@ export default function LoginPage() {
 
   const handleGoogle = async () => {
     setSocialLoading("google");
+    setServerError(null);
     try {
-      await loginWithGoogle("mock-google-token");
+      await new Promise((resolve) => setTimeout(resolve, 350));
+      setLoggedInEmail(MOCK_LOGIN_USER.user.email);
       router.push("/");
     } catch {
       setServerError("Google sign-in failed. Please try again.");
@@ -114,8 +121,10 @@ export default function LoginPage() {
 
   const handleApple = async () => {
     setSocialLoading("apple");
+    setServerError(null);
     try {
-      await loginWithApple("mock-apple-code", "mock-apple-token");
+      await new Promise((resolve) => setTimeout(resolve, 350));
+      setLoggedInEmail(MOCK_LOGIN_USER.user.email);
       router.push("/");
     } catch {
       setServerError("Apple sign-in failed. Please try again.");
@@ -125,7 +134,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-[calc(100vh-8rem)] px-4 items-center justify-center ">
+    <div className="flex min-h-[calc(100vh-8rem)] items-center justify-center px-4">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
@@ -209,7 +218,7 @@ export default function LoginPage() {
               {...register("email")}
               type="email"
               autoComplete="email"
-              placeholder="your@email.com"
+              placeholder="collector@coinat.com"
               className={`h-12 w-full rounded-xl border px-4 text-sm ${
                 errors.email
                   ? "border-red-400"
@@ -247,7 +256,7 @@ export default function LoginPage() {
                 {...register("password")}
                 type={showPassword ? "text" : "password"}
                 autoComplete="current-password"
-                placeholder="........"
+                placeholder="mockpass"
                 className={`h-12 w-full rounded-xl border px-4 pr-11 text-sm ${
                   errors.password
                     ? "border-red-400"
@@ -294,6 +303,14 @@ export default function LoginPage() {
               </motion.div>
             )}
           </AnimatePresence>
+
+          {loggedInEmail && (
+            <div className="rounded-xl border border-border bg-card px-4 py-3">
+              <p className="text-sm font-montserrat text-muted-foreground">
+                Mock session ready for {loggedInEmail}
+              </p>
+            </div>
+          )}
 
           <motion.button
             type="submit"

@@ -2,19 +2,22 @@
 
 A modern platform for collectors to discover, buy and sell authentic coins built with cutting-edge web technologies.
 
+## Architecture
+
+The project architecture alignment report and phased migration roadmap live in [docs/architecture-alignment-gap-report.md](docs/architecture-alignment-gap-report.md).
+
 ## ⚡ Tech Stack
 
 ### Frontend Framework
 
-- **Next.js 13** - App Router
+- **Next.js 16** - App Router
 - **React 19** - Server Components
 - **TypeScript** - Type Safety
 
 ### Styling & Animation
 
 - **Tailwind CSS** - Utility-first CSS
-- **GSAP** - Animation
-- **Framer Motion** - Interactive animations
+- **Motion** - Interactive animations
 - **Shadcn/UI** - Reusable components
 - **Lucide Icons** - Icon library
 

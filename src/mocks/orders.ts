@@ -197,3 +197,7 @@ export const MOCK_ORDERS: Order[] = [
     ],
   },
 ];
+
+export function getMockOrderById(id: string) {
+  return MOCK_ORDERS.find((order) => order.id === id) ?? null;
+}

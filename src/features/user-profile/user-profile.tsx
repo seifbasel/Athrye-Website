@@ -28,10 +28,10 @@ const profileSchema = z.object({
 type ProfileForm = z.infer<typeof profileSchema>;
 
 const inputCls = (err?: boolean) =>
-  `w-full h-12 px-4 rounded-xl border bg-background dark:bg-background-dark font-montserrat text-sm text-text-dark dark:text-text placeholder:text-text-dark/30 dark:placeholder:text-text/30 outline-none transition-all duration-200 focus:ring-2 focus:ring-text-dark/12 dark:focus:ring-text/12 ${
+  `h-12 w-full rounded-xl border bg-card px-4 font-montserrat text-sm text-foreground placeholder:text-muted-foreground outline-none transition-all duration-200 focus:ring-2 focus:ring-ring ${
     err
       ? "border-red-400"
-      : "border-text-dark/12 dark:border-text/12 hover:border-text-dark/25 dark:hover:border-text/25"
+      : "border-border hover:border-primary/45"
   }`;
 
 function Field({
@@ -45,7 +45,7 @@ function Field({
 }) {
   return (
     <div className="space-y-1.5">
-      <label className="block text-xs tracking-[0.18em] uppercase font-montserrat font-medium text-text-dark/55 dark:text-text/55">
+      <label className="block text-xs font-montserrat font-medium uppercase tracking-[0.18em] text-muted-foreground">
         {label}
       </label>
       {children}
@@ -85,37 +85,35 @@ export default function ProfilePage() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-10">
-      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
         <div className="flex items-center gap-5 mb-8">
-          <div className="w-16 h-16 rounded-full bg-button dark:bg-button-dark flex items-center justify-center shrink-0">
+          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-button">
             {user ? (
-              <span className="text-xl font-playfair font-bold text-text dark:text-text-dark uppercase">
+              <span className="text-xl font-playfair font-bold uppercase text-text">
                 {initials}
               </span>
             ) : (
-              <User className="w-7 h-7 text-text dark:text-text-dark" />
+              <User className="h-7 w-7 text-text" />
             )}
           </div>
           <div>
-            <h1 className="text-3xl font-playfair font-bold text-text-dark dark:text-text">
+            <h1 className="text-3xl font-playfair font-bold text-foreground">
               {user ? `${user.firstName} ${user.lastName}` : "Profile Settings"}
             </h1>
             {user && (
-              <p className="font-montserrat text-sm text-text-dark/55 dark:text-text/55 mt-0.5">
+              <p className="mt-0.5 font-montserrat text-sm text-muted-foreground">
                 {user.email}
               </p>
             )}
           </div>
         </div>
-        <div className="h-px bg-text-dark/8 dark:bg-text/8" />
+        <div className="h-px bg-border/70" />
       </motion.div>
 
-      {/* Form */}
       <motion.form
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -123,9 +121,8 @@ export default function ProfilePage() {
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-8"
       >
-        {/* Personal Info */}
         <div className="space-y-5">
-          <p className="text-xs tracking-[0.25em] uppercase font-montserrat font-semibold text-text-dark/45 dark:text-text/45">
+          <p className="text-xs font-montserrat font-semibold uppercase tracking-[0.25em] text-muted-foreground">
             Personal Information
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -161,9 +158,8 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Shipping Address */}
         <div className="space-y-5">
-          <p className="text-xs tracking-[0.25em] uppercase font-montserrat font-semibold text-text-dark/45 dark:text-text/45">
+          <p className="text-xs font-montserrat font-semibold uppercase tracking-[0.25em] text-muted-foreground">
             Shipping Address
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -202,7 +198,6 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Actions */}
         <div className="flex justify-end items-center gap-3 pt-2">
           <Button
             type="button"

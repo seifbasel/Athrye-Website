@@ -1,19 +1,40 @@
 "use client";
 
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "motion/react";
 import CartItem from "@/components/ui/cart-item";
-import { useCart } from "@/context/cart-context";
 import { ShoppingBag, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { MOCK_CART_ITEMS } from "@/mocks/cart";
+import type { CartItem as CartItemType } from "@/types/cart-item";
 
 export default function CartPage() {
-  const { items, total, removeItem, updateQuantity, clearCart } = useCart();
+  const [items, setItems] = useState<CartItemType[]>(MOCK_CART_ITEMS);
   const router = useRouter();
+  const total = useMemo(
+    () => items.reduce((sum, item) => sum + item.price * item.quantity, 0),
+    [items],
+  );
   const shipping = 0;
   const grandTotal = total + shipping;
+
+  const removeItem = (id: string) => {
+    setItems((currentItems) => currentItems.filter((item) => item.id !== id));
+  };
+
+  const updateQuantity = (id: string, newQuantity: number) => {
+    if (newQuantity < 1) return;
+
+    setItems((currentItems) =>
+      currentItems.map((item) =>
+        item.id === id ? { ...item, quantity: newQuantity } : item,
+      ),
+    );
+  };
+
+  const clearCart = () => setItems([]);
 
   return (
     <div className="mx-auto">

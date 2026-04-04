@@ -1,21 +1,19 @@
-import { useState, useEffect } from "react";
-import Product from "@/types/product";
-import { getProductById } from "@/services/products.service";
+import { MOCK_PRODUCTS } from "@/mocks/products";
+import type Product from "@/types/product";
 
-export function useProduct(id: number | string) {
-  const [data, setData] = useState<Product | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
+type UseProductResult = {
+  data: Product | null;
+  isLoading: boolean;
+  error: Error | null;
+};
 
-  useEffect(() => {
-    if (!id) return;
-    setIsLoading(true);
-    setError(null);
-    getProductById(id)
-      .then(setData)
-      .catch(setError)
-      .finally(() => setIsLoading(false));
-  }, [id]);
+export function useProduct(productId: number | string): UseProductResult {
+  const product =
+    MOCK_PRODUCTS.find((entry) => entry.id === String(productId)) ?? null;
 
-  return { data, isLoading, error };
+  return {
+    data: product,
+    isLoading: false,
+    error: product ? null : new Error("Product not found"),
+  };
 }

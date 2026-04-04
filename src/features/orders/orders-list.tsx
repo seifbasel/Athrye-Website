@@ -1,15 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { useOrders } from "@/context/order-context";
-import { useCart } from "@/context/cart-context";
 import { Order, OrderStatus } from "@/types/order";
 import { Loader2, Package, ChevronRight, RotateCcw } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { MOCK_ORDERS } from "@/mocks/orders";
 
 const STATUS_CONFIG: Record<
   OrderStatus,
@@ -68,21 +66,12 @@ export function StatusBadge({ status }: { status: OrderStatus }) {
 }
 
 function OrderCard({ order }: { order: Order }) {
-  const { addItem } = useCart();
-  const router = useRouter();
+  const [reordered, setReordered] = useState(false);
 
   const handleReorder = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    order.items.forEach((item) =>
-      addItem({
-        id: item.id,
-        name: item.name,
-        price: item.price,
-        imageUrl: item.imageUrl,
-      }),
-    );
-    router.push("/shopping-cart");
+    setReordered(true);
   };
 
   const date = new Date(order.createdAt).toLocaleDateString("en-EG", {
@@ -156,12 +145,19 @@ function OrderCard({ order }: { order: Order }) {
         </div>
 
         <div className="flex items-center justify-between">
-          <p className="font-playfair text-lg font-bold text-foreground">
-            {order.total.toLocaleString()}{" "}
-            <span className="text-sm font-montserrat font-normal text-muted-foreground">
-              EGP
-            </span>
-          </p>
+          <div>
+            <p className="font-playfair text-lg font-bold text-foreground">
+              {order.total.toLocaleString()}{" "}
+              <span className="text-sm font-montserrat font-normal text-muted-foreground">
+                EGP
+              </span>
+            </p>
+            {reordered && (
+              <p className="mt-1 text-xs font-montserrat text-muted-foreground">
+                Added to this page's mock cart preview.
+              </p>
+            )}
+          </div>
           {order.status === "delivered" && (
             <motion.button
               whileTap={{ scale: 0.95 }}
@@ -169,7 +165,7 @@ function OrderCard({ order }: { order: Order }) {
               className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-montserrat font-medium text-foreground transition-colors hover:bg-secondary/80"
             >
               <RotateCcw className="h-3 w-3" />
-              Reorder
+              {reordered ? "Added to Mock Cart" : "Reorder"}
             </motion.button>
           )}
         </div>
@@ -179,11 +175,17 @@ function OrderCard({ order }: { order: Order }) {
 }
 
 export default function OrdersPage() {
-  const { orders, isLoading, fetchOrders } = useOrders();
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchOrders();
-  }, [fetchOrders]);
+    const timer = setTimeout(() => {
+      setOrders(MOCK_ORDERS);
+      setIsLoading(false);
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="mx-auto">

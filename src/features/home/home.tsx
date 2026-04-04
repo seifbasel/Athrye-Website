@@ -362,7 +362,7 @@ export default function Home() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
                 onClick={() => router.push("/products")}
-                className={`group relative cursor-pointer overflow-hidden rounded-4xl border border-border/40 bg-card shadow-soft transition-all hover:border-primary/40 hover:shadow-elevated sm:min-h-100 ${
+                className={`group relative bg-transparent cursor-pointer overflow-hidden rounded-4xl border border-border/40 shadow-soft transition-all hover:border-primary/40 hover:shadow-elevated sm:min-h-100 ${
                   idx === 0 ? "sm:col-span-2 sm:row-span-2 lg:min-h-125" : "min-h-75"
                 }`}
               >
@@ -371,7 +371,7 @@ export default function Home() {
                   alt={coin.era}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                  className=" object-contain transition-transform duration-1000 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 transition-opacity duration-500 bg-linear-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90" />
                 <div className="absolute text-white bottom-6 left-6 right-6 sm:bottom-8 sm:left-8">

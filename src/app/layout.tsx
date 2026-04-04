@@ -3,11 +3,6 @@ import type { Metadata } from "next";
 import { SidebarWrapper } from "@/features/side-bar/sidebar-wrapper";
 import { Footer } from "@/features/footer/footer";
 import { Montserrat, Playfair_Display } from "next/font/google";
-import { AuthProvider } from "@/context/auth-context";
-import { CartProvider } from "@/context/cart-context";
-import { FavoritesProvider } from "@/context/favorites-context";
-import { OrderProvider } from "@/context/order-context";
-import Providers from "./query-provider";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -45,29 +40,17 @@ export default function RootLayout({
         className={`${montserrat.variable} ${playfairDisplay.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
-        <Providers>
-          <AuthProvider>
-            <CartProvider>
-              <FavoritesProvider>
-                <OrderProvider>
-                  <div className="min-h-screen bg-background">
-                    <div className="flex min-h-screen">
-                      <SidebarWrapper />
-                      <div className="flex min-w-0 flex-1 flex-col">
-                        <main className="mt-16 md:mt-0 flex-1 overflow-x-hidden p-6 md:p-8 md:pl-19">
-                          <div className="mx-auto w-full max-w-360">
-                            {children}
-                          </div>
-                        </main>
-                        <Footer />
-                      </div>
-                    </div>
-                  </div>
-                </OrderProvider>
-              </FavoritesProvider>
-            </CartProvider>
-          </AuthProvider>
-        </Providers>
+        <div className="min-h-screen bg-background">
+          <div className="flex min-h-screen">
+            <SidebarWrapper />
+            <div className="flex min-w-0 flex-1 flex-col">
+              <main className="mt-16 md:mt-0 flex-1 overflow-x-hidden p-6 md:p-8 md:pl-19">
+                <div className="mx-auto w-full max-w-360">{children}</div>
+              </main>
+              <Footer />
+            </div>
+          </div>
+        </div>
       </body>
     </html>
   );

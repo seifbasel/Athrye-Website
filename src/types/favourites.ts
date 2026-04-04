@@ -1,4 +1,4 @@
-type favouriteItem = {
+export type FavoriteItem = {
   id: string;
   name: string;
   price: number;
@@ -6,4 +6,4 @@ type favouriteItem = {
   condition: string;
 };
 
-export default favouriteItem;
+export default FavoriteItem;

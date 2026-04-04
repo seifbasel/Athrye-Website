@@ -5,19 +5,14 @@ import {
   Home,
   Coins,
   ShoppingCart,
-  Info,
   Atom,
   Heart,
   Package,
-  User,
+  LogIn,
+  UserCircle2Icon,
 } from "lucide-react";
-import { useCart } from "@/context/cart-context";
-import { useFavorites } from "@/context/favorites-context";
-import { SidebarUserSection } from "./sidebar-user-section";
 
 export function SidebarWrapper() {
-  const { count: cartCount } = useCart();
-  const { count: favCount } = useFavorites();
 
   const links = [
     {
@@ -39,13 +34,11 @@ export function SidebarWrapper() {
       label: "Shopping Cart",
       href: "/shopping-cart",
       icon: <ShoppingCart className="w-5 h-5 text-primary" />,
-      badge: cartCount,
     },
     {
       label: "Favorites",
       href: "/favorites",
       icon: <Heart className="w-5 h-5 text-primary" />,
-      badge: favCount,
     },
     {
       label: "My Orders",
@@ -53,9 +46,14 @@ export function SidebarWrapper() {
       icon: <Package className="w-5 h-5 text-primary" />,
     },
     {
-      label: "About",
-      href: "/about",
-      icon: <Info className="w-5 h-5 text-primary" />,
+      label: "Profile",
+      href: "/profile",
+      icon: <UserCircle2Icon className="w-5 h-5 text-primary" />,
+    },
+    {
+      label: "Login",
+      href: "/auth/login",
+      icon: <LogIn className="w-5 h-5 text-primary" />,
     },
   ];
 
@@ -69,9 +67,6 @@ export function SidebarWrapper() {
               <SidebarLink key={link.href} link={link} />
             ))}
           </div>
-
-          {/* User Section */}
-          <SidebarUserSection />
         </div>
       </SidebarBody>
     </Sidebar>

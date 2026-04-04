@@ -2,13 +2,11 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import React from "react";
+import React, { useState } from "react"; // 1. Import useState
 import { Heart, ShoppingCart, Eye } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Product from "@/types/product";
 import { useRouter } from "next/navigation";
-import { useCart } from "@/context/cart-context";
-import { useFavorites } from "@/context/favorites-context";
 
 const ProductCard = (product: Product) => {
   const {
@@ -24,22 +22,25 @@ const ProductCard = (product: Product) => {
   } = product;
 
   const router = useRouter();
-  const { addItem, isInCart } = useCart();
-  const { toggleItem, isFavorite } = useFavorites();
+
+  // 2. Initialize toggle states
+  const [isFavorited, setIsFavorited] = useState(false);
+  const [isInCart, setIsInCart] = useState(false);
 
   const imageUrl = main_image?.image || "/coin1.jpg";
-  const inCart = isInCart(id as string);
-  const favorited = isFavorite(id as string);
   const displayYear = year < 0 ? `${Math.abs(year)} BC` : `${year} AD`;
 
+  // 3. Toggle Handlers
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
-    addItem({ id: id as string, name, price, imageUrl });
+    setIsInCart((prev) => !prev);
+    // Add your logic to update global cart state/context here
   };
 
   const handleFavorite = (e: React.MouseEvent) => {
     e.stopPropagation();
-    toggleItem({ id: id as string, name, price, imageUrl, condition });
+    setIsFavorited((prev) => !prev);
+    // Add your logic to update global favorites/wishlist here
   };
 
   return (
@@ -56,7 +57,7 @@ const ProductCard = (product: Product) => {
           alt={name}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-contain transition-transform duration-500 group-hover:scale-105"
         />
 
         <div className="absolute inset-0 bg-linear-to-t from-black/58 via-black/8 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -71,14 +72,14 @@ const ProductCard = (product: Product) => {
         <motion.button
           whileTap={{ scale: 0.82 }}
           onClick={handleFavorite}
-          className="absolute right-3 top-3 rounded-full border border-white/20 bg-background/90 p-2 shadow-sm backdrop-blur-md transition-colors hover:bg-background dark:bg-card/90 dark:hover:bg-card"
-          aria-label={favorited ? "Remove from favorites" : "Add to favorites"}
+          className="absolute right-3 top-3 z-10 rounded-full border border-white/20 bg-background/90 p-2 shadow-sm backdrop-blur-md transition-colors hover:bg-background dark:bg-card/90 dark:hover:bg-card"
+          aria-label={isFavorited ? "Remove from favorites" : "Add to favorites"}
         >
           <Heart
             className={cn(
               "h-4 w-4 transition-colors duration-200",
-              favorited
-                ? "fill-red-500 stroke-red-500"
+              isFavorited
+                ? "fill-red-500 stroke-red-500" // Red when active
                 : "stroke-foreground/55",
             )}
           />
@@ -123,18 +124,19 @@ const ProductCard = (product: Product) => {
           {description}
         </p>
 
+        {/* 4. Cart Button Toggle Logic */}
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={handleAddToCart}
           className={cn(
             "flex h-11 w-full items-center justify-center gap-2 rounded-xl text-sm font-montserrat font-semibold transition-all duration-200",
-            inCart
-              ? "cursor-default bg-accent text-accent-foreground"
-              : "bg-foreground text-background hover:-translate-y-0.5 hover:opacity-95",
+            isInCart
+              ? "bg-accent text-accent-foreground" // "Added" State
+              : "bg-foreground text-background hover:-translate-y-0.5 hover:opacity-95", // "Initial" State
           )}
         >
-          <ShoppingCart className="h-5 w-5" />
-          {inCart ? "Added to Cart" : "Add to Cart"}
+          <ShoppingCart className={cn("h-5 w-5", isInCart && "fill-current")} />
+          {isInCart ? "Added to Cart" : "Add to Cart"}
         </motion.button>
       </div>
     </motion.div>

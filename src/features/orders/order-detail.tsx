@@ -2,14 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { useOrders } from "@/context/order-context";
-import { useCart } from "@/context/cart-context";
 import { Order } from "@/types/order";
 import { StatusBadge } from "./orders-list";
 import { ArrowLeft, Loader2, RotateCcw, XCircle } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { getOrderById } from "@/services/orders.service";
+import { getMockOrderById } from "@/mocks/orders";
 import { OrderConfirmation } from "./order-confirmation";
 import { OrderAddress } from "./order-address";
 import { OrderReview } from "./order-review";
@@ -17,17 +15,18 @@ import { OrderPayment } from "./order-payment";
 
 export default function OrderDetailPage({ orderId }: { orderId: string }) {
   const router = useRouter();
-  const { cancelOrderById } = useOrders();
-  const { addItem } = useCart();
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
   const [cancelling, setCancelling] = useState(false);
+  const [reordered, setReordered] = useState(false);
 
   useEffect(() => {
-    getOrderById(orderId)
-      .then(setOrder)
-      .catch(console.error)
-      .finally(() => setLoading(false));
+    const timer = setTimeout(() => {
+      setOrder(getMockOrderById(orderId));
+      setLoading(false);
+    }, 200);
+
+    return () => clearTimeout(timer);
   }, [orderId]);
 
   if (loading) {
@@ -61,24 +60,22 @@ export default function OrderDetailPage({ orderId }: { orderId: string }) {
 
     setCancelling(true);
     try {
-      await cancelOrderById(order.id);
-      const updated = await getOrderById(order.id);
-      setOrder(updated);
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      setOrder((currentOrder) =>
+        currentOrder
+          ? {
+              ...currentOrder,
+              status: "cancelled",
+            }
+          : currentOrder,
+      );
     } finally {
       setCancelling(false);
     }
   };
 
   const handleReorder = () => {
-    order.items.forEach((item) =>
-      addItem({
-        id: item.id,
-        name: item.name,
-        price: item.price,
-        imageUrl: item.imageUrl,
-      }),
-    );
-    router.push("/shopping-cart");
+    setReordered(true);
   };
 
   const createdDate = new Date(order.createdAt).toLocaleDateString("en-EG", {
@@ -125,6 +122,11 @@ export default function OrderDetailPage({ orderId }: { orderId: string }) {
           <p className="mt-0.5 text-sm font-montserrat text-muted-foreground">
             Placed on {createdDate}
           </p>
+          {reordered && (
+            <p className="mt-1 text-xs font-montserrat text-muted-foreground">
+              Added to this page's mock cart preview.
+            </p>
+          )}
         </div>
 
         <div className="flex items-center gap-3">
@@ -136,7 +138,8 @@ export default function OrderDetailPage({ orderId }: { orderId: string }) {
               onClick={handleReorder}
               className="flex h-9 items-center gap-1.5 rounded-xl border border-border bg-card px-4 text-xs font-montserrat font-medium text-foreground transition-colors hover:bg-secondary/80"
             >
-              <RotateCcw className="h-3.5 w-3.5" /> Reorder
+              <RotateCcw className="h-3.5 w-3.5" />
+              {reordered ? "Added to Mock Cart" : "Reorder"}
             </motion.button>
           )}
 

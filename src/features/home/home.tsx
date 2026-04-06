@@ -19,6 +19,7 @@ import {
   Users,
   LucideIcon,
 } from "lucide-react";
+import { AthryeBrand } from "@/components/brand/athrye-brand";
 import { Button } from "@/components/ui/button";
 
 // ─── Constants ───────────────────────────────────────────────────────────────
@@ -146,7 +147,13 @@ function FadeIn({
   );
 }
 
-function SectionBadge({ icon: Icon, text }: { icon: LucideIcon; text: string }) {
+function SectionBadge({
+  icon: Icon,
+  text,
+}: {
+  icon: LucideIcon;
+  text: string;
+}) {
   return (
     <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 border rounded-full border-primary/20 bg-primary/10">
       <Icon className="h-3.5 w-3.5 text-primary" />
@@ -164,15 +171,19 @@ function TrustCard({ icon: Icon, label, sub }: (typeof TRUST_ITEMS)[number]) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="relative p-8 overflow-hidden transition-all border group rounded-4xl border-border/50 bg-card shadow-soft hover:border-primary/40 hover:shadow-elevated"
+      className="relative h-full p-8 overflow-hidden transition-all border group rounded-4xl border-border/50 bg-card shadow-soft hover:border-primary/40 hover:shadow-elevated"
     >
       <div className="absolute inset-0 transition-opacity duration-500 opacity-0 bg-linear-to-br from-primary/5 to-transparent group-hover:opacity-100" />
       <div className="relative z-10">
         <div className="flex items-center justify-center mb-6 transition-transform duration-500 h-14 w-14 rounded-2xl bg-primary/10 text-primary group-hover:scale-110">
           <Icon className="w-6 h-6" />
         </div>
-        <h3 className="text-2xl font-bold font-playfair text-foreground">{label}</h3>
-        <p className="mt-3 text-sm leading-relaxed font-montserrat text-foreground/70">{sub}</p>
+        <h3 className="text-2xl font-bold font-playfair text-foreground">
+          {label}
+        </h3>
+        <p className="mt-3 text-sm leading-relaxed font-montserrat text-foreground/70">
+          {sub}
+        </p>
       </div>
     </motion.div>
   );
@@ -188,8 +199,12 @@ function PillarCard({
       <div className="flex items-center justify-center w-12 h-12 transition-transform duration-300 rounded-xl bg-primary/10 group-hover:scale-110">
         <Icon className="w-5 h-5 text-primary" strokeWidth={1.75} />
       </div>
-      <h3 className="text-xl font-semibold font-playfair text-foreground">{title}</h3>
-      <p className="text-sm leading-relaxed font-montserrat text-muted-foreground">{description}</p>
+      <h3 className="text-xl font-semibold font-playfair text-foreground">
+        {title}
+      </h3>
+      <p className="text-sm leading-relaxed font-montserrat text-muted-foreground">
+        {description}
+      </p>
     </div>
   );
 }
@@ -197,7 +212,9 @@ function PillarCard({
 function StatCard({ value, label }: (typeof STATS)[number]) {
   return (
     <div className="space-y-1.5 rounded-2xl border border-border bg-card p-6 text-center shadow-soft transition-shadow duration-500 hover:shadow-elevated">
-      <p className="text-4xl font-bold font-playfair text-foreground">{value}</p>
+      <p className="text-4xl font-bold font-playfair text-foreground">
+        {value}
+      </p>
       <p className="font-montserrat text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
         {label}
       </p>
@@ -226,8 +243,9 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: EASE_OUT_QUINT }}
+            className="mb-8 flex justify-center"
           >
-            <SectionBadge icon={Sparkles} text="The Premier Numismatic Gallery" />
+            <AthryeBrand variant="lockup" size="xl" />
           </motion.div>
 
           <motion.h1
@@ -235,8 +253,7 @@ export default function Home() {
             custom={0.3}
             className="font-playfair text-5xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-[5.5rem]"
           >
-            Own a Piece of{" "}
-            <br className="hidden sm:block" />
+            Own a Piece of <br className="hidden sm:block" />
             <span className="text-transparent bg-linear-to-r from-primary via-amber-600 to-primary bg-clip-text">
               Living History
             </span>
@@ -286,8 +303,10 @@ export default function Home() {
         <div
           className="relative flex w-full overflow-hidden"
           style={{
-            maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
-            WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+            maskImage:
+              "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
           }}
         >
           <motion.div
@@ -363,7 +382,9 @@ export default function Home() {
                 viewport={{ once: true, amount: 0.2 }}
                 onClick={() => router.push("/products")}
                 className={`group relative bg-transparent cursor-pointer overflow-hidden rounded-4xl border border-border/40 shadow-soft transition-all hover:border-primary/40 hover:shadow-elevated sm:min-h-100 ${
-                  idx === 0 ? "sm:col-span-2 sm:row-span-2 lg:min-h-125" : "min-h-75"
+                  idx === 0
+                    ? "sm:col-span-2 sm:row-span-2 lg:min-h-125"
+                    : "min-h-75"
                 }`}
               >
                 <Image
@@ -431,13 +452,13 @@ export default function Home() {
 
               <div className="mt-6 space-y-4 text-base leading-relaxed font-montserrat text-foreground/80">
                 <p>
-                  One of the rarest and most coveted coins ever minted - a symbol
-                  of history, artistry, and unparalleled exclusivity in the
-                  numismatic world.
+                  One of the rarest and most coveted coins ever minted - a
+                  symbol of history, artistry, and unparalleled exclusivity in
+                  the numismatic world.
                 </p>
                 <p className="pl-4 text-sm italic border-l-2 border-primary/50 text-foreground/60">
-                  Only 13 examples are known to exist, making it the Mona Lisa of
-                  American coinage.
+                  Only 13 examples are known to exist, making it the Mona Lisa
+                  of American coinage.
                 </p>
               </div>
 
@@ -477,16 +498,39 @@ export default function Home() {
               <p className="max-w-2xl text-lg font-light leading-relaxed font-montserrat text-muted-foreground">
                 Athrye was founded on a singular belief: that every coin is a
                 witness to history. We created a marketplace where collectors,
-                historians, and investors can find authenticated numismatic pieces
-                with full confidence in their provenance and condition.
+                historians, and investors can find authenticated numismatic
+                pieces with full confidence in their provenance and condition.
               </p>
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <div className="grid grid-cols-2 gap-4">
-                {STATS.map((stat) => (
-                  <StatCard key={stat.label} {...stat} />
-                ))}
+              <div className="space-y-6">
+                <div className="rounded-4xl border border-border/70 bg-card/80 p-6 shadow-soft">
+                  <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <p className="font-montserrat text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                        Signature Mark
+                      </p>
+                      <p className="mt-3 max-w-md font-playfair text-sm leading-relaxed text-muted-foreground">
+                        Athrye blends the geometry of a coin, the silhouette of
+                        the pyramids, and the Arabic letter form inspiration
+                        from{" "}
+                        <span className="font-playfair text-xl font-semibold tracking-widest text-primary">
+                          ث
+                        </span>
+                      </p>
+                    </div>
+                    <div className="flex justify-center sm:justify-end">
+                      <AthryeBrand variant="emblem" size="xl" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  {STATS.map((stat) => (
+                    <StatCard key={stat.label} {...stat} />
+                  ))}
+                </div>
               </div>
             </FadeIn>
           </div>
@@ -498,7 +542,10 @@ export default function Home() {
             <div className="flex-1 h-px bg-border/70" />
             <div className="flex gap-1.5">
               {Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="h-1.5 w-1.5 rounded-full bg-muted-foreground/45" />
+                <div
+                  key={i}
+                  className="h-1.5 w-1.5 rounded-full bg-muted-foreground/45"
+                />
               ))}
             </div>
             <div className="flex-1 h-px bg-border/70" />
@@ -516,8 +563,9 @@ export default function Home() {
                 The Athrye Standard
               </h2>
               <p className="max-w-2xl mx-auto mt-4 font-montserrat text-foreground/60">
-                Every coin undergoes rigorous authentication, professional grading,
-                and comprehensive provenance validation before entering our marketplace.
+                Every coin undergoes rigorous authentication, professional
+                grading, and comprehensive provenance validation before entering
+                our marketplace.
               </p>
             </div>
           </FadeIn>
@@ -548,8 +596,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid gap-6 sm:grid-cols-3">
-            {TRUST_ITEMS.map((item, idx) => (
+<div className="grid gap-6 sm:grid-cols-3 items-stretch">            {TRUST_ITEMS.map((item, idx) => (
               <motion.div key={item.label} custom={idx * 0.1} variants={fadeUp}>
                 <TrustCard {...item} />
               </motion.div>
@@ -560,7 +607,7 @@ export default function Home() {
         {/* FOUNDERS QUOTE */}
         <section className="mb-24 sm:mb-32">
           <FadeIn>
-            <div className="space-y-5 rounded-[2rem] bg-primary p-8 text-background shadow-elevated sm:p-12 md:p-16">
+            <div className="space-y-5 rounded-4xl bg-primary p-8 text-background shadow-elevated sm:p-12 md:p-16">
               <p className="font-montserrat text-xs uppercase tracking-[0.3em] opacity-50">
                 A Note from Our Founders
               </p>
@@ -569,7 +616,9 @@ export default function Home() {
                 the thrill of finding the right coin - and the frustration of
                 uncertainty. That feeling drives every decision we make.&rdquo;
               </blockquote>
-              <p className="text-sm font-montserrat opacity-70">- The Athrye Team</p>
+              <p className="text-sm font-montserrat opacity-70">
+                - The Athrye Team
+              </p>
             </div>
           </FadeIn>
         </section>
@@ -590,8 +639,8 @@ export default function Home() {
                 Start Your Collection
               </h2>
               <p className="max-w-xl mx-auto mt-6 text-base leading-relaxed font-montserrat text-foreground/60 sm:text-lg">
-                Join a community of discerning collectors and acquire pieces that
-                tell the story of human civilization.
+                Join a community of discerning collectors and acquire pieces
+                that tell the story of human civilization.
               </p>
 
               <Button

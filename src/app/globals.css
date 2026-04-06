@@ -50,17 +50,17 @@
     --primary-foreground: #15110a;
 
     --secondary: #e8dfce;
-    --secondary-foreground: #5d564a;
-    --muted: #ebe3d5;
+    --secondary-foreground: #675f52;
+    --muted: #f0e6d5;
     --muted-foreground: #675f52;
     --accent: #f3e0a8;
     --accent-foreground: #2a2419;
 
-    --border: #c7baa2;
-    --input: #fcf8f1;
+    --border: #d7c8ad;
+    --input: #f8f0e2;
     --ring: rgb(183 138 24 / 0.32);
 
-    --card: #fffaf2;
+    --card: #fbf4e8;
     --card-foreground: #1c2127;
     --button: #1c2127;
     --button-dark: #f1e3b3;
@@ -76,18 +76,18 @@
     --primary: #e0ba57;
     --primary-foreground: #16120a;
 
-    --secondary: #1b232c;
+    --secondary: #20262d;
     --secondary-foreground: #c5bfb2;
-    --muted: #151c24;
+    --muted: #171e26;
     --muted-foreground: #a8a093;
-    --accent: #33270d;
+    --accent: #3b2b0d;
     --accent-foreground: #f6e6b5;
 
-    --border: #303944;
-    --input: #161d25;
+    --border: #343c46;
+    --input: #1a2129;
     --ring: rgb(224 186 87 / 0.3);
 
-    --card: #171d24;
+    --card: #181f27;
     --card-foreground: #f5efe4;
     --button: #e0ba57;
     --button-dark: #f3e1ab;
@@ -107,10 +107,10 @@
   body {
     min-height: 100vh;
     background:
-      radial-gradient(circle at top, rgb(183 138 24 / 0.08), transparent 32%),
+      radial-gradient(circle at top, rgb(183 138 24 / 0.1), transparent 32%),
       radial-gradient(
         circle at bottom right,
-        rgb(28 33 39 / 0.06),
+        rgb(103 95 82 / 0.08),
         transparent 24%
       ),
       var(--background);

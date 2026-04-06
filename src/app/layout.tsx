@@ -2,24 +2,46 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { SidebarWrapper } from "@/features/side-bar/sidebar-wrapper";
 import { Footer } from "@/features/footer/footer";
-import { Montserrat, Playfair_Display } from "next/font/google";
+import localFont from "next/font/local";
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
+const montserrat = localFont({
+  src: [
+    {
+      path: "./fonts/Montserrat-VariableFont_wght.ttf",
+      style: "normal",
+      weight: "100 900",
+    },
+    {
+      path: "./fonts/Montserrat-Italic-VariableFont_wght.ttf",
+      style: "italic",
+      weight: "100 900",
+    },
+  ],
   variable: "--font-montserrat",
   display: "swap",
 });
 
-const playfairDisplay = Playfair_Display({
-  subsets: ["latin"],
+const playfairDisplay = localFont({
+  src: [
+    {
+      path: "./fonts/PlayfairDisplay-VariableFont_wght.ttf",
+      style: "normal",
+      weight: "400 900",
+    },
+    {
+      path: "./fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf",
+      style: "italic",
+      weight: "400 900",
+    },
+  ],
   variable: "--font-playfair",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Athrye - Numismatic Marketplace",
+  title: "Athrye | Numismatic Marketplace",
   description:
-    "Discover, buy and sell authenticated coins from around the world.",
+    "Discover, collect, and trade authenticated coins through Athrye's premium numismatic marketplace.",
   keywords: [
     "coins",
     "numismatics",
@@ -27,6 +49,13 @@ export const metadata: Metadata = {
     "rare coins",
     "coin trading",
   ],
+  icons: {
+    icon: [
+      { url: "/brand/athrye-symbol.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: ["/brand/athrye-symbol.svg"],
+  },
 };
 
 export default function RootLayout({

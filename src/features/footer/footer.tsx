@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Atom, Instagram, Facebook } from "lucide-react";
+import { Instagram, Facebook } from "lucide-react";
+import { AthryeBrand, AthryeBrandLink } from "@/components/brand/athrye-brand";
 
 const footerLinks = [
   { label: "Catalog", href: "/products" },
@@ -17,22 +18,15 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <div className="mx-auto flex w-full max-w-360 flex-col gap-6">
+    <div className="mx-auto flex w-full flex-col gap-6">
       <div className="rounded-[1.75rem] border border-border/80 bg-background/70 p-5 shadow-soft">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-xl space-y-3">
-            <div className="inline-flex items-center gap-3 rounded-2xl border border-border/80 bg-card px-3 py-2 shadow-soft">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-                <Atom className="h-5 w-5 text-primary" />
-              </span>
-              <div>
-                <p className="font-playfair text-lg font-bold text-foreground">
-                  Athrye
-                </p>
+              <div className="flex items-center gap-3">
+                  <AthryeBrand variant="symbol" size="md" />
                 <p className="text-[11px] font-montserrat uppercase tracking-[0.24em] text-muted-foreground">
                   Numismatic Marketplace
                 </p>
-              </div>
             </div>
 
             <p className="text-sm font-montserrat leading-relaxed text-muted-foreground">

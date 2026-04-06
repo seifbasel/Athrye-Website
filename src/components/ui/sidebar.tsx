@@ -1,5 +1,6 @@
 "use client";
 
+import { AthryeBrandLink } from "@/components/brand/athrye-brand";
 import { cn } from "@/lib/utils";
 import Link, { LinkProps } from "next/link";
 import React, { createContext, useContext, useEffect, useState } from "react";
@@ -173,8 +174,28 @@ export const MobileSidebar = ({
         )}
         {...props}
       >
-        <div className="z-20 flex w-full justify-start">
-          <Menu className="text-foreground" onClick={() => setOpen(!open)} />
+        <div className="z-20 flex items-center gap-3">
+          <button
+            type="button"
+            aria-label="Open navigation"
+            onClick={() => setOpen(!open)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-border/70 bg-card text-foreground shadow-soft"
+          >
+            <Menu className="text-foreground" />
+          </button>
+        </div>
+        <div className="flex items-center">
+          <button
+            type="button"
+            onClick={() => setDarkMode(!darkMode)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-border/70 bg-card text-foreground shadow-soft"
+          >
+            {darkMode ? (
+              <Sun className="h-4.5 w-4.5 text-primary" />
+            ) : (
+              <Moon className="h-4.5 w-4.5 text-primary" />
+            )}
+          </button>
         </div>
       </div>
 
@@ -203,11 +224,16 @@ export const MobileSidebar = ({
                     className,
                   )}
                 >
-                  <div
-                    className="absolute right-8 top-8 z-50 text-primary"
-                    onClick={() => setOpen(false)}
-                  >
-                    <X />
+                  <div className="mb-8 flex items-center justify-between">
+                    <AthryeBrandLink variant="lockup" size="md" className="max-w-40" />
+                    <button
+                      type="button"
+                      aria-label="Close navigation"
+                      className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-border/70 bg-background text-primary"
+                      onClick={() => setOpen(false)}
+                    >
+                      <X />
+                    </button>
                   </div>
 
                   <div className="grow">{children}</div>

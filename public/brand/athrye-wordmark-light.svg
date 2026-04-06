@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1599.09 340">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke-width: 0px;
+      }
+
+      .cls-2, .cls-5 {
+        fill: #1c2127;
+      }
+
+      .cls-5 {
+        font-family: PlayfairDisplayRoman-Bold, 'Playfair Display';
+        font-size: 300px;
+        font-variation-settings: 'wght' 700;
+        font-weight: 700;
+      }
+
+      .cls-6 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-7 {
+        letter-spacing: -.07em;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="1308.25" y1="184" x2="1445.88" y2="225.81" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b78a18"/>
+      <stop offset=".14" stop-color="#b28618"/>
+      <stop offset=".31" stop-color="#a47d19"/>
+      <stop offset=".48" stop-color="#8d6d1c"/>
+      <stop offset=".66" stop-color="#6c571f"/>
+      <stop offset=".85" stop-color="#433c23"/>
+      <stop offset="1" stop-color="#1c2127"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="1322.37" y1="221.91" x2="1622.38" y2="225.51" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b78a18"/>
+      <stop offset=".43" stop-color="#6e581f"/>
+      <stop offset=".82" stop-color="#333024"/>
+      <stop offset="1" stop-color="#1c2127"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="1459.74" y1="225.17" x2="1595.23" y2="180.6" gradientUnits="userSpaceOnUse">
+      <stop offset=".37" stop-color="#b78a18"/>
+      <stop offset=".46" stop-color="#b28618"/>
+      <stop offset=".56" stop-color="#a47d19"/>
+      <stop offset=".67" stop-color="#8d6d1c"/>
+      <stop offset=".79" stop-color="#6c571f"/>
+      <stop offset=".9" stop-color="#433c23"/>
+      <stop offset="1" stop-color="#1c2127"/>
+    </linearGradient>
+  </defs>
+  <g id="name-logo-light">
+    <g>
+      <polygon class="cls-1" points="1299.09 340 1392.84 68 1449.09 68 1355.34 340 1299.09 340"/>
+      <path class="cls-3" d="M1317.84,281.71h262.5c10.36,0,18.75-8.7,18.75-19.43v-77.71c0-10.73-8.39-19.43-18.75-19.43h0c-10.36,0-18.75,8.7-18.75,19.43v19.43c0,10.73-8.39,19.43-18.75,19.43h-187.5c-10.36,0-18.75-8.7-18.75-19.43v-19.43c0-10.73-8.39-19.43-18.75-19.43h0c-10.36,0-18.75,8.7-18.75,19.43v77.71c0,10.73,8.39,19.43,18.75,19.43Z"/>
+      <polygon class="cls-4" points="1599.09 340 1542.84 340 1449.09 68 1505.34 68 1599.09 340"/>
+      <polygon class="cls-2" points="1411.59 204 1449.09 87.43 1486.59 204 1411.59 204"/>
+      <polygon class="cls-2" points="1486.59 0 1411.59 0 1392.84 58.29 1505.34 58.29 1486.59 0"/>
+      <text class="cls-5" transform="translate(4.5 261.95)"><tspan class="cls-7" x="0" y="0">A</tspan><tspan x="179.7" y="0">TH</tspan><tspan class="cls-6" x="620.1" y="0">R</tspan><tspan x="816.6" y="0">YE</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -228,9 +228,9 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-background">
+    <div className="relative">
       {/* HERO */}
-      <section className="relative flex min-h-[90vh] flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:px-8">
+      <section className="relative flex min-h-[90vh] flex-col items-center justify-center px-4  text-center sm:px-6 lg:px-8">
         <div className="absolute left-1/2 top-1/2 -z-10 h-[60vw] max-h-150 w-[60vw] max-w-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[120px]" />
 
         <motion.div
@@ -245,7 +245,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2, ease: EASE_OUT_QUINT }}
             className="mb-8 flex justify-center"
           >
-            <AthryeBrand variant="lockup" size="xl" />
+            <AthryeBrand variant="symbol" size="xl" />
           </motion.div>
 
           <motion.h1
@@ -254,7 +254,7 @@ export default function Home() {
             className="font-playfair text-5xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-[5.5rem]"
           >
             Own a Piece of <br className="hidden sm:block" />
-            <span className="text-transparent bg-linear-to-r from-primary via-amber-600 to-primary bg-clip-text">
+            <span className="text-transparent bg-linear-to-r from-primary via-primary to-primary bg-clip-text">
               Living History
             </span>
           </motion.h1>

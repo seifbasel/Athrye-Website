@@ -84,7 +84,7 @@ export default function ProfilePage() {
   const initials = user ? `${user.firstName[0]}${user.lastName[0]}` : "?";
 
   return (
-    <div className="max-w-2xl mx-auto space-y-10">
+    <div className="mx-auto space-y-10">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
